@@ -9,7 +9,7 @@ const game = {
     selectedSabotage: null,
 
     start() {
-        console.log("🎮 NeuroLíder iniciado");
+        console.log("🧠 NeuroLíder: O Desafio da Autogestão iniciado");
         this.showScreen('phase1');
         this.loadPhase1();
     },
@@ -19,7 +19,6 @@ const game = {
         const target = document.getElementById(screenId);
         if (target) {
             target.classList.add('active');
-            // Gatilhos automáticos
             if (screenId === 'phase2') setTimeout(() => this.startPause(), 600);
             if (screenId === 'phase3') this.loadPhase3();
             if (screenId === 'phase4') this.loadPhase4();
@@ -29,9 +28,12 @@ const game = {
 
     loadPhase1() {
         this.phase1Data = [
-            { scenario: "Seu diretor envia um e-mail às 22h: 'Esse relatório está fraco. Revisar até amanhã 8h.'", options: ["Responder imediatamente justificando", "Pausar, respirar e responder amanhã", "Ignorar e esperar cobrança"], correct: 1, character: "Alarme (Amígdala)" },
-            { scenario: "Em uma reunião, um colega critica sua ideia publicamente.", options: ["Contra-atacar na hora", "Ficar calado e guardar ressentimento", "Agradecer e pedir detalhes para entender melhor"], correct: 2, character: "Radar (Hipotálamo)" },
-            { scenario: "Você recebe um elogio do CEO por um projeto bem-sucedido.", options: ["Achar que foi sorte e esquecer", "Saborear por 20s e registrar mentalmente", "Dizer que a equipe fez tudo"], correct: 1, character: "Bibliotecário (Hipocampo)" }
+            { scenario: "Seu diretor envia um e-mail às 22h: 'Esse relatório está fraco. Revisar até amanhã 8h.'", options: ["Responder imediatamente justificando o trabalho", "Pausar 5s, respirar e responder amanhã com clareza", "Ignorar e esperar cobrança"], correct: 1, character: "Alarme (Amígdala)" },
+            { scenario: "Em uma reunião, um colega critica sua ideia publicamente.", options: ["Contra-atacar na hora defendendo sua posição", "Ficar calado e guardar ressentimento", "Validar a preocupação e pedir detalhes técnicos"], correct: 2, character: "Radar (Hipotálamo)" },
+            { scenario: "Você recebe um elogio do CEO por um projeto bem-sucedido.", options: ["Achar que foi sorte e seguir em frente rapidamente", "Saborear por 20s, internalizar e registrar mentalmente", "Desviar o crédito imediatamente para a equipe"], correct: 1, character: "Bibliotecário (Hipocampo)" },
+            { scenario: "Uma campanha falha e a equipe desanima. Como você posiciona o erro?", options: ["'Fracassamos de novo. Talvez não seja nossa área.'", "'O erro é um dado técnico. O que ainda não dominamos?'", "'A culpa foi do mercado imprevisível.'"], correct: 1, character: "Mentalidade 'Ainda Não' (Crescimento)" },
+            { scenario: "Negociação travada: a contraparte exige garantias rígidas por desconfiança.", options: ["'Mas nossa empresa sempre cumpriu prazos!'", "'Você tem razão em exigir segurança. E podemos estruturar métricas claras assim...'", "'Se não confiarem, não há negócio.'"], correct: 1, character: "Validação Radical + 'Sim... e'" },
+            { scenario: "Um feedback negativo gera insônia e ruminação mental.", options: ["Revisar o e-mail 10x para encontrar onde errei", "Aplicar Teflon/Velcro: filtrar ruído, guardar aprendizado técnico", "Responder no calor da emoção se defendendo"], correct: 1, character: "Filtro Cognitivo Invertido" }
         ];
 
         const container = document.getElementById('quiz-container');
@@ -70,7 +72,9 @@ const game = {
         }
         feedback.style.display = 'block';
 
-        if (qIndex === 2) setTimeout(() => this.showScreen('phase2'), 2000);
+        if (qIndex === this.phase1Data.length - 1) {
+            setTimeout(() => this.showScreen('phase2'), 2000);
+        }
     },
 
     startPause() {
@@ -116,7 +120,6 @@ const game = {
         const feedback = document.getElementById('feedback-neg');
         const container = document.getElementById('neg-options');
         
-        // Reset visual
         container.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
         element.classList.add('selected');
 
@@ -126,15 +129,23 @@ const game = {
             feedback.className = 'feedback success';
             feedback.innerHTML = `✅ <strong>Magistral!</strong> Substituiu o "Mas" por "Sim... e". Amígdala regulada. +75 PN<br>Badge: Arquiteto de Pontes`;
             feedback.style.display = 'block';
-            // Bloqueia novos cliques e avança
             container.querySelectorAll('.quiz-option').forEach(opt => opt.style.pointerEvents = 'none');
             setTimeout(() => this.showScreen('phase4'), 2500);
         } else {
             feedback.className = 'feedback error';
             feedback.innerHTML = `⚠️ O "Mas" ativa defensividade. <strong>Clique na outra opção</strong> para validar a contraparte e avançar.`;
             feedback.style.display = 'block';
-            // Mantém habilitado para tentar novamente
         }
+    },
+
+    shuffleArray(array) {
+        let currentIndex = array.length, randomIndex;
+        while (currentIndex != 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+        }
+        return array;
     },
 
     loadPhase4() {
@@ -148,17 +159,21 @@ const game = {
         this.matchesFound = 0;
         this.selectedSabotage = null;
 
+        // Embaralha as colunas independentemente
+        const col1 = this.shuffleArray([...pairs]);
+        const col2 = this.shuffleArray([...pairs]);
+
         const container = document.getElementById('matching-game');
         container.innerHTML = `
-            <h3>🖱️ Clique em um sabotador (❌) e depois na sua inversão correta (✅):</h3>
+            <h3>🖱️ Clique em um sabotador (❌) e depois na sua inversão correta (✅). <br><small>Ordem aleatória. Pense antes de combinar.</small></h3>
             <div class="matching-grid">
                 <div class="match-column">
                     <h4>Sabotadores</h4>
-                    ${pairs.map(p => `<div class="match-item" data-type="sabotage" data-id="${p.id}">❌ ${p.sabotage}</div>`).join('')}
+                    ${col1.map(p => `<div class="match-item" data-type="sabotage" data-id="${p.id}">❌ ${p.sabotage}</div>`).join('')}
                 </div>
                 <div class="match-column">
                     <h4>Inversões</h4>
-                    ${pairs.map(p => `<div class="match-item" data-type="inverse" data-id="${p.id}">✅ ${p.inverse}</div>`).join('')}
+                    ${col2.map(p => `<div class="match-item" data-type="inverse" data-id="${p.id}">✅ ${p.inverse}</div>`).join('')}
                 </div>
             </div>
             <div class="feedback" id="feedback-match"></div>`;
