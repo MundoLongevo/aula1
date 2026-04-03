@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroLíder: O Desafio da Autogestão</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Tela Inicial -->
+        <div id="start-screen" class="screen active">
+            <h1>🧠 NeuroLíder</h1>
+            <h2>O Desafio da Autogestão</h2>
+            <p class="subtitle">Domine seu cérebro, lidere sua vida</p>
+            <button onclick="game.start()" class="btn-primary">Iniciar Jornada</button>
+            <div class="info-box">
+                <p>⏱️ Duração: 20-30 minutos</p>
+                <p>🎯 Objetivo: Desenvolver autogestão através da neuroplasticidade</p>
+            </div>
+        </div>
+
+        <!-- Fase 1: Diagnóstico -->
+        <div id="phase1" class="screen">
+            <div class="phase-header">
+                <span class="phase-number">Fase 1/5</span>
+                <h2>Diagnóstico do Radar</h2>
+            </div>
+            <div id="quiz-container"></div>
+        </div>
+
+        <!-- Fase 2: Protocolo em Ação -->
+        <div id="phase2" class="screen">
+            <div class="phase-header">
+                <span class="phase-number">Fase 2/5</span>
+                <h2>Protocolo de Pausa</h2>
+            </div>
+            <div id="timer-container">
+                <div class="timer-display" id="pause-timer">5</div>
+                <p>Respire fundo... Mantenha a calma...</p>
+                <button onclick="game.completePause()" class="btn-primary" id="btn-pause" disabled>
+                    Concluir Pausa
+                </button>
+            </div>
+        </div>
+
+        <!-- Fase 3: Negociação -->
+        <div id="phase3" class="screen">
+            <div class="phase-header">
+                <span class="phase-number">Fase 3/5</span>
+                <h2>Caso AT&T vs Boeing</h2>
+            </div>
+            <div id="negotiation-scenario"></div>
+        </div>
+
+        <!-- Fase 4: Jogo do Contrário -->
+        <div id="phase4" class="screen">
+            <div class="phase-header">
+                <span class="phase-number">Fase 4/5</span>
+                <h2>Inversão de Hábitos</h2>
+            </div>
+            <div id="matching-game"></div>
+        </div>
+
+        <!-- Fase 5: Compromisso -->
+        <div id="phase5" class="screen">
+            <div class="phase-header">
+                <span class="phase-number">Fase 5/5</span>
+                <h2>Seu Plano de 3 Dias</h2>
+            </div>
+            <div id="commitment-form"></div>
+        </div>
+
+        <!-- Tela Final -->
+        <div id="end-screen" class="screen">
+            <h2>🎉 Jornada Completa!</h2>
+            <div id="final-score"></div>
+            <div id="badges-earned"></div>
+            <button onclick="game.downloadPDF()" class="btn-primary">Baixar Meu Plano (PDF)</button>
+            <button onclick="location.reload()" class="btn-secondary">Reiniciar</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
