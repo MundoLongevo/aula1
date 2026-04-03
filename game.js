@@ -5,10 +5,11 @@ const game = {
     commitments: [],
     phase1Data: [],
     matchesFound: 0,
-    totalPairs: 0,
+    totalPairs: 4,
     selectedSabotage: null,
 
     start() {
+        console.log("🎮 NeuroLíder iniciado");
         this.showScreen('phase1');
         this.loadPhase1();
     },
@@ -16,12 +17,14 @@ const game = {
     showScreen(screenId) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         const target = document.getElementById(screenId);
-        if (target) target.classList.add('active');
-        
-        // Gatilhos automáticos por fase
-        if (screenId === 'phase2') setTimeout(() => this.startPause(), 500);
-        if (screenId === 'phase4') this.loadPhase4();
-        if (screenId === 'phase5') this.loadPhase5();
+        if (target) {
+            target.classList.add('active');
+            // Gatilhos automáticos
+            if (screenId === 'phase2') setTimeout(() => this.startPause(), 600);
+            if (screenId === 'phase3') this.loadPhase3();
+            if (screenId === 'phase4') this.loadPhase4();
+            if (screenId === 'phase5') this.loadPhase5();
+        }
     },
 
     loadPhase1() {
@@ -49,7 +52,12 @@ const game = {
     selectAnswer(qIndex, optIndex, element) {
         const q = this.phase1Data[qIndex];
         const feedback = document.getElementById(`feedback-${qIndex}`);
-        document.querySelectorAll(`#quiz-container .quiz-question:nth-child(${qIndex + 1}) .quiz-option`).forEach(opt => opt.classList.remove('selected'));
+        const parent = element.parentElement;
+
+        parent.querySelectorAll('.quiz-option').forEach(opt => {
+            opt.classList.remove('selected');
+            opt.style.pointerEvents = 'none';
+        });
         element.classList.add('selected');
 
         if (optIndex === q.correct) {
@@ -62,7 +70,7 @@ const game = {
         }
         feedback.style.display = 'block';
 
-        if (qIndex === 2) setTimeout(() => this.showScreen('phase2'), 1500);
+        if (qIndex === 2) setTimeout(() => this.showScreen('phase2'), 2000);
     },
 
     startPause() {
@@ -96,16 +104,20 @@ const game = {
                 <p>A Boeing exige garantias rígidas. A AT&T responde com defensividade. Impasse total.</p>
                 <p><strong>Sua missão:</strong> Como negociador da AT&T, o que você diz?</p>
             </div>
-            <div class="quiz-options">
+            <div class="quiz-options" id="neg-options">
                 <div class="quiz-option" onclick="game.selectNegotiation(0, this)">"Mas nossa empresa sempre cumpriu prazos!"</div>
                 <div class="quiz-option" onclick="game.selectNegotiation(1, this)">"Você tem razão. Quando vidas estão em jogo, a segurança é absoluta. E podemos estruturar isso assim..."</div>
             </div>
-            <div class="feedback" id="feedback-neg"></div>`;
+            <div class="feedback" id="feedback-neg"></div>
+        `;
     },
 
     selectNegotiation(choice, element) {
         const feedback = document.getElementById('feedback-neg');
-        element.parentElement.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+        const container = document.getElementById('neg-options');
+        
+        // Reset visual
+        container.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
         element.classList.add('selected');
 
         if (choice === 1) {
@@ -113,12 +125,16 @@ const game = {
             this.badges.push('🌉 Arquiteto de Pontes');
             feedback.className = 'feedback success';
             feedback.innerHTML = `✅ <strong>Magistral!</strong> Substituiu o "Mas" por "Sim... e". Amígdala regulada. +75 PN<br>Badge: Arquiteto de Pontes`;
-            setTimeout(() => this.showScreen('phase4'), 2000);
+            feedback.style.display = 'block';
+            // Bloqueia novos cliques e avança
+            container.querySelectorAll('.quiz-option').forEach(opt => opt.style.pointerEvents = 'none');
+            setTimeout(() => this.showScreen('phase4'), 2500);
         } else {
             feedback.className = 'feedback error';
-            feedback.innerHTML = `⚠️ O "Mas" ativa defensividade. Tente validar primeiro.`;
+            feedback.innerHTML = `⚠️ O "Mas" ativa defensividade. <strong>Clique na outra opção</strong> para validar a contraparte e avançar.`;
+            feedback.style.display = 'block';
+            // Mantém habilitado para tentar novamente
         }
-        feedback.style.display = 'block';
     },
 
     loadPhase4() {
@@ -130,7 +146,6 @@ const game = {
         ];
 
         this.matchesFound = 0;
-        this.totalPairs = pairs.length;
         this.selectedSabotage = null;
 
         const container = document.getElementById('matching-game');
@@ -149,7 +164,7 @@ const game = {
             <div class="feedback" id="feedback-match"></div>`;
 
         document.querySelectorAll('.match-item').forEach(item => {
-            item.addEventListener('click', (e) => this.handleMatchClick(e.target));
+            item.addEventListener('click', (e) => this.handleMatchClick(e.currentTarget));
         });
     },
 
@@ -158,14 +173,13 @@ const game = {
 
         const type = element.dataset.type;
         const id = element.dataset.id;
+        const feedback = document.getElementById('feedback-match');
 
         if (type === 'sabotage') {
             document.querySelectorAll('.match-item[data-type="sabotage"]').forEach(i => i.classList.remove('selected'));
             element.classList.add('selected');
             this.selectedSabotage = { element, id };
         } else if (type === 'inverse' && this.selectedSabotage) {
-            const feedback = document.getElementById('feedback-match');
-            
             if (this.selectedSabotage.id === id) {
                 this.selectedSabotage.element.classList.add('correct');
                 this.selectedSabotage.element.classList.remove('selected');
@@ -181,14 +195,14 @@ const game = {
                     setTimeout(() => {
                         alert('🎉 Todas as inversões corretas! +100 PN\nBadge: Quebra de Insanidade');
                         this.showScreen('phase5');
-                    }, 1000);
+                    }, 1200);
                 }
             } else {
                 feedback.className = 'feedback error';
                 feedback.innerHTML = `⚠️ Combinação incorreta. Tente novamente.`;
                 feedback.style.display = 'block';
-                element.style.animation = 'shake 0.5s';
-                setTimeout(() => element.style.animation = '', 500);
+                element.style.animation = 'shake 0.4s ease-in-out';
+                setTimeout(() => element.style.animation = '', 400);
             }
             this.selectedSabotage = null;
         }
@@ -207,7 +221,7 @@ const game = {
         container.innerHTML = `<h3>Escolha 3 ações para os próximos 3 dias:</h3>` +
             commitments.map((c, i) => `
                 <div class="commitment-item">
-                    <input type="checkbox" id="commit-${i}" onchange="game.toggleCommitment(${i}, '${c}')">
+                    <input type="checkbox" id="commit-${i}" onchange="game.toggleCommitment(${i}, '${c.replace(/'/g, "\\'")}')">
                     <label for="commit-${i}">${c}</label>
                 </div>`).join('') + 
             `<button onclick="game.finish()" class="btn-primary" id="btn-finish" disabled>Finalizar e Ver Resultados</button>`;
@@ -215,23 +229,28 @@ const game = {
 
     toggleCommitment(index, text) {
         const checkbox = document.getElementById(`commit-${index}`);
-        if (checkbox.checked) this.commitments.push(text);
-        else this.commitments = this.commitments.filter(c => c !== text);
+        if (checkbox.checked) {
+            if (!this.commitments.includes(text)) this.commitments.push(text);
+        } else {
+            this.commitments = this.commitments.filter(c => c !== text);
+        }
         document.getElementById('btn-finish').disabled = this.commitments.length < 3;
     },
 
     finish() {
         this.showScreen('end-screen');
-        document.getElementById('final-score').innerHTML = `<h3>Pontuação Final</h3><div style="font-size:3em;color:#667eea;font-weight:bold;">${this.score} PN</div><p>Pontos de Neuroplasticidade</p>`;
+        document.getElementById('final-score').innerHTML = `<h3>Pontuação Final</h3><div style="font-size:3.5em;color:#4f46e5;font-weight:800;margin:10px 0;">${this.score} PN</div><p>Pontos de Neuroplasticidade</p>`;
         document.getElementById('badges-earned').innerHTML = `<h3>Badges Conquistados:</h3>` + this.badges.map(b => `<span class="badge">${b}</span>`).join('');
     },
 
     downloadPDF() {
-        const content = `NEUROLÍDER - PLANO DE AUTOGESTÃO\n================================\nPontuação: ${this.score} PN\nBadges: ${this.badges.join(', ')}\n\nCompromisso de 3 Dias:\n${this.commitments.map((c,i)=>`${i+1}. ${c}`).join('\n')}`;
-        const blob = new Blob([content], { type: 'text/plain' });
+        const content = `NEUROLÍDER - PLANO DE AUTOGESTÃO\n================================\nPontuação: ${this.score} PN\nBadges: ${this.badges.join(', ')}\n\nCompromisso de 3 Dias:\n${this.commitments.map((c,i)=>`${i+1}. ${c}`).join('\n')}\n\n"A neuroplasticidade é a prova definitiva de que você não é refém da sua genética. Mude o hábito e você assumirá o comando."`;
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
         a.download = 'meu-plano-neurolider.txt';
+        document.body.appendChild(a);
         a.click();
+        document.body.removeChild(a);
     }
 };
