@@ -159,7 +159,6 @@ const game = {
         this.matchesFound = 0;
         this.selectedSabotage = null;
 
-        // Embaralha as colunas independentemente
         const col1 = this.shuffleArray([...pairs]);
         const col2 = this.shuffleArray([...pairs]);
 
@@ -254,18 +253,98 @@ const game = {
 
     finish() {
         this.showScreen('end-screen');
-        document.getElementById('final-score').innerHTML = `<h3>Pontuação Final</h3><div style="font-size:3.5em;color:#4f46e5;font-weight:800;margin:10px 0;">${this.score} PN</div><p>Pontos de Neuroplasticidade</p>`;
-        document.getElementById('badges-earned').innerHTML = `<h3>Badges Conquistados:</h3>` + this.badges.map(b => `<span class="badge">${b}</span>`).join('');
+        const endScreen = document.getElementById('end-screen');
+
+        // ELEMENTO LÚDICO: Certificado Interativo + Animação
+        endScreen.innerHTML = `
+            <div style="text-align:center; padding: 10px;">
+                <div style="font-size: 4.5rem; margin-bottom: 15px; animation: pulse 2s infinite; filter: drop-shadow(0 0 20px rgba(79,70,229,0.5));">🧠</div>
+                <h2 style="color:#111827; margin-bottom:10px;">🎉 Jornada Completa!</h2>
+                <p style="color:#6b7280; margin-bottom:25px; font-size:1.1rem;">Você deixou de ser passageiro e virou Engenheiro Cerebral.</p>
+                
+                <div style="background: linear-gradient(135deg, #f0f5ff 0%, #e0e7ff 100%); padding:25px; border-radius:16px; border:2px dashed #4f46e5; margin:0 auto 25px; max-width:550px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:10px; right:15px; font-size:2rem; opacity:0.2;">📜</div>
+                    <h3 style="color:#4f46e5; margin-bottom:15px;">📊 Seu Certificado de Performance Neural</h3>
+                    <div style="font-size:3.2rem; font-weight:800; color:#4f46e5; margin:10px 0;">${this.score} PN</div>
+                    <div style="margin:15px 0; min-height:40px;">
+                        ${this.badges.length > 0 ? this.badges.map(b => `<span class="badge">${b}</span>`).join('') : '<span style="color:#9ca3af;">Continue treinando para desbloquear badges!</span>'}
+                    </div>
+                    <p style="font-size:0.95rem; color:#4b5563; margin-top:10px; font-style:italic;">
+                        "Seu cérebro não é seu amigo. Ele é seu hábito. Mude o hábito e você assumirá o comando."
+                    </p>
+                </div>
+
+                <button onclick="game.downloadPDF()" class="btn-primary">📄 Baixar Meu Plano (PDF)</button>
+                <button onclick="location.reload()" class="btn-secondary">🔄 Reiniciar Jornada</button>
+                
+                <p style="margin-top:35px; font-size:0.85rem; color:#9ca3af; letter-spacing:0.5px;">
+                    Desenvolvido por <strong style="color:#4f46e5;">Prof. Ricardo de Faria Barros</strong> | IBMEC-Brasília
+                </p>
+            </div>
+        `;
+
+        // Injeta animação lúdica se não existir
+        if (!document.getElementById('ludic-style')) {
+            const style = document.createElement('style');
+            style.id = 'ludic-style';
+            style.textContent = `
+                @keyframes pulse {
+                    0%, 100% { transform: scale(1); }
+                    50% { transform: scale(1.08); }
+                }
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(15px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
     },
 
     downloadPDF() {
-        const content = `NEUROLÍDER - PLANO DE AUTOGESTÃO\n================================\nPontuação: ${this.score} PN\nBadges: ${this.badges.join(', ')}\n\nCompromisso de 3 Dias:\n${this.commitments.map((c,i)=>`${i+1}. ${c}`).join('\n')}\n\n"A neuroplasticidade é a prova definitiva de que você não é refém da sua genética. Mude o hábito e você assumirá o comando."`;
-        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'meu-plano-neurolider.txt';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        // Cria container temporário para impressão
+        const printContainer = document.createElement('div');
+        printContainer.id = 'print-container';
+        printContainer.innerHTML = `
+            <div class="print-certificate">
+                <div class="print-header">🧠 NEUROLÍDER: PLANO DE AUTOGESTÃO</div>
+                <div class="print-score">Pontuação: ${this.score} PN | Badges: ${this.badges.join(', ') || 'Em construção'}</div>
+                <hr class="print-divider">
+                <div class="print-title">📅 COMPROMISSO DE 3 DIAS</div>
+                <ul class="print-list">
+                    ${this.commitments.map(c => `<li>✅ ${c}</li>`).join('')}
+                </ul>
+                <hr class="print-divider">
+                <p class="print-quote">"Seu cérebro não é seu amigo. Ele é seu hábito. Mude o hábito e você assumirá o comando."</p>
+                <div class="print-footer">
+                    <strong>Prof. Ricardo de Faria Barros</strong><br>
+                    Masterclass em Autogestão e Inteligência Emocional | IBMEC-Brasília
+                </div>
+            </div>
+            <style>
+                @media print {
+                    body * { visibility: hidden; }
+                    #print-container, #print-container * { visibility: visible; }
+                    #print-container { position: absolute; left: 0; top: 0; width: 100%; padding: 30px; font-family: system-ui, -apple-system, sans-serif; color: #111; }
+                    .print-certificate { border: 3px solid #4f46e5; padding: 35px; border-radius: 12px; text-align: center; max-width: 700px; margin: 0 auto; background: #fff; }
+                    .print-header { font-size: 24px; font-weight: 800; color: #4f46e5; margin-bottom: 12px; letter-spacing: 0.5px; }
+                    .print-score { font-size: 15px; color: #4b5563; margin-bottom: 20px; }
+                    .print-divider { border: 1.5px dashed #cbd5e1; margin: 18px 0; }
+                    .print-title { font-size: 19px; font-weight: 700; color: #1e293b; margin-bottom: 12px; }
+                    .print-list { text-align: left; max-width: 550px; margin: 0 auto; padding-left: 25px; }
+                    .print-list li { margin-bottom: 10px; font-size: 15px; line-height: 1.5; }
+                    .print-quote { font-style: italic; color: #64748b; margin: 22px 0 0; font-size: 14px; }
+                    .print-footer { font-size: 14px; color: #334155; margin-top: 35px; font-weight: 500; }
+                }
+                @media screen { #print-container { display: none; } }
+            </style>
+        `;
+        document.body.appendChild(printContainer);
+        
+        // Aciona diálogo nativo do navegador (Salva como PDF com 1 clique)
+        window.print();
+        
+        // Limpeza após impressão
+        setTimeout(() => document.body.removeChild(printContainer), 1000);
     }
 };
