@@ -1,86 +1,1295 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuroLíder: O Desafio da Autogestão</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula 1 — Inteligência Emocional & Autogestão | IBMEC-DF</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0e13;--bg2:#13141c;--surface:#1a1c28;--border:#2a2d40;--accent:#f4a024;--accent2:#e05c3a;--accent3:#5b8dee;--accent4:#3dd68c;--text:#e8eaf0;--muted:#7a7f9a;--fh:'Syne',sans-serif;--fb:'DM Sans',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);font-size:16px;line-height:1.7;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,14,19,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;gap:.3rem;height:52px;overflow-x:auto;}
+nav::-webkit-scrollbar{height:3px;}
+nav::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+.nav-logo{color:var(--accent);font-size:.9rem;font-weight:800;font-family:var(--fh);margin-right:.8rem;white-space:nowrap;}
+nav a{color:var(--muted);text-decoration:none;font-size:.72rem;font-family:var(--fh);letter-spacing:.05em;text-transform:uppercase;padding:.35rem .7rem;border-radius:6px;transition:all .2s;white-space:nowrap;}
+nav a:hover,nav a.active{color:var(--accent);background:rgba(244,160,36,.08);}
+section{padding:5rem 2rem;max-width:1060px;margin:0 auto;position:relative;z-index:1;}
+.section-label{font-family:var(--fh);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+h2{font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.2;margin-bottom:1.5rem;}
+h2 span{color:var(--accent);}
+.lead{font-size:1.05rem;color:var(--muted);max-width:680px;margin-bottom:2.5rem;}
+.btn{padding:.7rem 1.6rem;border-radius:10px;font-family:var(--fh);font-size:.85rem;font-weight:700;cursor:pointer;border:none;transition:all .2s;text-decoration:none;display:inline-block;}
+.btn-primary{background:var(--accent);color:#000;}
+.btn-primary:hover{background:#ffb84d;transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border);}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+.hr{border:none;border-top:1px solid var(--border);margin:0;}
+.highlight{background:linear-gradient(135deg,rgba(244,160,36,.08),rgba(224,92,58,.05));border:1px solid rgba(244,160,36,.2);border-radius:16px;padding:2rem;margin:2rem 0;}
+.highlight h3{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--accent);margin-bottom:.6rem;}
+.highlight p{font-size:.92rem;color:var(--text);line-height:1.75;}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:all .25s;}
+.card:hover{border-color:var(--accent);transform:translateY(-3px);}
+.card-icon{font-size:2rem;margin-bottom:1rem;}
+.card h3{font-family:var(--fh);font-size:1rem;font-weight:700;margin-bottom:.5rem;}
+.card p{font-size:.88rem;color:var(--muted);line-height:1.65;}
+.scale{display:flex;gap:.4rem;flex-wrap:wrap;}
+.scale-btn{width:42px;height:42px;border-radius:8px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:var(--fh);font-weight:700;cursor:pointer;transition:all .2s;font-size:.9rem;}
+.scale-btn:hover{border-color:var(--accent);color:var(--accent);}
+.scale-btn.chosen{background:var(--accent);color:#000;border-color:var(--accent);}
+.scale-labels{display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted);margin-top:.4rem;}
+.diag-textarea{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1.1rem;color:var(--text);font-family:var(--fb);font-size:.92rem;resize:vertical;min-height:80px;transition:border-color .2s;}
+.diag-textarea:focus{outline:none;border-color:var(--accent);}
+.diag-q{margin-bottom:1.8rem;}
+.diag-q label{display:block;font-weight:500;margin-bottom:.8rem;font-size:.92rem;}
+.breath-box{display:flex;flex-direction:column;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:3rem 2rem;text-align:center;max-width:480px;margin:0 auto;}
+.breath-circle{width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(91,141,238,.3) 0%,rgba(91,141,238,.05) 70%);border:2px solid var(--accent3);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:.9rem;color:var(--accent3);font-weight:700;cursor:pointer;transition:transform .1s;}
+@keyframes breathIn{to{transform:scale(1.25);}}
+@keyframes breathOut{from{transform:scale(1.25);}to{transform:scale(1);}}
+.breath-circle.inhale{animation:breathIn 4s ease-in-out forwards;}
+.breath-circle.exhale{animation:breathOut 4s ease-in-out forwards;}
+.breath-circle.hold{animation:none;transform:scale(1.25);}
+.breath-timer{font-family:var(--fh);font-size:2.5rem;font-weight:800;color:var(--accent3);margin:.5rem 0;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.fade-in{animation:fadeUp .4s ease both;}
+/* hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:5rem 2rem 4rem;position:relative;overflow:hidden;}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.13;animation:drift 8s ease-in-out infinite alternate;}
+.orb1{width:500px;height:500px;background:var(--accent);top:-100px;left:-100px;}
+.orb2{width:400px;height:400px;background:var(--accent3);bottom:-100px;right:-80px;animation-delay:-4s;}
+@keyframes drift{to{transform:translate(30px,20px) scale(1.1);}}
+.hero-tag{display:inline-block;background:rgba(244,160,36,.1);border:1px solid rgba(244,160,36,.3);color:var(--accent);font-size:.75rem;font-family:var(--fh);letter-spacing:.12em;text-transform:uppercase;padding:.35rem 1rem;border-radius:99px;margin-bottom:2rem;}
+.hero h1{font-family:var(--fh);font-size:clamp(2.4rem,6vw,4.8rem);font-weight:800;line-height:1.1;max-width:820px;}
+.hero h1 em{font-style:normal;color:var(--accent);}
+.hero-sub{font-size:1.1rem;color:var(--muted);max-width:560px;margin-top:1.5rem;}
+.hero-cta{display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;justify-content:center;}
+.stats{display:flex;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);}
+.stat{flex:1;text-align:center;padding:1.5rem 1rem;border-right:1px solid var(--border);}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:var(--fh);font-size:2rem;font-weight:800;color:var(--accent);}
+.stat-l{font-size:.75rem;color:var(--muted);margin-top:.2rem;}
+/* quiz */
+.quiz-opt{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.75rem 1.2rem;cursor:pointer;font-size:.9rem;transition:all .2s;text-align:left;width:100%;color:var(--text);font-family:var(--fb);margin-bottom:.5rem;}
+.quiz-opt:hover:not(:disabled){border-color:var(--accent);color:var(--accent);}
+.quiz-opt.correct{border-color:var(--accent4);background:rgba(61,214,140,.08);color:var(--accent4);}
+.quiz-opt.wrong{border-color:var(--accent2);background:rgba(224,92,58,.08);color:var(--accent2);}
+.quiz-feedback{margin-top:.8rem;padding:.8rem 1rem;border-radius:8px;font-size:.86rem;display:none;}
+.quiz-feedback.show{display:block;}
+.fb-ok{background:rgba(61,214,140,.09);border:1px solid rgba(61,214,140,.2);color:var(--accent4);}
+.fb-err{background:rgba(224,92,58,.09);border:1px solid rgba(224,92,58,.2);color:var(--accent2);}
+/* accordion generic */
+.acc-item{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .2s;}
+.acc-item:hover{border-color:rgba(91,141,238,.3);}
+.acc-head{display:flex;align-items:center;gap:1rem;padding:1rem 1.4rem;cursor:pointer;user-select:none;}
+.acc-num{min-width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:.82rem;font-weight:800;}
+.acc-title{flex:1;font-family:var(--fh);font-size:.93rem;font-weight:700;}
+.acc-arrow{color:var(--muted);font-size:.75rem;transition:transform .3s;}
+.acc-body{display:none;padding:0 1.4rem 1.2rem;font-size:.88rem;color:var(--muted);line-height:1.75;border-top:1px solid var(--border);}
+.acc-body p{padding-top:1rem;}
+/* jogo */
+.jogo-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.4rem;cursor:pointer;transition:all .2s;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;}
+.jogo-check{width:30px;height:30px;border-radius:8px;background:rgba(224,92,58,.1);border:2px solid rgba(224,92,58,.3);display:flex;align-items:center;justify-content:center;font-size:.9rem;min-width:30px;transition:all .2s;}
+/* perfil sabotador */
+.sg-opt{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.85rem 1.1rem;text-align:left;color:var(--text);font-family:var(--fb);font-size:.88rem;line-height:1.55;cursor:pointer;transition:all .2s;width:100%;margin-bottom:.5rem;}
+.sg-opt:hover{border-color:#c084fc;color:#c084fc;}
+/* dilemas */
+.dil-opt{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;text-align:left;color:var(--text);font-family:var(--fb);font-size:.9rem;line-height:1.6;cursor:pointer;transition:all .2s;width:100%;margin-bottom:.6rem;}
+.dil-opt:hover:not(:disabled){border-color:var(--accent3);color:var(--accent3);}
+/* mural */
+.mural-input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.7rem 1rem;color:var(--text);font-family:var(--fb);font-size:.9rem;outline:none;transition:border-color .2s;}
+.mural-input:focus{border-color:var(--accent4);}
+/* case timeline */
+.case-timeline{position:relative;padding-left:2rem;}
+.case-timeline::before{content:'';position:absolute;left:.6rem;top:0;bottom:0;width:2px;background:var(--border);}
+.case-step{position:relative;padding:0 0 2.5rem 2rem;}
+.case-step::before{content:attr(data-n);position:absolute;left:-1rem;width:2rem;height:2rem;background:var(--accent);color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:.8rem;z-index:1;}
+.case-step h3{font-family:var(--fh);font-size:1rem;font-weight:700;margin-bottom:.5rem;}
+.case-step p{font-size:.9rem;color:var(--muted);line-height:1.7;}
+.case-quote{margin:.8rem 0;padding:.8rem 1rem;border-left:3px solid var(--accent2);background:rgba(224,92,58,.06);font-style:italic;font-size:.88rem;color:var(--text);border-radius:0 8px 8px 0;}
+.case-q{background:rgba(91,141,238,.07);border:1px solid rgba(91,141,238,.18);border-radius:10px;padding:.7rem 1rem;margin-top:.8rem;font-size:.85rem;color:var(--accent3);}
+.case-q::before{content:'💬 Reflexão: ';font-weight:600;}
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--border);color:var(--muted);font-size:.82rem;}
+footer strong{color:var(--accent);}
+@media(max-width:640px){.stats{flex-wrap:wrap;}.stat{flex-basis:50%;}}
+</style>
 </head>
 <body>
-    <div id="app">
-        <!-- Tela Inicial -->
-        <div id="start-screen" class="screen active">
-            <h1>🧠 NeuroLíder</h1>
-            <h2>O Desafio da Autogestão</h2>
-            <p class="subtitle">Domine seu cérebro, lidere sua vida</p>
-            <button onclick="game.start()" class="btn-primary">Iniciar Jornada</button>
-            <div class="info-box">
-                <p>⏱️ Duração: 20-30 minutos</p>
-                <p>🎯 Objetivo: Desenvolver autogestão através da neuroplasticidade</p>
-            </div>
-        </div>
 
-        <!-- Fase 1: Diagnóstico -->
-        <div id="phase1" class="screen">
-            <div class="phase-header">
-                <span class="phase-number">Fase 1/5</span>
-                <h2>Diagnóstico do Radar</h2>
-            </div>
-            <div id="quiz-container"></div>
-        </div>
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">⚡ IESPO</span>
+  <a href="#abertura">Início</a>
+  <a href="#neuro">Neuro</a>
+  <a href="#profissionais">Por que Importa</a>
+  <a href="#cerebro">3M Cerebral</a>
+  <a href="#quiz-section">Quiz</a>
+  <a href="#sabotadores">Sabotadores</a>
+  <a href="#jogo">Jogo</a>
+  <a href="#case">Case</a>
+  <a href="#varejo">Varejo</a>
+  <a href="#gerador">Perfil</a>
+  <a href="#dilemas">Dilemas</a>
+  <a href="#diagnostico">Diagnóstico</a>
+  <a href="#roda">Emoções</a>
+  <a href="#autores">Autores</a>
+  <a href="#checkin">Check-in</a>
+  <a href="#plano">Plano</a>
+  <a href="#respira">Pausa</a>
+</nav>
 
-        <!-- Fase 2: Protocolo em Ação -->
-        <div id="phase2" class="screen">
-            <div class="phase-header">
-                <span class="phase-number">Fase 2/5</span>
-                <h2>Protocolo de Pausa</h2>
-            </div>
-            <div id="timer-container">
-                <div class="timer-display" id="pause-timer">5</div>
-                <p>Respire fundo... Mantenha a calma...</p>
-                <button onclick="game.completePause()" class="btn-primary" id="btn-pause" disabled>
-                    Concluir Pausa
-                </button>
-            </div>
-        </div>
+<!-- HERO -->
+<div id="abertura" class="hero">
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <span class="hero-tag">Aula 1 · IBMEC-DF · Pós-Graduação</span>
+  <h1>Seu cérebro está<br><em>moldando</em> a realidade<br>agora mesmo.</h1>
+  <p class="hero-sub">Bem-vindos à jornada da Inteligência Emocional, Social e Positiva. Seis encontros. Uma pergunta central: você pilota sua mente — ou ela pilota você?</p>
+  <div class="hero-cta">
+    <a href="#neuro" class="btn btn-primary">Começar →</a>
+    <a href="#quiz-section" class="btn btn-ghost">Ir ao Quiz</a>
+  </div>
+  <div style="position:absolute;bottom:1.5rem;font-size:.72rem;color:var(--muted);font-family:var(--fh);letter-spacing:.08em;text-align:center;">
+    Prof. <strong style="color:var(--accent)">Ricardo de Faria Barros</strong> · Inteligência Emocional e Autogestão · IBMEC-DF
+  </div>
+</div>
 
-        <!-- Fase 3: Negociação -->
-        <div id="phase3" class="screen">
-            <div class="phase-header">
-                <span class="phase-number">Fase 3/5</span>
-                <h2>Caso AT&T vs Boeing</h2>
-            </div>
-            <div id="negotiation-scenario"></div>
-        </div>
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-n">86B</div><div class="stat-l">neurônios no cérebro humano</div></div>
+  <div class="stat"><div class="stat-n">3M</div><div class="stat-l">Modulado · Modificado · Moldado</div></div>
+  <div class="stat"><div class="stat-n">90s</div><div class="stat-l">duração real de uma emoção pura</div></div>
+  <div class="stat"><div class="stat-n">6</div><div class="stat-l">encontros que mudam perspectivas</div></div>
+</div>
 
-        <!-- Fase 4: Jogo do Contrário -->
-        <div id="phase4" class="screen">
-            <div class="phase-header">
-                <span class="phase-number">Fase 4/5</span>
-                <h2>Inversão de Hábitos</h2>
-            </div>
-            <div id="matching-game"></div>
-        </div>
+<!-- NEUROPLASTICIDADE -->
+<section id="neuro">
+  <p class="section-label">🧠 Neuroplasticidade</p>
+  <h2>O cérebro não é <span>hardware</span> fixo.<br>É vivo — e está em constante aprendizado.</h2>
+  <p class="lead">Durante décadas a ciência acreditou que o cérebro adulto era imutável. A neurociência moderna mudou tudo: o cérebro é modulado, modificado e moldado pela experiência — ao longo de toda a vida.</p>
+  <div class="card-grid">
+    <div class="card"><div class="card-icon">🔁</div><h3>Plasticidade Sináptica</h3><p>Cada vez que você aprende algo novo, cria ou fortalece conexões neurais. O cérebro se reconfigura a cada experiência, pensamento e emoção repetida — até o fim da vida.</p></div>
+    <div class="card"><div class="card-icon">🛤️</div><h3>Trilhas Neurais</h3><p>Comportamentos repetidos criam "autoestradas" no cérebro. Hábitos são difíceis de mudar — mas possível: você pode construir novas vias. É literalmente esculpir a própria mente.</p></div>
+    <div class="card"><div class="card-icon">🎭</div><h3>Emoções como Dados</h3><p>Emoções não são problemas a resolver — são mensagens a decodificar. O sistema límbico processa um estímulo emocional em 7ms, antes de você "pensar" sobre ele. Não dá para desligar. Dá para gerenciar.</p></div>
+    <div class="card"><div class="card-icon">💭</div><h3>Memória Reconstrutiva</h3><p>Você não "lembra" o passado — você o reconstrói cada vez que o acessa. E cada reconstrução é influenciada pelo seu estado emocional atual. Sua história de vida também é uma obra em andamento.</p></div>
+    <div class="card"><div class="card-icon">⚡</div><h3>Amígdala: O Alarme</h3><p>A amígdala dispara antes que o córtex pré-frontal entre em ação. Esse "sequestro emocional" é biologia, não fraqueza. Saber disso muda tudo: é a diferença entre reagir e responder.</p></div>
+    <div class="card"><div class="card-icon">🌱</div><h3>Mentalidade de Crescimento</h3><p>Carol Dweck mostrou que acreditar na própria capacidade de aprender ativa padrões neurais diferentes. Sua crença sobre si modula o que você consegue fazer.</p></div>
+  </div>
+  <div class="highlight"><h3>🎯 Para refletir em grupo</h3><p>Se o cérebro é modulado pela experiência, o que você tem "treinado" sem perceber? Quais reações você praticou tanto que viraram automáticas? E quais você gostaria de modificar?</p></div>
+</section>
 
-        <!-- Fase 5: Compromisso -->
-        <div id="phase5" class="screen">
-            <div class="phase-header">
-                <span class="phase-number">Fase 5/5</span>
-                <h2>Seu Plano de 3 Dias</h2>
-            </div>
-            <div id="commitment-form"></div>
-        </div>
+<hr class="hr">
 
-        <!-- Tela Final -->
-        <div id="end-screen" class="screen">
-            <h2>🎉 Jornada Completa!</h2>
-            <div id="final-score"></div>
-            <div id="badges-earned"></div>
-            <button onclick="game.downloadPDF()" class="btn-primary">Baixar Meu Plano (PDF)</button>
-            <button onclick="location.reload()" class="btn-secondary">Reiniciar</button>
-        </div>
+<!-- POR QUE IMPORTA -->
+<section id="profissionais">
+  <p class="section-label" style="color:var(--accent3)">💼 10 Razões</p>
+  <h2>Por que a <span style="color:var(--accent3)">IE</span> não é opcional<br>na sua carreira</h2>
+  <p class="lead">Não é papo motivacional. É ciência aplicada ao resultado. Clique em cada razão para expandir.</p>
+  <div style="display:flex;flex-direction:column;gap:.7rem;margin-bottom:2rem" id="prof-acc"></div>
+  <div class="highlight" style="background:linear-gradient(135deg,rgba(91,141,238,.07),rgba(91,141,238,.03));border-color:rgba(91,141,238,.2)">
+    <h3 style="color:var(--accent3)">🎯 Para o grupo</h3>
+    <p>Das 10 razões, qual ressoa mais com o momento que você vive hoje na carreira? Uma linha no chat. Sem cerimônia.</p>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- 3M CEREBRAL -->
+<section id="cerebro">
+  <p class="section-label" style="color:#c084fc">🧬 O Modelo 3M</p>
+  <h2>Seu cérebro é <span style="color:#c084fc">Modulado,<br>Modificado e Moldado</span></h2>
+  <p class="lead">Três estruturas comandam sua percepção, pensamentos, emoções e ações: a amígdala, o hipocampo e o hipotálamo. E as três respondem ao conceito 3M — criado pelo Prof. Ricardo de Faria Barros para substituir a ideia equivocada de "reprogramação".</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-bottom:2.5rem">
+    <div style="background:var(--surface);border:1px solid rgba(192,132,252,.25);border-radius:16px;overflow:hidden">
+      <div style="background:linear-gradient(135deg,rgba(192,132,252,.1),transparent);padding:1.4rem;border-bottom:1px solid rgba(192,132,252,.15);text-align:center">
+        <div style="font-size:2.2rem;margin-bottom:.4rem">🚨</div>
+        <div style="font-family:var(--fh);font-weight:800;font-size:.95rem;color:#c084fc">Amígdala</div>
+        <div style="font-size:.72rem;color:var(--muted);margin-top:.2rem">O Alarme · 7 milissegundos</div>
+      </div>
+      <div style="padding:1.2rem;font-size:.84rem;color:var(--muted);line-height:1.7">
+        <p>Reage antes da consciência. Confunde um e-mail agressivo com um predador. Pode ser <strong style="color:#c084fc">modulada</strong> — como trocar de estação de rádio — escolhendo outra frequência de resposta.</p>
+      </div>
     </div>
+    <div style="background:var(--surface);border:1px solid rgba(91,141,238,.25);border-radius:16px;overflow:hidden">
+      <div style="background:linear-gradient(135deg,rgba(91,141,238,.1),transparent);padding:1.4rem;border-bottom:1px solid rgba(91,141,238,.15);text-align:center">
+        <div style="font-size:2.2rem;margin-bottom:.4rem">🗄️</div>
+        <div style="font-family:var(--fh);font-weight:800;font-size:.95rem;color:var(--accent3)">Hipocampo</div>
+        <div style="font-size:.72rem;color:var(--muted);margin-top:.2rem">O Arquivo · Memória e contexto</div>
+      </div>
+      <div style="padding:1.2rem;font-size:.84rem;color:var(--muted);line-height:1.7">
+        <p>Armazena memórias e dá contexto às emoções. Pode ser <strong style="color:var(--accent3)">modificado</strong> — não existe hábito ou aprendizado que não possa ser modificado. O cérebro muda e está em constante aprendizado.</p>
+      </div>
+    </div>
+    <div style="background:var(--surface);border:1px solid rgba(244,160,36,.25);border-radius:16px;overflow:hidden">
+      <div style="background:linear-gradient(135deg,rgba(244,160,36,.1),transparent);padding:1.4rem;border-bottom:1px solid rgba(244,160,36,.15);text-align:center">
+        <div style="font-size:2.2rem;margin-bottom:.4rem">🌡️</div>
+        <div style="font-family:var(--fh);font-weight:800;font-size:.95rem;color:var(--accent)">Hipotálamo</div>
+        <div style="font-size:.72rem;color:var(--muted);margin-top:.2rem">O Termostato · Equilíbrio interno</div>
+      </div>
+      <div style="padding:1.2rem;font-size:.84rem;color:var(--muted);line-height:1.7">
+        <p>Regula sono, fome, hormônios e o eixo do estresse. Pode ser <strong style="color:var(--accent)">moldado</strong> — direcionado para um novo conjunto de competências a ser incorporado conscientemente.</p>
+      </div>
+    </div>
+  </div>
+  <div style="background:rgba(192,132,252,.06);border:1px solid rgba(192,132,252,.2);border-radius:16px;padding:1.5rem 2rem;margin-bottom:2rem">
+    <div style="font-family:var(--fh);font-size:.9rem;font-weight:800;color:#c084fc;margin-bottom:1rem">O que significa cada M</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem">
+      <div><div style="font-family:var(--fh);font-weight:800;color:#c084fc;margin-bottom:.3rem">Modulado</div><p style="font-size:.84rem;color:var(--muted);line-height:1.65">Você pode optar por outras estações do pensar, sentir e agir — como quem troca uma estação de rádio. A frequência muda, o aparelho é o mesmo.</p></div>
+      <div><div style="font-family:var(--fh);font-weight:800;color:var(--accent3);margin-bottom:.3rem">Modificado</div><p style="font-size:.84rem;color:var(--muted);line-height:1.65">Não existe hábito, crença ou aprendizado que não possa ser modificado. O cérebro muda — e está em constante aprendizado, inclusive instintivo.</p></div>
+      <div><div style="font-family:var(--fh);font-weight:800;color:var(--accent);margin-bottom:.3rem">Moldado</div><p style="font-size:.84rem;color:var(--muted);line-height:1.65">Pode ser direcionado para um novo conjunto de competências a ser incorporado. Você não é o que sempre foi — você é o que escolhe cultivar.</p></div>
+    </div>
+  </div>
+  <div id="cerebro-dicas" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem"></div>
+  <div class="highlight" style="background:linear-gradient(135deg,rgba(192,132,252,.06),rgba(91,141,238,.04));border-color:rgba(192,132,252,.2);margin-top:2rem">
+    <h3 style="color:#c084fc">🎯 Desafio de 7 dias</h3>
+    <p>Escolha <strong>um patch</strong> — só um — e instale na próxima semana. Na Aula 2, cada um conta o que aconteceu. Não precisa ser perfeito. Precisa ser real.</p>
+  </div>
+</section>
 
-    <script src="game.js"></script>
+<hr class="hr">
+
+<!-- QUIZ -->
+<section id="quiz-section" style="max-width:860px">
+  <p class="section-label">🎯 Quiz Interativo</p>
+  <h2>Você conhece seu <span>próprio cérebro</span>?</h2>
+  <p class="lead">10 perguntas. Sem julgamento — só descoberta.</p>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem">
+    <div style="background:var(--border);border-radius:99px;height:5px;margin-bottom:1.5rem">
+      <div id="qbar" style="height:5px;border-radius:99px;background:var(--accent);width:10%;transition:width .5s"></div>
+    </div>
+    <div id="quiz-area"></div>
+    <div id="quiz-result" style="display:none;text-align:center;padding:1.5rem 0" class="fade-in">
+      <div id="qr-score" style="font-family:var(--fh);font-size:3.5rem;font-weight:800;color:var(--accent)"></div>
+      <div id="qr-msg" style="font-size:1rem;color:var(--muted);margin-top:.5rem"></div>
+      <button class="btn btn-ghost" onclick="quizReset()" style="margin-top:1.2rem">Refazer →</button>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- SABOTADORES -->
+<section id="sabotadores">
+  <p class="section-label">🦹 Os 10 Sabotadores · Chamine</p>
+  <h2>As <span>10 vozes</span> que sabotam<br>sua inteligência emocional</h2>
+  <p class="lead">Baseado na pesquisa de Shirzad Chamine (Stanford). Clique em cada sabotador para explorar sinais, gatilhos e saídas.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem;margin-bottom:2rem" id="sab-grid"></div>
+  <div id="sab-detail" style="display:none" class="fade-in"></div>
+  <div class="highlight"><h3>🎯 Atividade (5 min)</h3><p>Cada um escolhe silenciosamente o sabotador mais presente em você no trabalho. Compartilha só o nome — sem justificar. O que o padrão do grupo revela sobre a cultura da empresa?</p></div>
+</section>
+
+<hr class="hr">
+
+<!-- JOGO DO CONTRÁRIO -->
+<section id="jogo" style="max-width:940px">
+  <p class="section-label" style="color:var(--accent2)">🎮 Jogo do Contrário</p>
+  <h2><span style="color:var(--accent2)">10 Lições</span> para se dar mal<br>com muito estilo</h2>
+  <p class="lead">Prof. Ricardo de Faria Barros · IBMEC-DF. Leia cada lição. Se você já fez alguma nesta semana, marque. Se marcar todas: parabéns, você é um sabotador profissional. Clique em cada lição para ver também o antídoto.</p>
+  <div style="background:var(--bg2);border:2px solid rgba(224,92,58,.2);border-radius:20px;overflow:hidden;margin-bottom:2rem">
+    <div style="padding:1.2rem 1.8rem;border-bottom:1px solid rgba(224,92,58,.15);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem">
+      <div>
+        <div style="font-family:var(--fh);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">IBMEC-DF · Prof. Ricardo de Faria Barros</div>
+        <div style="font-family:var(--fh);font-size:.72rem;color:var(--accent2);margin-top:.2rem">Inteligência Emocional e Autogestão</div>
+      </div>
+      <div style="text-align:center;background:rgba(224,92,58,.1);border:1px solid rgba(224,92,58,.2);border-radius:10px;padding:.6rem 1rem">
+        <div id="jogo-cnt" style="font-family:var(--fh);font-size:2rem;font-weight:800;color:var(--accent2);line-height:1">0</div>
+        <div style="font-size:.68rem;color:var(--muted)">marcadas</div>
+      </div>
+    </div>
+    <div id="jogo-lista" style="padding:1.2rem 1.5rem;display:flex;flex-direction:column;gap:.7rem"></div>
+    <div id="jogo-placar" style="display:none;padding:1.5rem 1.8rem;border-top:1px solid var(--border)" class="fade-in">
+      <div id="jogo-placar-inner"></div>
+    </div>
+  </div>
+  <div class="highlight" style="background:linear-gradient(135deg,rgba(224,92,58,.06),rgba(244,160,36,.04));border-color:rgba(224,92,58,.2)">
+    <h3 style="color:var(--accent2)">🎯 No chat do Teams</h3>
+    <p>Escreva só o número da lição que mais te identificou esta semana. Depois vemos quais foram as mais "populares" da turma.</p>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- CASE -->
+<section id="case">
+  <p class="section-label">📋 Estudo de Caso</p>
+  <h2>AT&T vs Boeing: quando a <span>emoção decide</span><br>o destino de gigantes</h2>
+  <p class="lead">William Ury · Harvard Negotiation Project · HSM Management, 1998. Um negócio de US$ 150 milhões que quase morreu por falta de IE — e foi salvo por ela.</p>
+  <div style="background:rgba(91,141,238,.06);border:1px solid rgba(91,141,238,.2);border-radius:12px;padding:1.2rem 1.5rem;margin-bottom:2rem;font-size:.88rem;color:var(--accent3)">
+    <strong>Fórmula de Ury:</strong> Surpreender → Ouvir → Reconhecer → Expor sem provocar
+  </div>
+  <div class="case-timeline">
+    <div class="case-step" data-n="1"><h3>A cena: US$ 150 milhões na mesa</h3><p>A AT&T negocia a venda de um sistema de telecomunicações para a Boeing. A equipe usa argumentos sólidos. Tudo parece encaminhado. Então o diretor de compras da Boeing pede as promessas por escrito — com garantia de indenização.</p><div class="case-q">Antes de continuar: o que você faria no lugar do vendedor?</div></div>
+    <div class="case-step" data-n="2"><h3>O sequestro emocional acontece</h3><p>O vendedor da AT&T responde que fariam o melhor possível, mas não poderiam se responsabilizar por tudo — "um raio pode cair…"</p><div class="case-quote">"Vocês estão nos fazendo de bobos! Primeiro falam de seus serviços e agora não assumem compromisso!"</div><p>A amígdala do comprador disparou. A AT&T se defendeu — o que só alimentou a raiva. A equipe da Boeing saiu da sala. Negócio morto.</p><div class="case-q">Qual sabotador você identifica no negociador da Boeing? E no da AT&T?</div></div>
+    <div class="case-step" data-n="3"><h3>O diagnóstico de Ury: o erro foi ignorar a emoção</h3><p>É tentador ignorar a emoção e focar no problema lógico. Mas emoções negativas reprimidas voltam como posições inflexíveis. A solução contraintuitiva: <strong>passar para o lado deles.</strong></p><div class="case-quote">"É difícil atacar alguém que, de repente, está do seu lado." — Ury</div><div class="case-q">Pense num conflito recente. Você resistiu ou passou para o lado do outro?</div></div>
+    <div class="case-step" data-n="4"><h3>A segunda reunião: a virada</h3><p>O vendedor da AT&T recomeça reconhecendo a frustração do comprador antes de qualquer explicação:</p><div class="case-quote">"Vocês tinham razão em que nós os estávamos enganando ao prometer sem assumir responsabilidade. Isso deve ter parecido má-fé. É isso mesmo?"</div><p>O comprador da Boeing disse "É isso!" — e começou a <em>explicar</em>, não atacar. A conversa virou.</p><div class="case-q">O que mudou na segunda reunião — o conteúdo ou a postura emocional?</div></div>
+    <div class="case-step" data-n="5"><h3>Desfecho: acordo de US$ 150 milhões</h3><p>O mesmo negócio que morreu por sequestro emocional foi ressuscitado por inteligência emocional. Substituir "mas" por "sim, e". Ouvir antes de argumentar. Reconhecer antes de explicar. Não é fraqueza. É a estratégia mais sofisticada que existe.</p><div class="case-q">Substitua "mas" por "sim, e" numa situação de conflito que você vive agora. O que muda?</div></div>
+  </div>
+  <div class="highlight" style="margin-top:2rem"><h3>🔥 No chat do Teams</h3><p>Complete: <em>"Na última vez que tive um conflito no trabalho, eu fiz mais como a AT&T na 1ª reunião ou na 2ª?"</em> Uma linha. Diagnóstico honesto.</p></div>
+</section>
+
+<hr class="hr">
+
+<!-- VAREJO -->
+<section id="varejo">
+  <p class="section-label" style="color:var(--accent4)">🛒 IE no Varejo Brasileiro</p>
+  <h2>O varejo no <span style="color:var(--accent4)">divã</span>:<br>quando a IE decide o caixa</h2>
+  <p class="lead">O varejo brasileiro é um dos ambientes mais emocionalmente intensos do mundo corporativo. É um laboratório vivo de inteligência emocional — ou da falta dela.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:2rem">
+    <div style="background:var(--surface);border:1px solid rgba(61,214,140,.25);border-radius:16px;overflow:hidden">
+      <div style="background:linear-gradient(135deg,rgba(61,214,140,.08),transparent);padding:1.4rem;border-bottom:1px solid rgba(61,214,140,.12)">
+        <div style="font-size:1.8rem;margin-bottom:.3rem">🟢</div>
+        <div style="font-family:var(--fh);font-weight:800;color:var(--accent4)">Magalu</div>
+        <div style="font-size:.75rem;color:var(--muted);margin-top:.2rem">A cultura como vantagem competitiva</div>
+      </div>
+      <div style="padding:1.2rem;font-size:.86rem;color:var(--muted);line-height:1.7">
+        <p>Luiza Trajano construiu uma das maiores redes de varejo sobre um alicerce incomum: <strong style="color:var(--text)">empatia como estratégia de negócio.</strong> Na pandemia, criou fundo para manter colaboradores, lançou o Parceiro Magalu e virou case de Harvard. IE ativa → segurança psicológica → inovação → resultado.</p>
+      </div>
+    </div>
+    <div style="background:var(--surface);border:1px solid rgba(224,92,58,.25);border-radius:16px;overflow:hidden">
+      <div style="background:linear-gradient(135deg,rgba(224,92,58,.08),transparent);padding:1.4rem;border-bottom:1px solid rgba(224,92,58,.12)">
+        <div style="font-size:1.8rem;margin-bottom:.3rem">🔴</div>
+        <div style="font-family:var(--fh);font-weight:800;color:var(--accent2)">Americanas</div>
+        <div style="font-size:.75rem;color:var(--muted);margin-top:.2rem">O rombo que tinha arquitetura emocional</div>
+      </div>
+      <div style="padding:1.2rem;font-size:.86rem;color:var(--muted);line-height:1.7">
+        <p>O escândalo de 2023 — R$ 20 bilhões — não foi só problema técnico. Foi um <strong style="color:var(--text)">colapso de IE organizacional.</strong> O medo de falar, a cultura de resultado a qualquer custo e a ausência de segurança psicológica criaram silêncio por anos. IE bloqueada → silêncio → distorção → ruptura.</p>
+      </div>
+    </div>
+  </div>
+  <div class="highlight"><h3>🎯 Para o grupo</h3><p>Pensando na empresa onde você trabalha: ela tem mais DNA de Magalu ou de Americanas no que diz respeito à <strong>segurança emocional</strong> — a liberdade de dizer a verdade sem medo?</p></div>
+</section>
+
+<hr class="hr">
+
+<!-- GERADOR DE PERFIL DO SABOTADOR -->
+<section id="gerador" style="max-width:860px">
+  <p class="section-label" style="color:#c084fc">🔮 Gerador de Perfil · Chamine</p>
+  <h2>Qual é o seu <span style="color:#c084fc">Sabotador</span> dominante?</h2>
+  <p class="lead">20 situações do cotidiano — trabalho, família, relacionamentos, consumo, liderança e vida social. Responda com honestidade. No final: seu perfil completo com habitat, frase característica e antídoto.</p>
+  <div style="background:var(--bg2);border:2px solid rgba(192,132,252,.2);border-radius:20px;overflow:hidden;margin-bottom:2rem">
+    <div style="padding:.7rem 2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+      <div style="font-family:var(--fh);font-size:.75rem;color:var(--muted)">Pergunta <span id="sg-num">1</span> de 20</div>
+      <div style="background:var(--border);border-radius:99px;height:5px;width:150px;overflow:hidden"><div id="sg-bar" style="height:5px;background:#c084fc;width:8%;border-radius:99px;transition:width .5s"></div></div>
+    </div>
+    <div id="sg-area" style="padding:2rem"></div>
+    <div id="sg-result" style="display:none;padding:2rem;border-top:1px solid var(--border)" class="fade-in"></div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- DILEMAS INSTANTÂNEOS -->
+<section id="dilemas" style="max-width:860px">
+  <p class="section-label" style="color:var(--accent3)">⚖️ Dilemas Instantâneos</p>
+  <h2>Você, agora, <span style="color:var(--accent3)">o que faria</span>?</h2>
+  <p class="lead">6 situações reais de trabalho. Dois caminhos. Você decide. A IE responde depois.</p>
+  <div style="background:var(--bg2);border:2px solid rgba(91,141,238,.2);border-radius:20px;overflow:hidden;margin-bottom:2rem">
+    <div style="padding:.7rem 2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+      <div style="font-family:var(--fh);font-size:.75rem;color:var(--muted)">Dilema <span id="dil-num">1</span> de 6</div>
+      <div id="dil-dots" style="display:flex;gap:.4rem"></div>
+    </div>
+    <div id="dil-area" style="padding:2rem"></div>
+    <div id="dil-fb" style="display:none;padding:1.2rem 2rem;border-top:1px solid var(--border)" class="fade-in"></div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- AUTODIAGNÓSTICO -->
+<section id="diagnostico" style="max-width:760px">
+  <p class="section-label">🔍 Autodiagnóstico I</p>
+  <h2>Como você chega <span>aqui</span>?</h2>
+  <p class="lead">10 perguntas. Respostas honestas. No final: seu perfil de partida com gabarito comentado e um prêmio à altura da sua situação atual.</p>
+  <div id="diag-form">
+    <div class="diag-q"><label>1. Quando sinto uma emoção desconfortável no trabalho, eu…</label><div class="scale" id="sc1"></div><div class="scale-labels"><span>1 · Reprimo / Finjo que não existe</span><span>5 · Reconheço e gerencio</span></div></div>
+    <div class="diag-q"><label>2. Consigo identificar meus sabotadores internos <em>antes</em> de agir por impulso?</label><div class="scale" id="sc2"></div><div class="scale-labels"><span>1 · Só percebo depois do estrago</span><span>5 · Percebo na hora e escolho</span></div></div>
+    <div class="diag-q"><label>3. Quando alguém fala comigo, minha escuta é…</label><div class="scale" id="sc3"></div><div class="scale-labels"><span>1 · Já planejo minha resposta</span><span>5 · Presença total, sem pressa</span></div></div>
+    <div class="diag-q"><label>4. Numa situação de conflito, minha reação automática é…</label><div class="scale" id="sc4"></div><div class="scale-labels"><span>1 · Atacar ou fugir (amígdala no comando)</span><span>5 · Respirar e escolher a resposta</span></div></div>
+    <div class="diag-q"><label>5. Quando discordo de alguém, costumo…</label><div class="scale" id="sc5"></div><div class="scale-labels"><span>1 · Usar "mas" e contradizer direto</span><span>5 · Usar "sim, e" — reconhecer antes de propor</span></div></div>
+    <div class="diag-q"><label>6. Acredito que consigo modificar meus padrões emocionais?</label><div class="scale" id="sc6"></div><div class="scale-labels"><span>1 · Sou assim, sempre fui, sempre serei</span><span>5 · O cérebro é 3M — e eu uso isso</span></div></div>
+    <div class="diag-q"><label>7. O ambiente emocional do meu trabalho atual é…</label><div class="scale" id="sc7"></div><div class="scale-labels"><span>1 · Tóxico / Cultura do medo</span><span>5 · Seguro / Posso ser honesto</span></div></div>
+    <div class="diag-q"><label>8. Cuido do meu equilíbrio físico-emocional (sono, exercício, pausas)…</label><div class="scale" id="sc8"></div><div class="scale-labels"><span>1 · Sobrevivo no modo emergência</span><span>5 · De forma consistente e intencional</span></div></div>
+    <div class="diag-q"><label>9. Consigo nomear com precisão o que estou sentindo?</label><div class="scale" id="sc9"></div><div class="scale-labels"><span>1 · Meu vocabulário emocional tem 3 palavras</span><span>5 · Leio minhas emoções com clareza</span></div></div>
+    <div class="diag-q"><label>10. O quanto sentido e propósito guiam minhas decisões profissionais?</label><div class="scale" id="sc10"></div><div class="scale-labels"><span>1 · Faço porque preciso do salário</span><span>5 · Trabalho com propósito claro</span></div></div>
+    <div class="diag-q" style="margin-top:1.5rem"><label>✍️ Qual emoção você mais tem dificuldade de lidar no trabalho?</label><textarea class="diag-textarea" id="diag-txt" placeholder="Uma palavra basta: raiva, ansiedade, inveja, medo, frustração…"></textarea></div>
+    <button class="btn btn-primary" onclick="showDiag()" style="margin-top:.5rem;padding:.85rem 2rem">🎯 Ver meu perfil + prêmio →</button>
+    <div id="diag-result" style="display:none;margin-top:2rem" class="fade-in"><div id="diag-text"></div></div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- RODA DAS EMOÇÕES -->
+<section id="roda" style="max-width:900px">
+  <p class="section-label" style="color:#ec4899">🎡 Roda das Emoções · Plutchik</p>
+  <h2>Você sabe nomear o que <span style="color:#ec4899">sente</span>?</h2>
+  <p class="lead">Robert Plutchik mapeou 8 emoções primárias e suas combinações. Clique em qualquer emoção para descobrir sua intensidade, seu oposto e o que acontece quando ela se mistura com outra.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start">
+    <div id="roda-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem"></div>
+    <div id="roda-detail" style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.75rem;min-height:280px;display:flex;align-items:center;justify-content:center">
+      <div style="text-align:center;color:var(--muted);font-size:.88rem">← Clique numa emoção para explorar</div>
+    </div>
+  </div>
+  <div class="highlight" style="margin-top:2rem"><h3>🎯 Para o grupo</h3><p>Sem olhar para a roda: qual emoção você está sentindo agora? Consiga nomeá-la com precisão — não "estresso" ou "tô bem". Uma palavra específica. Isso é vocabulário emocional.</p></div>
+</section>
+
+<hr class="hr">
+
+<!-- GALERIA DOS AUTORES -->
+<section id="autores">
+  <p class="section-label" style="color:var(--accent3)">📚 Galeria dos Autores</p>
+  <h2>Os ombros de <span style="color:var(--accent3)">gigantes</span><br>por trás desta aula</h2>
+  <p class="lead">Clique em cada autor para ver a contribuição, a obra principal e uma frase que resume tudo.</p>
+  <div id="autores-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:2rem"></div>
+  <div id="autor-detail" style="display:none" class="fade-in"></div>
+</section>
+
+<hr class="hr">
+
+<!-- CHECK-IN EMOCIONAL -->
+<section id="checkin" style="max-width:760px">
+  <p class="section-label" style="color:var(--accent)">🌡️ Check-in Emocional</p>
+  <h2>Como você está chegando <span style="color:var(--accent)">aqui</span>?</h2>
+  <p class="lead">Antes de aprender, vale saber de onde você está partindo. Escolha a emoção que mais representa seu estado agora — e veja o que ela diz sobre o seu ponto de partida.</p>
+  <div id="checkin-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.7rem;margin-bottom:1.5rem"></div>
+  <div id="checkin-result" style="display:none" class="fade-in"></div>
+</section>
+
+<hr class="hr">
+
+<!-- PLANO DE AÇÃO -->
+<section id="plano">
+  <p class="section-label" style="color:var(--accent4)">📋 Plano de Ação Individual</p>
+  <h2>Seu compromisso <span style="color:var(--accent4)">para a próxima semana</span></h2>
+  <p class="lead">Preencha, imprima ou copie. Quatro escolhas concretas — uma por dimensão. Na Aula 2, cada um conta o que aconteceu.</p>
+
+  <div style="background:var(--bg2);border:2px solid rgba(61,214,140,.2);border-radius:20px;overflow:hidden;margin-bottom:2rem">
+    <div style="background:linear-gradient(135deg,rgba(61,214,140,.08),transparent);padding:1.5rem 2rem;border-bottom:1px solid rgba(61,214,140,.15)">
+      <div style="font-family:var(--fh);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem">IBMEC-DF · Inteligência Emocional e Autogestão</div>
+      <div style="font-family:var(--fh);font-size:1rem;font-weight:800;color:var(--accent4)">Meu Plano de Ação · Aula 1</div>
+    </div>
+    <div style="padding:2rem;display:flex;flex-direction:column;gap:1.2rem">
+
+      <div style="background:var(--surface);border:1px solid rgba(192,132,252,.2);border-radius:12px;padding:1.2rem">
+        <div style="font-family:var(--fh);font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:#c084fc;margin-bottom:.6rem">🦹 1 sabotador para vigiar esta semana</div>
+        <select id="pa-sab" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.7rem 1rem;color:var(--text);font-family:var(--fb);font-size:.9rem;outline:none">
+          <option value="">Escolha seu sabotador dominante…</option>
+          <option>O Juiz — criticar menos, curiosear mais</option>
+          <option>Hiper-realizador — parar 1x ao dia sem culpa</option>
+          <option>Controlador — delegar uma tarefa real sem checar</option>
+          <option>Agradador — dizer não pelo menos uma vez</option>
+          <option>Hipervigilante — checar evidências antes de alarmar</option>
+          <option>Inquieto — terminar uma coisa antes de começar outra</option>
+          <option>Vítima — transformar uma queixa em ação</option>
+          <option>Hiperracional — perguntar "o que você está sentindo?" para alguém</option>
+          <option>Perfeccionista — entregar algo bom em vez de esperar o perfeito</option>
+          <option>Esquivo — ter a conversa difícil que está adiando</option>
+        </select>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid rgba(91,141,238,.2);border-radius:12px;padding:1.2rem">
+        <div style="font-family:var(--fh);font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--accent3);margin-bottom:.6rem">🧬 1 patch do modelo 3M para instalar</div>
+        <select id="pa-patch" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.7rem 1rem;color:var(--text);font-family:var(--fb);font-size:.9rem;outline:none">
+          <option value="">Escolha seu patch…</option>
+          <option>Respirar 4s antes de reagir (Amígdala)</option>
+          <option>Nomear a emoção em voz alta (Amígdala)</option>
+          <option>Questionar a narrativa do alarme (Amígdala)</option>
+          <option>Saborear 1 momento positivo por 20s (Hipocampo)</option>
+          <option>Escrever 15 min sobre algo difícil (Hipocampo)</option>
+          <option>Cultivar 1 relação de confiança (Hipocampo)</option>
+          <option>Dormir 7–9h sem negociar (Hipotálamo)</option>
+          <option>30 min de exercício (Hipotálamo)</option>
+          <option>Praticar gratidão genuína (Hipotálamo)</option>
+          <option>Dar sentido a uma tarefa rotineira (Hipotálamo)</option>
+        </select>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid rgba(244,160,36,.2);border-radius:12px;padding:1.2rem">
+        <div style="font-family:var(--fh);font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);margin-bottom:.6rem">🔄 1 comportamento para modificar</div>
+        <input id="pa-mudar" type="text" maxlength="80" placeholder="ex: parar de usar 'mas' quando discordo de alguém" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.7rem 1rem;color:var(--text);font-family:var(--fb);font-size:.9rem;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+
+      <div style="background:var(--surface);border:1px solid rgba(224,92,58,.2);border-radius:12px;padding:1.2rem">
+        <div style="font-family:var(--fh);font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--accent2);margin-bottom:.6rem">👂 1 pessoa com quem praticar escuta ativa</div>
+        <input id="pa-pessoa" type="text" maxlength="60" placeholder="ex: meu liderado direto, meu parceiro(a), um amigo próximo…" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.7rem 1rem;color:var(--text);font-family:var(--fb);font-size:.9rem;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--accent2)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+
+      <button onclick="gerarPlano()" class="btn btn-primary" style="width:100%;padding:.9rem;font-size:.95rem">
+        📄 Gerar meu plano para copiar →
+      </button>
+
+      <div id="plano-gerado" style="display:none;background:var(--surface);border:1px solid var(--accent4);border-radius:12px;padding:1.5rem" class="fade-in">
+        <div style="font-family:var(--fh);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent4);margin-bottom:1rem">📋 Seu plano — copie e cole onde quiser</div>
+        <pre id="plano-texto" style="white-space:pre-wrap;font-family:var(--fb);font-size:.88rem;color:var(--text);line-height:1.8;background:var(--bg);padding:1rem;border-radius:8px;border:1px solid var(--border)"></pre>
+        <button onclick="copiarPlano()" class="btn btn-ghost" style="margin-top:.8rem;width:100%;font-size:.83rem" id="btn-copiar">📋 Copiar texto</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="background:rgba(61,214,140,.06);border:1px solid rgba(61,214,140,.18);border-radius:14px;padding:1.5rem 2rem">
+    <div style="font-family:var(--fh);font-size:.8rem;font-weight:700;color:var(--accent4);margin-bottom:.6rem">💬 Para o mural coletivo — use o Mentimeter</div>
+    <p style="font-size:.88rem;color:var(--muted);line-height:1.75">Para ver as intenções da turma na tela em tempo real, use o <strong style="color:var(--text)">Mentimeter</strong> (que já está no seu plano de aula). Crie uma pergunta aberta: <em>"Esta semana vou parar de… e começar a…"</em> — as respostas aparecem como nuvem de palavras ou lista. Mais bonito, mais coletivo, mais dinâmico.</p>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- PAUSA -->
+<section id="respira" style="text-align:center;max-width:600px">
+  <p class="section-label">🌬️ Pausa Integrativa</p>
+  <h2>Antes de ir embora:<br><span>60 segundos</span> de presença</h2>
+  <p class="lead" style="margin:0 auto 2rem">A neurociência confirma: pausas intencionais consolidam o aprendizado. Não é moleza — é estratégia.</p>
+  <div class="breath-box">
+    <div class="breath-circle" id="breath-circle" onclick="startBreath()"><span id="breath-lbl">Toque para<br>começar</span></div>
+    <div class="breath-timer" id="breath-timer" style="display:none">4</div>
+    <div style="font-size:.9rem;color:var(--muted);margin-top:.5rem" id="breath-status">3 ciclos · ~1 minuto</div>
+    <p style="font-size:.8rem;color:var(--muted);margin-top:1rem;max-width:300px">Inspire 4s → Segure 4s → Expire 4s. Coerência cardíaca.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Inteligência Emocional e Autogestão · IBMEC-DF · Pós-Graduação</p>
+  <p style="margin-top:.4rem">Site criado pelo Prof. <strong>Ricardo de Faria Barros</strong> · ricardodefariabarros@gmail.com</p>
+</footer>
+
+<script>
+// ============================================================
+// DADOS
+// ============================================================
+
+// --- POR QUE IMPORTA ---
+const profData = [
+  {n:'01',cor:'var(--accent3)',titulo:'IE responde por 58% do desempenho profissional',texto:'Pesquisa de Travis Bradberry e Jean Greaves com mais de 1 milhão de profissionais: independentemente do setor ou função, 58% do desempenho acima da média pode ser atribuído à inteligência emocional. Nem diploma, nem QI, nem experiência técnica — IE.'},
+  {n:'02',cor:'var(--accent)',titulo:'Líderes com alta IE têm equipes 20% mais produtivas',texto:'Estudo da Hay Group com 3.871 executivos: líderes emocionalmente inteligentes criam climas que geram até 30% mais resultado — não porque são "bonzinhos", mas porque equipes psicologicamente seguras inovam e comunicam riscos sem travar no medo.'},
+  {n:'03',cor:'var(--accent4)',titulo:'90% dos top performers têm IE elevada',texto:'Na mesma pesquisa de Bradberry e Greaves: 90% dos profissionais identificados como top performers também pontuam alto em IE. E apenas 20% dos bottom performers têm IE alta. A correlação é tão consistente que guia processos seletivos das maiores empresas do mundo.'},
+  {n:'04',cor:'var(--accent2)',titulo:'Conflitos mal gerenciados custam 2h por dia útil ao gestor',texto:'CPP Inc.: gestores gastam em média 2,1 horas por dia lidando com conflitos — equivalente a um dia inteiro por semana. No Brasil, onde a cultura é relacionalmente intensa, esse número tende a ser maior. IE reduz esse custo invisível drasticamente.'},
+  {n:'05',cor:'#a78bfa',titulo:'Burnout custa ao Brasil R$ 127 bilhões por ano',texto:'ISMA Brasil: o país é o segundo no mundo em burnout. O custo em afastamentos e queda de produtividade chega a R$ 127 bilhões anuais. IE não cura burnout — mas é a principal vacina. Quem reconhece seus sinais emocionais precocemente não deixa o sistema chegar ao colapso.'},
+  {n:'06',cor:'var(--accent3)',titulo:'80% das demissões têm causa comportamental, não técnica',texto:'Harvard Business Review: 80% das demissões têm como causa principal falhas comportamentais e relacionais. Arrogância, incapacidade de receber feedback, dificuldade de colaborar, explosões emocionais. A competência técnica abre a porta. A IE mantém você dentro.'},
+  {n:'07',cor:'var(--accent)',titulo:'IE é o preditor nº 1 de sucesso em negociações',texto:'Ury, Fisher e os pesquisadores de Harvard Negotiation Project demonstraram: a capacidade de gerenciar as próprias emoções e reconhecer as do outro é mais determinante para o resultado de uma negociação do que a preparação técnica. O AT&T x Boeing acontece toda semana em toda empresa.'},
+  {n:'08',cor:'var(--accent4)',titulo:'O mundo VUCA-BANI cobra IE como nunca antes',texto:'Num ambiente Volátil, Incerto, Complexo, Ambíguo — e agora Frágil, Ansioso, Não-linear e Incompreensível — a capacidade de tolerar incerteza sem sequestro emocional é vantagem competitiva real. Quem colapsa diante do imprevisível toma decisões ruins.'},
+  {n:'09',cor:'var(--accent2)',titulo:'IE se aprende — e se perde se não for praticada',texto:'Diferente do QI, o QE é altamente treinável — e regride sem prática. Neuroplasticidade confirma: padrões emocionais são trilhas neurais que se fortalecem pelo uso. Você está treinando o quê, todo dia?'},
+  {n:'10',cor:'#c084fc',titulo:'IE é a habilidade que a IA não vai substituir',texto:'World Economic Forum, McKinsey, MIT: as habilidades mais protegidas da automação são as emocionais e sociais — empatia, liderança em incerteza, escuta profunda, mediação de conflitos. A IA processa dados melhor que qualquer humano. Mas ela não sente o que está em jogo numa sala de negociação.'}
+];
+
+// --- 3M DICAS ---
+const dicasCerebro = [
+  {m:'Amígdala',c:'#c084fc',n:'01',t:'Respire antes de reagir',d:'4 segundos de inspiração ativam o nervo vago e interrompem o sequestro da amígdala. O espaço entre estímulo e resposta é onde mora sua liberdade.'},
+  {m:'Hipocampo',c:'var(--accent3)',n:'02',t:'Nomeie a emoção em voz alta',d:'UCLA (Matthew Lieberman): nomear a emoção reduz sua intensidade em até 50%. Dizer "estou com raiva" ativa o córtex pré-frontal e feia a amígdala. Palavras são interruptores emocionais.'},
+  {m:'Hipotálamo',c:'var(--accent)',n:'03',t:'Durma 7–9 horas sem negociar',d:'Com menos de 6h de sono, a amígdala reage 60% mais intensamente a estímulos negativos. Dormir mal é a maneira mais eficiente de arruinar sua IE.'},
+  {m:'Amígdala',c:'#c084fc',n:'04',t:'Questione a narrativa do alarme',d:'Quando a amígdala dispara, ela cria uma história urgente. Pergunte: "Qual é a evidência real? O que é fato e o que é interpretação?"'},
+  {m:'Hipocampo',c:'var(--accent3)',n:'05',t:'Crie memórias positivas intencionais',d:'Rick Hanson: o cérebro tem "Teflon para o bom e Velcro para o ruim". Contra-ataque: saboreie conscientemente experiências positivas por 20 segundos. Isso modifica o arquivo.'},
+  {m:'Hipotálamo',c:'var(--accent)',n:'06',t:'Mova o corpo regularmente',d:'30 min de exercício aeróbico reduz cortisol e aumenta BDNF — proteína que estimula novos neurônios no hipocampo. John Ratey chama de "o melhor remédio para o cérebro".'},
+  {m:'Amígdala',c:'#c084fc',n:'07',t:'Pratique a reavaliação cognitiva',d:'James Gross (Stanford): reinterpretar um evento reduz ativação da amígdala e melhora bem-estar. Reprimir, ao contrário, aumenta a intensidade da emoção.'},
+  {m:'Hipocampo',c:'var(--accent3)',n:'08',t:'Escreva sobre o que sente',d:'James Pennebaker (UT): escrever sobre experiências difíceis por 15 min/dia durante 4 dias reorganiza a memória emocional. Não é diário sentimental — é modulação do arquivo.'},
+  {m:'Hipotálamo',c:'var(--accent)',n:'09',t:'Cultive gratidão ativa',d:'UC Davis (Robert Emmons): gratidão genuína reduz cortisol em até 23%. O hipotálamo, ao detectar segurança, diminui a produção de hormônios do estresse.'},
+  {m:'Amígdala',c:'#c084fc',n:'10',t:'Exponha-se a pequenos desconfortos',d:'A amígdala aprende pela experiência. Quando você enfrenta situações desafiadoras e sobrevive, ela recalibra o limiar de alarme. Fuja de tudo e ela fica cada vez mais sensível.'},
+  {m:'Hipocampo',c:'var(--accent3)',n:'11',t:'Cultive relações de segurança real',d:'O hipocampo consolida memórias com mais eficiência quando o sistema de apego está ativado. Relações de confiança são infraestrutura cognitiva — o Grant Study de Harvard confirma.'},
+  {m:'Hipotálamo',c:'var(--accent)',n:'12',t:'Dê sentido ao que você faz',d:'Viktor Frankl mostrou que sentido é o maior regulador do estresse humano. Quando o hipotálamo percebe que o esforço tem propósito, ele tolera pressão sem colapsar. Sentido molda o cérebro.'}
+];
+
+// --- QUIZ ---
+const quizData = [
+  {p:'De acordo com Jill Bolte Taylor, quanto tempo dura a bioquímica de uma emoção pura no corpo?',opts:['Cerca de 10 minutos','Cerca de 90 segundos','O dia inteiro se for intensa','Exatamente 3 minutos'],ok:1,fb:['Não exatamente. A bioquímica de uma emoção dura 90 segundos. O que nos prende é a ruminação — o pensamento que realimenta o sentimento.','Exato! 90 segundos. O que nos mantém presos é a história que contamos para nós mesmos depois disso.','A bioquímica dura 90s. O sofrimento prolongado vem da ruminação, não da emoção em si.','A duração é de cerca de 90 segundos — não um número fixo, mas próximo disso.']},
+  {p:'Em quantos milissegundos a amígdala processa uma ameaça — antes de qualquer consciência?',opts:['500 milissegundos','2 segundos','7 milissegundos','1 minuto'],ok:2,fb:['Rápido, mas não tanto. São 7ms — a amígdala reage antes de qualquer pensamento consciente.','Não. São 7 milissegundos. A amígdala é o sistema de alarme mais veloz do cérebro.','Exato! 7 milissegundos. É por isso que a emoção "chega" antes do raciocínio.','1 minuto seria eternidade para a amígdala. São 7ms.']},
+  {p:'O que é "sequestro da amígdala" (amygdala hijack), conceito de Daniel Goleman?',opts:['Quando você não consegue sentir emoções','Quando a emoção comanda o comportamento antes da razão poder intervir','Uma técnica de meditação','O processo de formação de memórias afetivas'],ok:1,fb:['O oposto — no sequestro, as emoções ficam no comando total.','Perfeito! É quando a emoção "corta o fio" da razão. Biologia, não fraqueza.','Nada a ver. É quando a emoção assume o controle antes do córtex pré-frontal intervir.','Relacionado a memórias, mas sequestro é quando a emoção comanda a ação.']},
+  {p:'O modelo 3M do Prof. Ricardo de Faria Barros propõe que o cérebro pode ser:',opts:['Reprogramado como um computador','Modulado, Modificado e Moldado','Resetado e reiniciado','Bloqueado e desbloqueado'],ok:1,fb:['O cérebro não é um computador. O conceito 3M é mais preciso e humano.','Exato! Modulado (trocar de estação), Modificado (todo hábito pode mudar) e Moldado (novas competências).','Resetar implica apagar. O cérebro aprende, não apaga.','Metáfora tecnológica que reduz a riqueza do processo cerebral.']},
+  {p:'Neuroplasticidade significa que o cérebro adulto:',opts:['Não muda mais após os 25 anos','Muda apenas com estímulos externos intensos','Pode formar novas conexões neurais em qualquer idade','Usa apenas 10% de sua capacidade'],ok:2,fb:['Esse era o mito. A neuroplasticidade derrubou essa ideia.','O cérebro se modifica com experiências do cotidiano — não exige traumas ou situações extremas.','Exato! Neuroplasticidade não tem prazo de validade. O cérebro muda a vida toda.','O mito dos 10% foi desbancado. Usamos praticamente todo o cérebro, em momentos diferentes.']},
+  {p:'Qual sabotador de Shirzad Chamine é considerado o "mestre" — presente em todos nós?',opts:['O Controlador','O Perfeccionista','O Juiz','O Hiper-realizador'],ok:2,fb:['O Controlador é poderoso mas não é o mestre.','O Perfeccionista é muito comum, mas não é o sabotador-mestre.','Exato! O Juiz é o mestre — ele julga a si, aos outros e às circunstâncias. É o sabotador universal.','O Hiper-realizador é frequente, mas o Juiz é o que coordena todos os outros.']},
+  {p:'A fórmula de William Ury para virar o jogo numa negociação conflituosa começa com:',opts:['Apresentar dados e fatos sólidos','Fazer concessões imediatas','Passar para o lado do outro — reconhecer antes de argumentar','Silêncio estratégico e postura dominante'],ok:2,fb:['Dados chegam a amígdalas ativas com dificuldade. Primeiro o acolhimento.','Concessão imediata sem acolhimento emocional não muda o clima.','Exato! "Passe para o lado deles" — Ury. Reconhecer a emoção do outro antes de qualquer argumento.','Silêncio pode ser lido como arrogância. A saída de Ury é o reconhecimento genuíno.']},
+  {p:'Qual estrutura cerebral regula sono, hormônios e o eixo do estresse — e é chamada de "termostato" pelo modelo 3M?',opts:['Córtex pré-frontal','Amígdala','Hipocampo','Hipotálamo'],ok:3,fb:['O córtex pré-frontal é a sede do raciocínio, não da regulação hormonal.','A amígdala é o alarme — não o termostato.','O hipocampo é o arquivo da memória.','Exato! O hipotálamo é o termostato — regula sono, fome, temperatura e hormônios do estresse.']},
+  {p:'Segundo a pesquisa de Matthew Lieberman (UCLA), nomear uma emoção em voz alta:',opts:['Intensifica a emoção por torná-la consciente','Reduz sua intensidade em até 50%','Não tem efeito mensurável','Só funciona em combinação com meditação'],ok:1,fb:['O efeito é o oposto: nomear ativa o córtex pré-frontal e reduz a ativação da amígdala.','Exato! "Affect labeling": nomear reduz intensidade em até 50%. Palavras são interruptores emocionais.','O efeito é mensurável e robusto — comprovado por neuroimagem.','Funciona de forma independente — não exige meditação.']},
+  {p:'O Harvard Grant Study — o maior estudo longitudinal da história — concluiu que o maior preditor de felicidade e longevidade é:',opts:['Riqueza e estabilidade financeira','Sucesso profissional e reconhecimento','Saúde física e genética favorável','Qualidade dos relacionamentos próximos'],ok:3,fb:['Importante, mas não determinante na conclusão do estudo.','O sucesso profissional correlaciona com satisfação, não com felicidade duradoura.','Saúde física importa, mas não é o maior preditor.','Exato! 80 anos de pesquisa. A conclusão foi clara: relacionamentos próximos são o maior preditor de felicidade e longevidade.']}
+];
+
+// --- SABOTADORES ---
+const sabData = [
+  {emoji:'⚖️',nome:'O Juiz',cor:'#f4a024',desc:'Crítica a si, aos outros e às circunstâncias.',sinais:['Insatisfação crônica','Crítica constante','Compara e condena'],gatilhos:['Erros (seus ou alheios)','Resultados abaixo do esperado','Incerteza'],saida:['Curiosidade no lugar da crítica','Perguntar "o que posso aprender?"','Praticar autoperdão consciente']},
+  {emoji:'🏆',nome:'Hiper-realizador',cor:'#f97316',desc:'Valor pessoal = conquistas e status.',sinais:['Workaholic','Ansiedade ao parar','Insatisfação com resultados'],gatilhos:['Fracasso','Ser visto como incompetente','Metas não alcançadas'],saida:['Separar valor pessoal de performance','Celebrar o processo','Praticar suficiência']},
+  {emoji:'🕹️',nome:'Controlador',cor:'#5b8dee',desc:'Segurança = tudo sob controle.',sinais:['Microgerencia','Dificuldade de delegar','Ansiedade com o inesperado'],gatilhos:['Incerteza','Depender de outros','Planos que mudam'],saida:['Tolerar ambiguidade progressivamente','Confiar e verificar','Flexibilidade como força']},
+  {emoji:'🥹',nome:'Agradador',cor:'#ec4899',desc:'Amor condicionado à aprovação alheia.',sinais:['Dificuldade de dizer não','Ressente mas não fala','Prioriza os outros excessivamente'],gatilhos:['Conflito','Desapontamento alheio','Rejeição'],saida:['Fronteiras como cuidado','Expressar necessidades com CNV','Distinguir gentileza de submissão']},
+  {emoji:'🔮',nome:'Hipervigilante',cor:'#3dd68c',desc:'O mundo é perigoso — antenas sempre ligadas.',sinais:['Ansiedade antecipatória','Catastrofização','Dificuldade de relaxar'],gatilhos:['Ameaças reais ou imaginárias','Perda de segurança','Novidades'],saida:['Checar evidências antes de alarmar','Distinguir risco real de imaginado','Mindfulness como prática de segurança']},
+  {emoji:'🌪️',nome:'Inquieto',cor:'#facc15',desc:'Estar parado = estar perdendo.',sinais:['Múltiplos projetos','Dificuldade de concluir','Tédio como ameaça'],gatilhos:['Tarefas repetitivas','Ausência de estímulo','Quietude'],saida:['Presença plena como habilidade','Profundidade em vez de amplitude','Meditar ou praticar pausa']},
+  {emoji:'😔',nome:'Vítima',cor:'#a78bfa',desc:'Atenção e conexão via sofrimento.',sinais:['Reclamações frequentes','Narrativa de injustiça','Dificuldade de agir'],gatilhos:['Dificuldades percebidas','Falta de reconhecimento','Sentir-se impotente'],saida:['Da queixa à ação: "O que posso fazer?"','Distinguir sentimento legítimo de padrão','Buscar suporte, não só validação']},
+  {emoji:'🧊',nome:'Hiperracional',cor:'#06b6d4',desc:'Emoções são irrelevantes. Só a lógica importa.',sinais:['Despreza sentimentos','Relacionamentos frios','Decisões certas mas desumanas'],gatilhos:['Irracionalidade percebida','Demandas emocionais','Situações ambíguas'],saida:['Curiosidade sobre próprias emoções','Empatia como dado','IE como vantagem estratégica']},
+  {emoji:'📋',nome:'Perfeccionista',cor:'#f4a024',desc:'Só o impecável é suficiente.',sinais:['Paralisia por análise','Autocrítica severa','Procrastina por medo do erro'],gatilhos:['Erros e imperfeições','Prazos apertados','Avaliações externas'],saida:['"Feito é melhor que perfeito"','Distinguir excelência de perfeição','Autoaceitação como base da performance']},
+  {emoji:'🫙',nome:'Esquivo',cor:'#84cc16',desc:'Se puder evitar o conflito, evito.',sinais:['Procrastinação emocional','Foge de conversas difíceis','Desconforto com tensão'],gatilhos:['Conflito iminente','Feedback negativo','Decisões com consequências'],saida:['O conflito evitado cresce','CNV como prática diária','Coragem como músculo que se treina']}
+];
+
+// --- JOGO DO CONTRÁRIO ---
+const jogoData = [
+  {titulo:'Reforce seu bibliotecário viciado em tragédias',corpo:'Sempre que algo bom acontecer, ignore. Não saboreie. Não guarde. Diga a si mesmo: "Isso não importa. Não vai durar." Já algo ruim? Reviva em loop por dias. Conte para todo mundo com detalhes.',resultado:'Sua biblioteca mental terá apenas livros de fracasso. Você será especialista em desgraça.',antidoto:'Saborear conscientemente experiências positivas por 20 segundos modifica o hipocampo. Rick Hanson chama de transformar o "Teflon para o bom" em Velcro. Registrar o que funcionou tem o mesmo peso que registrar o que falhou.'},
+  {titulo:'Deixe sua amígdala mandar sempre',corpo:'Sentiu uma crítica? Reaja na hora. Não respire. Não pause. Grite, se defenda, ataque de volta. Pensar é para os fracos. Reagir é para os fortes (e arrependidos).',resultado:'Você vai queimar pontes, perder negócios e ainda sair com a sensação de "ter razão".',antidoto:'O intervalo entre estímulo e resposta é onde mora a liberdade. 4 segundos de respiração ativam o nervo vago e interrompem o sequestro. Não é hesitação — é usar o cérebro inteiro.'},
+  {titulo:'Mantenha seu radar no modo ameaça',corpo:'Escaneie apenas o que pode dar errado. Ignore soluções, oportunidades e pequenas vitórias. Se você não vê o que falta, não precisa se esforçar para mudar.',resultado:'Você viverá em estado de alerta constante, exausto e paranoico — mas pelo menos "não será pego de surpresa".',antidoto:'O hipervigilante confunde previsão com catastrofismo. Checar evidências antes de disparar o alarme modula a amígdala e preserva energia cognitiva para o que realmente importa.'},
+  {titulo:'Use Velcro para o negativo e Teflon para o positivo',corpo:'Crítica? Gruda com força. Elogio? Escorrega como água. Erro? Vira identidade. Acerto? Esqueça em 5 minutos.',resultado:'Você será a pessoa mais cansativa do happy hour. Ninguém vai querer almoçar perto de você.',antidoto:'A assimetria afetiva é biológica — mas reversível. Praticar intencionalmente saborear o que deu certo, por pelo menos 20 segundos, começa a modificar o viés negativo do hipocampo.'},
+  {titulo:'Nunca reconheça o ponto de vista do outro',corpo:'Se alguém discordar de você, interrompa. Diga: "Você está errado." Não valide. Não acolha. Reconhecer é fraqueza. Certo é você. Sempre.',resultado:'Você terá muitos inimigos, poucos aliados e zero acordos construtivos.',antidoto:'Reconhecer o ponto de vista alheio não é concordar — é o primeiro passo para que o outro ouça o seu. É exatamente o que o vendedor da AT&T fez na segunda reunião com a Boeing.'},
+  {titulo:'Fale mais do que escuta',corpo:'Enquanto o outro fala, prepare sua resposta. Melhor ainda: interrompa. Seu ponto de vista é mais importante. Ouvir é perder tempo.',resultado:'Você será ignorado, mal-compreendido e excluído de decisões importantes.',antidoto:'Ouvir é a concessão mais barata que existe — e a mais poderosa. Os negociadores mais bem-sucedidos escutam muito mais do que falam. Ouvir de verdade é uma habilidade que se treina.'},
+  {titulo:'Repita o mesmo erro esperando resultado diferente',corpo:'Insista na mesma abordagem que não funciona. Teimosia é virtude, certo? Se perdeu uma negociação reagindo com defensividade, faça de novo. Na sétima vez vai dar certo (não vai).',resultado:'Campeão da frustração recorrente. Einstein chamaria isso de insanidade. Você chamará de "estilo próprio".',antidoto:'O cérebro pode ser modificado — não existe padrão que não possa mudar. Mas a mudança exige consciência do padrão e intenção deliberada de agir diferente. Uma vez sequer.'},
+  {titulo:'Nunca passe para o lado do outro',corpo:'Se o outro atacar, ataque de volta. Se o outro levantar muros, levante muros maiores. Passar para o lado dele parece traição. Melhor ficar no seu quadrado — mesmo que seja um quadrado solitário.',resultado:'Você transformará qualquer conflito em guerra. E perderá contratos de US$ 150 milhões.',antidoto:'É difícil atacar alguém que está do seu lado. A fórmula de Ury é contraintuitiva mas funciona: passe para o lado do outro antes de apresentar qualquer argumento.'},
+  {titulo:'Nunca repita nada conscientemente. Amanhã eu começo.',corpo:'Não saboreie nada. Não consolide nenhum novo hábito. Algo bom aconteceu? Já passou. Próximo. Repetição consciente? Trabalho demais.',resultado:'Você continuará exatamente como está. Nada muda. Nada melhora. Mas pelo menos não precisou se esforçar.',antidoto:'O cérebro se molda pela repetição. Sem prática deliberada, novas trilhas neurais não se consolidam. Um comportamento novo praticado por 3 semanas começa a virar padrão.'},
+  {titulo:'O fracasso é seu troféu',corpo:'Se você seguiu todas as lições acima, conseguiu: ignorar a neuroplasticidade, alimentar seus sabotadores, perder negócios, relacionamentos e saúde mental — e ainda achar que o problema é o mundo.',resultado:'Uma vida mais difícil, mais pesada e mais solitária. Recompensa: nenhuma. Só arrependimento.',antidoto:'Você chegou até aqui — isso já é coragem. A consciência de um padrão é sempre o primeiro passo para quebrá-lo. O oposto de cada lição deste jogo é o conteúdo desta aula.'}
+];
+
+// --- GERADOR DE PERFIL ---
+const sgPerguntas = [
+  {sit:'Seu gestor envia um e-mail seco às 22h: "Precisamos conversar amanhã sobre seu relatório." Sua reação mais honesta é:',opts:[{t:'Fico acordado imaginando os piores cenários possíveis.',s:[4,6]},{t:'Já começo a planejar como me defender antes mesmo de saber do que se trata.',s:[0,2]},{t:'Sinto ansiedade mas consigo colocar em perspectiva.',s:[]},{t:'Processo racionalmente — e-mail seco não é sentença.',s:[7]},{t:'Me preocupo com o que os colegas vão pensar se eu tiver um problema.',s:[3,8]}]},
+  {sit:'Num projeto em equipe, um colega entrega uma parte com qualidade abaixo do esperado. Você:',opts:[{t:'Aponto os problemas diretamente e com detalhes na reunião.',s:[0,2]},{t:'Faço a parte dele também para não gerar conflito.',s:[3,9]},{t:'Fico quieto mas registro internamente para usar depois se necessário.',s:[9,4]},{t:'Converso com ele em privado de forma construtiva.',s:[]},{t:'Sinto uma irritação que dificulta trabalhar junto com ele.',s:[0,8]}]},
+  {sit:'Você está num happy hour e o assunto recai sobre trabalho. Alguém pergunta como você está. Você:',opts:[{t:'Digo que está tudo ótimo — mesmo que não esteja.',s:[3,9]},{t:'Conto em detalhes tudo que está pesado e injusto.',s:[6]},{t:'Falo brevemente, direciono o assunto para os outros.',s:[3]},{t:'Analiso a pergunta e respondo com precisão sobre fatos, não sentimentos.',s:[7]},{t:'Fico atento para não dizer nada que possa ser mal interpretado.',s:[4,8]}]},
+  {sit:'Você comete um erro visível num projeto importante. Como você processa isso?',opts:[{t:'Me condeno severamente por dias. Como pude?',s:[0,8]},{t:'Identifico rapidamente fatores externos que contribuíram.',s:[6,2]},{t:'Foco na solução imediatamente — erros são dados, não identidade.',s:[]},{t:'Fico com medo do que os outros estão pensando de mim.',s:[3,4]},{t:'Passo para o próximo projeto rapidamente para não pensar nisso.',s:[1,5]}]},
+  {sit:'Você tem uma tarde livre inesperada. O que acontece naturalmente?',opts:[{t:'Logo estou pensando em como usar o tempo de forma produtiva.',s:[1,8]},{t:'Inicio várias atividades diferentes e termino o dia sem ter descansado de verdade.',s:[5]},{t:'Sinto um desconforto com o "vazio" — preciso estar fazendo algo.',s:[1,5]},{t:'Aproveito sem culpa. Descanso é parte do processo.',s:[]},{t:'Fico checando mensagens para garantir que nada urgente está acontecendo.',s:[4,2]}]},
+  {sit:'Um familiar faz uma crítica sobre sua forma de lidar com dinheiro. Você:',opts:[{t:'Reajo defensivamente — quem é ele para falar?',s:[0,2]},{t:'Concordo para não brigar, mas fico com raiva por dentro.',s:[3,9]},{t:'Ouço, avalio com calma se há algo válido na crítica.',s:[]},{t:'Fico lembrando dessa crítica por semanas.',s:[0,4]},{t:'Sinto uma vergonha grande — e se outros também pensam assim?',s:[6,8]}]},
+  {sit:'Numa negociação, a outra parte fica agressiva e levanta a voz. Você:',opts:[{t:'Elevo o tom também — não vou deixar passar.',s:[0,2]},{t:'Faço concessões para diminuir a tensão logo.',s:[3,9]},{t:'Pauso, respiro, e reconheço a frustração da outra parte antes de continuar.',s:[]},{t:'Apresento dados e fatos adicionais para mostrar que estou certo.',s:[7,2]},{t:'Sinto uma ansiedade intensa e começo a questionar minha posição.',s:[4,6]}]},
+  {sit:'No grupo de amigos, surge uma discussão sobre política ou religião. Você:',opts:[{t:'Expresso sua opinião com firmeza e dificuldade de ceder.',s:[0,2]},{t:'Evita dar sua opinião para não criar conflito no grupo.',s:[3,9]},{t:'Ouve as diferentes perspectivas com curiosidade genuína.',s:[]},{t:'Analisa os argumentos e só fala quando tem dados concretos.',s:[7]},{t:'Sente desconforto com a tensão e muda de assunto.',s:[9,5]}]},
+  {sit:'Você está sobrecarregado e um colega pede ajuda com a tarefa dele. Você:',opts:[{t:'Ajuda mesmo sem ter tempo — dizer não parece egoísmo.',s:[3]},{t:'Diz que vai ajudar mas internamente resente o pedido.',s:[3,9]},{t:'Avalia honestamente sua capacidade e diz não com gentileza se necessário.',s:[]},{t:'Faz a tarefa dele mais rápido do que ele faria — é mais eficiente.',s:[1,2]},{t:'Sente culpa por não poder ajudar mesmo sendo sobrecarregado.',s:[3,8]}]},
+  {sit:'Você recebe um grande elogio do cliente por um trabalho bem feito. Como reage internamente?',opts:[{t:'"Fui eu mesmo" — registra a conquista com satisfação.',s:[1]},{t:'Já está pensando na próxima entrega antes de terminar de ouvir o elogio.',s:[1,5]},{t:'Minimiza: "foi o time todo, eu só fiz o básico".',s:[3,6]},{t:'Sente prazer genuíno e registra o momento como energia para o próximo desafio.',s:[]},{t:'"E se eles esperarem isso sempre de mim?" Vira pressão imediata.',s:[4,8]}]},
+  {sit:'Você precisar ter uma conversa difícil com alguém próximo. Você:',opts:[{t:'Planeja tudo nos mínimos detalhes antes de começar.',s:[8,2]},{t:'Adia repetidamente — "ainda não é o momento certo".',s:[9]},{t:'Vai direto ao ponto com franqueza total, às vezes sem considerar o impacto emocional.',s:[0,7]},{t:'Começa pela conexão e pela escuta antes de colocar o problema.',s:[]},{t:'Sente uma angústia que ocupa sua cabeça por dias antes da conversa.',s:[4,8]}]},
+  {sit:'No final de uma semana pesada, como você está com relação a si mesmo?',opts:[{t:'Satisfeito apenas se tiver entregado muito e bem.',s:[1,8]},{t:'Exausto mas com medo de desacelerar — e se algo escapar?',s:[1,4]},{t:'Compassivo — reconhece o esforço sem precisar de resultado perfeito.',s:[]},{t:'Já planejando como a próxima semana vai ser diferente (mas raramente é).',s:[5,9]},{t:'Preocupado com o que podia ter ido melhor — faz uma lista dos erros.',s:[0,8]}]}
+];
+
+// 8 NOVAS QUESTÕES (vida cultural, consumo, afeto, liderança, família, decisões, conversas difíceis, carro novo)
+const sgPerguntasExtra = [
+  {sit:'Você compra um carro novo e, na primeira semana, alguém risca levemente a lataria no estacionamento. Sua reação é:',opts:[{t:'Uma raiva intensa que ocupa minha cabeça por dias. Investimento jogado fora.',s:[0,4]},{t:'Fico frustrado mas logo coloco em perspectiva — é um objeto, não uma tragédia.',s:[]},{t:'Fotografo tudo, pesquiso o valor do conserto e tomo providências com calma.',s:[7,2]},{t:'Não falo nada para não criar confusão — deixo passar.',s:[3,9]},{t:'Sinto aquele peso de "sabia que ia acontecer algo assim".',s:[4,6]}]},
+  {sit:'Você está num relacionamento afetivo e seu parceiro(a) se queixa de que você não está presente emocionalmente. Você:',opts:[{t:'Acho a crítica exagerada — estou aqui, fazendo tudo que precisa ser feito.',s:[7,2]},{t:'Me defendo listando tudo que faço pelo relacionamento.',s:[0,2]},{t:'Sinto culpa imensa e concordo com tudo, mesmo sem entender bem o que mudou.',s:[3,6]},{t:'Ouço com genuína curiosidade — "me conta mais sobre o que você está sentindo".',s:[]},{t:'Fico ansioso e começo a monitorar cada reação do parceiro para evitar conflitos.',s:[4,8]}]},
+  {sit:'Você é líder de uma equipe. Um liderado comete o mesmo erro pela segunda vez. Você:',opts:[{t:'Chamo atenção na frente do grupo — serve de lição para todos.',s:[0,2]},{t:'Faço a tarefa eu mesmo — mais fácil do que explicar de novo.',s:[1,2]},{t:'Converso em privado buscando entender o que está dificultando antes de cobrar.',s:[]},{t:'Fico quieto para não criar mal-estar — espero que ele perceba sozinho.',s:[9,3]},{t:'Monitoro de perto cada passo dele daqui para frente.',s:[2,4]}]},
+  {sit:'Houve uma briga séria na família — um desentendimento que deixou o grupo tenso. Você:',opts:[{t:'Tomo partido claramente e defendo seu ponto com intensidade.',s:[0,2]},{t:'Fica quieto para não piorar — o silêncio é mais seguro.',s:[9,3]},{t:'Tenta mediar, ouvindo os dois lados com paciência antes de opinar.',s:[]},{t:'Ruminaria o episódio por semanas, repassando o que deveria ter dito.',s:[0,4]},{t:'Sente uma ansiedade que contamina outros aspectos da sua vida até o conflito se resolver.',s:[4,6]}]},
+  {sit:'Você precisa tomar uma decisão difícil e importante — de carreira, moradia ou relacionamento. Você:',opts:[{t:'Analisa todos os dados disponíveis e só decide quando tiver certeza absoluta.',s:[7,8]},{t:'Posterga a decisão o máximo possível — decidir é arriscado.',s:[9,4]},{t:'Decide rápido para tirar o peso — qualquer coisa é melhor que a incerteza.',s:[5,1]},{t:'Consulta várias pessoas mas no fundo já sabe o que quer e está buscando validação.',s:[3,6]},{t:'Pondera com calma, aceita que toda decisão tem custo e age quando se sente suficientemente preparado.',s:[]}]},
+  {sit:'Você precisa ter uma conversa difícil — dar uma notícia ruim, cobrar alguém querido ou estabelecer um limite. Você:',opts:[{t:'Planeja cada palavra antes de começar — ensaia mentalmente por dias.',s:[8,4]},{t:'Adia repetidamente: "o momento certo ainda vai aparecer".',s:[9]},{t:'Vai direto ao ponto com franqueza total, às vezes sem calibrar o impacto emocional.',s:[0,7]},{t:'Começa pela conexão — garante que a pessoa se sinta segura antes de entrar no assunto difícil.',s:[]},{t:'Inicia mas no meio da conversa recua e ameniza tudo para não magoar.',s:[3,9]}]},
+  {sit:'Você vai a uma exposição de arte, show ou evento cultural. Como é a experiência?',opts:[{t:'Fico pensando no trabalho que deixei para trás ou no que tenho para fazer depois.',s:[1,5]},{t:'Comparo tudo com referências que já conheço — raramente algo supera o que espero.',s:[0,8]},{t:'Me permito ser surpreendido — presença plena, sem julgamento antecipado.',s:[]},{t:'Me preocupo se estou "aproveitando do jeito certo" ou se vou conseguir falar sobre isso depois.',s:[8,3]},{t:'Fico inquieto se o evento for longo demais — prefiro experiências rápidas e variadas.',s:[5]}]},
+  {sit:'Você percebe que seu padrão de consumo (compras, delivery, assinaturas) está acima do que pode pagar. Você:',opts:[{t:'Sei que é um problema mas continuar comprando traz um alívio imediato que funciona.',s:[5,6]},{t:'Faço uma planilha detalhada dos gastos e corto tudo de uma vez com rigidez.',s:[8,2]},{t:'Ignoro o problema — lidar com finanças gera ansiedade demais.',s:[9,4]},{t:'Reconheço o padrão, entendo o que ele está preenchendo e faço ajustes progressivos com autocompaixão.',s:[]},{t:'Me condeno bastante — como pude deixar isso acontecer?',s:[0,6]}]}
+];
+// junta as duas arrays
+const sgPerguntas = [
+  {sit:'Seu gestor envia um e-mail seco às 22h: "Precisamos conversar amanhã sobre seu relatório." Sua reação mais honesta é:',opts:[{t:'Fico acordado imaginando os piores cenários possíveis.',s:[4,6]},{t:'Já começo a planejar como me defender antes mesmo de saber do que se trata.',s:[0,2]},{t:'Sinto ansiedade mas consigo colocar em perspectiva.',s:[]},{t:'Processo racionalmente — e-mail seco não é sentença.',s:[7]},{t:'Me preocupo com o que os colegas vão pensar se eu tiver um problema.',s:[3,8]}]},
+  {sit:'Num projeto em equipe, um colega entrega uma parte com qualidade abaixo do esperado. Você:',opts:[{t:'Aponto os problemas diretamente e com detalhes na reunião.',s:[0,2]},{t:'Faço a parte dele também para não gerar conflito.',s:[3,9]},{t:'Fico quieto mas registro internamente para usar depois se necessário.',s:[9,4]},{t:'Converso com ele em privado de forma construtiva.',s:[]},{t:'Sinto uma irritação que dificulta trabalhar junto com ele.',s:[0,8]}]},
+  {sit:'Você está num happy hour e o assunto recai sobre trabalho. Alguém pergunta como você está. Você:',opts:[{t:'Digo que está tudo ótimo — mesmo que não esteja.',s:[3,9]},{t:'Conto em detalhes tudo que está pesado e injusto.',s:[6]},{t:'Falo brevemente, direciono o assunto para os outros.',s:[3]},{t:'Analiso a pergunta e respondo com precisão sobre fatos, não sentimentos.',s:[7]},{t:'Fico atento para não dizer nada que possa ser mal interpretado.',s:[4,8]}]},
+  {sit:'Você comete um erro visível num projeto importante. Como você processa isso?',opts:[{t:'Me condeno severamente por dias. Como pude?',s:[0,8]},{t:'Identifico rapidamente fatores externos que contribuíram.',s:[6,2]},{t:'Foco na solução imediatamente — erros são dados, não identidade.',s:[]},{t:'Fico com medo do que os outros estão pensando de mim.',s:[3,4]},{t:'Passo para o próximo projeto rapidamente para não pensar nisso.',s:[1,5]}]},
+  {sit:'Você tem uma tarde livre inesperada. O que acontece naturalmente?',opts:[{t:'Logo estou pensando em como usar o tempo de forma produtiva.',s:[1,8]},{t:'Inicio várias atividades diferentes e termino o dia sem ter descansado de verdade.',s:[5]},{t:'Sinto um desconforto com o "vazio" — preciso estar fazendo algo.',s:[1,5]},{t:'Aproveito sem culpa. Descanso é parte do processo.',s:[]},{t:'Fico checando mensagens para garantir que nada urgente está acontecendo.',s:[4,2]}]},
+  {sit:'Um familiar faz uma crítica sobre sua forma de lidar com dinheiro. Você:',opts:[{t:'Reajo defensivamente — quem é ele para falar?',s:[0,2]},{t:'Concordo para não brigar, mas fico com raiva por dentro.',s:[3,9]},{t:'Ouço, avalio com calma se há algo válido na crítica.',s:[]},{t:'Fico lembrando dessa crítica por semanas.',s:[0,4]},{t:'Sinto uma vergonha grande — e se outros também pensam assim?',s:[6,8]}]},
+  {sit:'Numa negociação, a outra parte fica agressiva e levanta a voz. Você:',opts:[{t:'Elevo o tom também — não vou deixar passar.',s:[0,2]},{t:'Faço concessões para diminuir a tensão logo.',s:[3,9]},{t:'Pauso, respiro, e reconheço a frustração da outra parte antes de continuar.',s:[]},{t:'Apresento dados e fatos adicionais para mostrar que estou certo.',s:[7,2]},{t:'Sinto uma ansiedade intensa e começo a questionar minha posição.',s:[4,6]}]},
+  {sit:'No grupo de amigos, surge uma discussão sobre política ou religião. Você:',opts:[{t:'Expresso sua opinião com firmeza e dificuldade de ceder.',s:[0,2]},{t:'Evita dar sua opinião para não criar conflito no grupo.',s:[3,9]},{t:'Ouve as diferentes perspectivas com curiosidade genuína.',s:[]},{t:'Analisa os argumentos e só fala quando tem dados concretos.',s:[7]},{t:'Sente desconforto com a tensão e muda de assunto.',s:[9,5]}]},
+  {sit:'Você está sobrecarregado e um colega pede ajuda com a tarefa dele. Você:',opts:[{t:'Ajuda mesmo sem ter tempo — dizer não parece egoísmo.',s:[3]},{t:'Diz que vai ajudar mas internamente resente o pedido.',s:[3,9]},{t:'Avalia honestamente sua capacidade e diz não com gentileza se necessário.',s:[]},{t:'Faz a tarefa dele mais rápido do que ele faria — é mais eficiente.',s:[1,2]},{t:'Sente culpa por não poder ajudar mesmo sendo sobrecarregado.',s:[3,8]}]},
+  {sit:'Você recebe um grande elogio do cliente por um trabalho bem feito. Como reage internamente?',opts:[{t:'"Fui eu mesmo" — registra a conquista com satisfação.',s:[1]},{t:'Já está pensando na próxima entrega antes de terminar de ouvir o elogio.',s:[1,5]},{t:'Minimiza: "foi o time todo, eu só fiz o básico".',s:[3,6]},{t:'Sente prazer genuíno e registra o momento como energia para o próximo desafio.',s:[]},{t:'"E se eles esperarem isso sempre de mim?" Vira pressão imediata.',s:[4,8]}]},
+  {sit:'Você precisar ter uma conversa difícil com alguém próximo. Você:',opts:[{t:'Planeja tudo nos mínimos detalhes antes de começar.',s:[8,2]},{t:'Adia repetidamente — "ainda não é o momento certo".',s:[9]},{t:'Vai direto ao ponto com franqueza total, às vezes sem considerar o impacto emocional.',s:[0,7]},{t:'Começa pela conexão e pela escuta antes de colocar o problema.',s:[]},{t:'Sente uma angústia que ocupa sua cabeça por dias antes da conversa.',s:[4,8]}]},
+  {sit:'No final de uma semana pesada, como você está com relação a si mesmo?',opts:[{t:'Satisfeito apenas se tiver entregado muito e bem.',s:[1,8]},{t:'Exausto mas com medo de desacelerar — e se algo escapar?',s:[1,4]},{t:'Compassivo — reconhece o esforço sem precisar de resultado perfeito.',s:[]},{t:'Já planejando como a próxima semana vai ser diferente (mas raramente é).',s:[5,9]},{t:'Preocupado com o que podia ter ido melhor — faz uma lista dos erros.',s:[0,8]}]},
+  ...sgPerguntasExtra
+];
+
+const sgPerfis = [
+  {nome:'O Juiz',emoji:'⚖️',cor:'#f4a024',hab:'Reuniões de feedback, avaliações, situações com erro.',frase:'"Isso podia ter sido melhor. Sempre."',desc:'Você é exigente — com você mesmo, com os outros e com as circunstâncias. Isso tem um lado produtivo real: standards altos. Mas o custo emocional de viver num tribunal permanente é alto demais.',antidoto:'Transforme crítica em curiosidade. Em vez de "isso foi péssimo", pergunte "o que posso aprender aqui?" A mesma energia — direcionada diferente.'},
+  {nome:'Hiper-realizador',emoji:'🏆',cor:'#f97316',hab:'Final de trimestre, avaliações, momentos de pausa.',frase:'"Descansando? Então estou perdendo."',desc:'Você confunde valor pessoal com resultados. Por fora parece sucesso. Por dentro é uma corrida sem linha de chegada. A ambição não é o problema — é o fato de que ela nunca satisfaz.',antidoto:'Pratique ser, não só fazer. 15 minutos por dia sem produzir nada. Parece impossível? Então é exatamente o que você precisa.'},
+  {nome:'Controlador',emoji:'🕹️',cor:'#5b8dee',hab:'Trabalho em equipe, delegação, mudanças inesperadas.',frase:'"Se eu não fizer, ninguém faz direito."',desc:'Você precisa do controle para se sentir seguro. Isso cria uma ilusão de domínio que consome energia enorme — e sabota a confiança das pessoas ao redor.',antidoto:'Delegue uma tarefa real esta semana — sem checar depois. A ansiedade que sentir é exatamente o músculo que você precisa treinar.'},
+  {nome:'Agradador',emoji:'🥹',cor:'#ec4899',hab:'Discordâncias, pedidos difíceis, dar feedback negativo.',frase:'"Tudo bem" — mesmo quando não está nada bem.',desc:'Você diz sim quando quer dizer não. Concorda para evitar conflito. Resente em silêncio. Ao tentar agradar a todos, você vai gradualmente desaparecendo da conversa.',antidoto:'A próxima vez que quiser dizer não, diga. Com gentileza, mas diga. Fronteira não é agressividade — é honestidade com cuidado.'},
+  {nome:'Hipervigilante',emoji:'🔮',cor:'#3dd68c',hab:'Incerteza, novidades, ambientes com risco de crítica.',frase:'"Algo vai dar errado. Só não sei o quê ainda."',desc:'Seu radar está ligado 24h. Você detecta ameaças reais antes de todo mundo — mas também inventa ameaças que não existem. O sistema de alarme que te protegeu um dia está protegendo de coisas que não precisam.',antidoto:'Antes de reagir a uma ameaça percebida: "Isso é fato ou interpretação?" A diferença muda tudo.'},
+  {nome:'Inquieto',emoji:'🌪️',cor:'#facc15',hab:'Momentos de pausa, tarefas repetitivas, silêncio.',frase:'"Próximo! O quê mais?"',desc:'Você vive no futuro. Múltiplos projetos, dificuldade de terminar. O presente é chato demais — sempre tem algo mais interessante no horizonte.',antidoto:'Escolha uma coisa e vá fundo até o fim. Profundidade gera o que amplitude nunca consegue: satisfação real.'},
+  {nome:'Vítima',emoji:'😔',cor:'#a78bfa',hab:'Pressão, injustiça percebida, momentos de dificuldade.',frase:'"Ninguém entende o quanto isso é difícil pra mim."',desc:'Você encontrou no sofrimento uma forma de se conectar e ser ouvido. Não é fraqueza — é estratégia aprendida. O problema: prende você num papel que limita suas escolhas.',antidoto:'Da queixa para a ação: "O que eu posso fazer?" — mesmo que pequeno. Uma ação real dissolve mais dor do que dez conversas sobre ela.'},
+  {nome:'Hiperracional',emoji:'🧊',cor:'#06b6d4',hab:'Conversas emocionais, feedback interpessoal, vulnerabilidade.',frase:'"Dados, por favor. Sem drama."',desc:'Você processa o mundo com elegância lógica. O que parece força é também uma muralha: as emoções ficam do lado de fora. E relacionamentos precisam passar pela muralha.',antidoto:'Trate emoções como dados, não como ruído. Perguntar "o que você está sentindo?" não é fraqueza — é coletar informação que a planilha não tem.'},
+  {nome:'Perfeccionista',emoji:'📋',cor:'#f97316',hab:'Entregas, avaliações, qualquer resultado visto por outros.',frase:'"Não está pronto. Ainda não."',desc:'Você persegue o impecável — o que significa que frequentemente não entrega, não tenta, não começa. A paralisia disfarçada de padrão alto é silenciosa e devastadora.',antidoto:'"Feito é melhor do que perfeito" não é mediocridade. A maioria das coisas precisa de 80% de excelência — não de 100% que nunca chegam.'},
+  {nome:'Esquivo',emoji:'🫙',cor:'#84cc16',hab:'Conversas difíceis, conflitos, decisões desconfortáveis.',frase:'"Isso a gente resolve depois." (e não resolve)',desc:'Você é mestre em adiar o desconforto necessário. O conflito evitado não desaparece — cresce. Quanto mais você foge, maior fica o monstro.',antidoto:'O conflito que você mais evita é exatamente o que mais precisa de você. Comece com a conversa mais fácil das difíceis.'}
+];
+
+// --- DILEMAS ---
+const dilemas = [
+  {cena:'Você está numa negociação. O cliente fica agressivo e diz: "Vocês me enrolam faz semanas." Parte da crítica é justa.',opts:[{t:'🛡️ Me defendo e explico todos os motivos com dados e justificativas.',ie:false},{t:'🤝 Reconheço a frustração dele primeiro, antes de qualquer explicação.',ie:true}],fb_ok:'Exato. Ury: "passe para o lado do outro". Antes de qualquer explicação, o cliente precisa sentir que foi ouvido. A AT&T aprendeu isso na segunda reunião — não na primeira.',fb_err:'Justificar antes de reconhecer alimenta a raiva. A amígdala do cliente está ativa. Dados não chegam a amígdalas ativadas. Primeiro o acolhimento, depois a explicação.',conceito:'Escuta Ativa · Ury'},
+  {cena:'Seu gestor manda um e-mail seco às 22h: "Precisamos conversar amanhã sobre o relatório." Sua amígdala acende.',opts:[{t:'😰 Fico acordado imaginando o pior cenário até a reunião.',ie:false},{t:'🧘 Noto a ansiedade, respiro, e lembro que e-mail seco não é sentença.',ie:true}],fb_ok:'Perfeito. Reavaliação cognitiva — trocar a narrativa catastrófica por uma baseada em evidências reais. A amígdala criou a história. O córtex pré-frontal a reescreveu.',fb_err:'A amígdala leu um e-mail neutro e escreveu um roteiro de terror. 90 segundos de respiração teriam dissolvido o loop. E nada mudaria o e-mail — só sua noite.',conceito:'Regulação Emocional · Amígdala'},
+  {cena:'Um colega te interrompe pela terceira vez numa reunião. Você sente raiva crescente.',opts:[{t:'😤 Digo na frente de todos: "Você me interrompeu de novo."',ie:false},{t:'✋ Termino minha fala e depois, em privado, nomeio o padrão para ele.',ie:true}],fb_ok:'Nomear em privado preserva a relação e aumenta a chance de mudança real. Em público, a crítica ativa defesa — não reflexão. Inteligência social aplicada.',fb_err:'Confrontar em público pode ser satisfatório por 30 segundos. Mas ativa a amígdala do colega, gera constrangimento coletivo e raramente muda o comportamento.',conceito:'Inteligência Social · Janela de Johari'},
+  {cena:'Você percebe que cometeu um erro numa apresentação já enviada à diretoria.',opts:[{t:'🙈 Fico em silêncio e torço para ninguém perceber.',ie:false},{t:'📧 Mando um e-mail curto reconhecendo o erro e apresentando a correção.',ie:true}],fb_ok:'Reconhecer antes que alguém aponte é IE em ação. Constrói credibilidade e elimina o sabotador Esquivo antes que ele cobre mais caro depois.',fb_err:'O silêncio estratégico tem prazo de validade curto. Quando o erro aparece sem reconhecimento seu, o problema deixa de ser o erro e passa a ser a postura.',conceito:'Autogestão · Sabotador Esquivo'},
+  {cena:'Um membro da sua equipe entrega pela segunda vez um trabalho abaixo do esperado. Você precisa dar feedback.',opts:[{t:'📊 Listo os problemas técnicos com objetividade, sem entrar em "emoção".',ie:false},{t:'💬 Começo perguntando como ela está se sentindo com o projeto antes de apontar os problemas.',ie:true}],fb_ok:'Perguntar antes de apontar cria o clima para o feedback ser recebido. Quando a pessoa se sente vista, a amígdala relaxa. Líderes com IE geram 20% mais resultado justamente por isso.',fb_err:'Feedback puramente técnico sem conexão emocional é recebido como crítica, não como desenvolvimento. A pessoa ouve "você errou" e ativa defesa, não reflexão.',conceito:'Feedback com IE · Liderança'},
+  {cena:'Você está há 3 semanas num projeto estressante. Um colega te convida para almoçar fora do escritório.',opts:[{t:'⌨️ Recuso — tenho muito trabalho e almoçar fora parece desperdício agora.',ie:false},{t:'🌿 Aceito. 1h de desconexão real vai me devolver mais do que vai me custar.',ie:true}],fb_ok:'Pausas intencionais não são luxo — são manutenção do hardware. O hipotálamo precisa de janelas de recuperação para regular cortisol. Quem nunca para paga juros que a produtividade cobra mais tarde.',fb_err:'"Trabalho demais para parar" é o mantra do Hiper-realizador. O rendimento cai progressivamente com acúmulo de cortisol. O almoço custaria 1h e devolveria 3.',conceito:'Autocuidado · Hipotálamo'}
+];
+
+// ============================================================
+// BUILDS
+// ============================================================
+
+function buildProfAcc() {
+  const c = document.getElementById('prof-acc');
+  if(!c) return;
+  profData.forEach((d,i) => {
+    const div = document.createElement('div');
+    div.className = 'acc-item';
+    div.innerHTML = `
+      <div class="acc-head" onclick="toggleAcc('pb${i}','pa${i}')">
+        <div class="acc-num" style="background:rgba(91,141,238,.12);border:1px solid rgba(91,141,238,.25);color:${d.cor}">${d.n}</div>
+        <div class="acc-title">${d.titulo}</div>
+        <div class="acc-arrow" id="pa${i}">▼</div>
+      </div>
+      <div class="acc-body" id="pb${i}"><p>${d.texto}</p></div>`;
+    c.appendChild(div);
+  });
+}
+
+function buildCerebroDicas() {
+  const c = document.getElementById('cerebro-dicas');
+  if(!c) return;
+  dicasCerebro.forEach(d => {
+    const div = document.createElement('div');
+    div.style.cssText = `background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.1rem;border-left:3px solid ${d.c}`;
+    div.innerHTML = `<div style="display:flex;gap:.6rem;align-items:flex-start"><div style="font-family:var(--fh);font-size:.7rem;color:${d.c};font-weight:800;min-width:22px">${d.n}</div><div><div style="font-family:var(--fh);font-size:.85rem;font-weight:700;margin-bottom:.3rem">${d.t} <span style="color:${d.c};font-size:.72rem">· ${d.m}</span></div><p style="font-size:.8rem;color:var(--muted);line-height:1.6">${d.d}</p></div></div>`;
+    c.appendChild(div);
+  });
+}
+
+function buildSabGrid() {
+  const g = document.getElementById('sab-grid');
+  if(!g) return;
+  sabData.forEach((s,i) => {
+    const d = document.createElement('div');
+    d.style.cssText = `background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:1.2rem;cursor:pointer;transition:all .25s;position:relative;overflow:hidden`;
+    d.innerHTML = `<div style="font-size:1.8rem;margin-bottom:.5rem">${s.emoji}</div><div style="font-family:var(--fh);font-size:.9rem;font-weight:700;margin-bottom:.3rem">${s.nome}</div><div style="font-size:.78rem;color:var(--muted)">${s.desc}</div>`;
+    d.onmouseenter = () => { d.style.borderColor = s.cor; d.style.transform = 'translateY(-2px)'; };
+    d.onmouseleave = () => { if(!d.classList.contains('sab-sel')){d.style.borderColor='var(--border)';d.style.transform='none';} };
+    d.onclick = () => showSab(i);
+    g.appendChild(d);
+  });
+}
+
+function showSab(i) {
+  document.querySelectorAll('#sab-grid>div').forEach((d,j)=>{
+    if(j===i){d.style.borderColor=sabData[i].cor;d.classList.add('sab-sel');}
+    else{d.style.borderColor='var(--border)';d.style.transform='none';d.classList.remove('sab-sel');}
+  });
+  const s = sabData[i];
+  const p = document.getElementById('sab-detail');
+  p.style.display='block';
+  p.innerHTML = `<div style="background:var(--surface);border:1px solid ${s.cor}33;border-radius:16px;padding:2rem;margin-bottom:1.5rem">
+    <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1.2rem">
+      <span style="font-size:2.8rem">${s.emoji}</span>
+      <div><div style="font-family:var(--fh);font-size:1.3rem;font-weight:800;color:${s.cor}">${s.nome}</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem">
+      <div><div style="font-family:var(--fh);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:${s.cor};margin-bottom:.5rem">🚨 Sinais</div><ul style="list-style:none;padding:0">${s.sinais.map(x=>`<li style="font-size:.83rem;color:var(--muted);padding:.25rem 0;border-bottom:1px solid var(--border)">→ ${x}</li>`).join('')}</ul></div>
+      <div><div style="font-family:var(--fh);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:${s.cor};margin-bottom:.5rem">⚡ Gatilhos</div><ul style="list-style:none;padding:0">${s.gatilhos.map(x=>`<li style="font-size:.83rem;color:var(--muted);padding:.25rem 0;border-bottom:1px solid var(--border)">→ ${x}</li>`).join('')}</ul></div>
+      <div><div style="font-family:var(--fh);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent4);margin-bottom:.5rem">✅ Saída</div><ul style="list-style:none;padding:0">${s.saida.map(x=>`<li style="font-size:.83rem;color:var(--muted);padding:.25rem 0;border-bottom:1px solid var(--border)">→ ${x}</li>`).join('')}</ul></div>
+    </div>
+  </div>`;
+  p.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function buildJogo() {
+  const c = document.getElementById('jogo-lista');
+  if(!c) return;
+  jogoData.forEach((l,i) => {
+    const div = document.createElement('div');
+    div.id = `jc${i}`;
+    div.style.cssText = 'background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .2s';
+    div.innerHTML = `
+      <div onclick="toggleJogoItem(${i})" style="display:grid;grid-template-columns:auto 1fr auto;gap:.9rem;align-items:start;padding:1.1rem 1.3rem;cursor:pointer">
+        <div id="jck${i}" onclick="event.stopPropagation();markJogo(${i})" style="width:30px;height:30px;border-radius:8px;background:rgba(224,92,58,.1);border:2px solid rgba(224,92,58,.3);display:flex;align-items:center;justify-content:center;font-size:.9rem;cursor:pointer;flex-shrink:0;margin-top:.1rem">☐</div>
+        <div>
+          <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.4rem">
+            <span style="font-family:var(--fh);font-size:.65rem;font-weight:800;color:var(--accent2);background:rgba(224,92,58,.1);padding:.2rem .5rem;border-radius:99px">LIÇÃO ${String(i+1).padStart(2,'0')}</span>
+            <span style="font-family:var(--fh);font-size:.9rem;font-weight:700">${l.titulo}</span>
+          </div>
+          <p style="font-size:.84rem;color:var(--muted);line-height:1.65">${l.corpo}</p>
+        </div>
+        <span id="ja${i}" style="color:var(--muted);font-size:.75rem;flex-shrink:0;margin-top:.2rem">▼</span>
+      </div>
+      <div id="jb${i}" style="display:none;padding:0 1.3rem 1.2rem;border-top:1px solid var(--border)">
+        <div style="padding:.7rem .9rem;background:rgba(244,160,36,.07);border:1px solid rgba(244,160,36,.18);border-radius:8px;font-size:.8rem;color:var(--accent);margin:.8rem 0">⚠️ <strong>Resultado:</strong> ${l.resultado}</div>
+        <div style="padding:.7rem .9rem;background:rgba(61,214,140,.07);border:1px solid rgba(61,214,140,.18);border-radius:8px;font-size:.8rem;color:var(--accent4)">✅ <strong>Antídoto:</strong> ${l.antidoto}</div>
+      </div>`;
+    c.appendChild(div);
+  });
+}
+
+let jogoBits = new Array(10).fill(false);
+function markJogo(i) {
+  jogoBits[i] = !jogoBits[i];
+  const ck = document.getElementById(`jck${i}`);
+  const card = document.getElementById(`jc${i}`);
+  if(jogoBits[i]){ck.textContent='😅';ck.style.background='rgba(244,160,36,.2)';ck.style.borderColor='var(--accent)';card.style.borderColor='rgba(244,160,36,.3)';card.style.background='rgba(244,160,36,.03)';}
+  else{ck.textContent='☐';ck.style.background='rgba(224,92,58,.1)';ck.style.borderColor='rgba(224,92,58,.3)';card.style.borderColor='var(--border)';card.style.background='var(--surface)';}
+  const t = jogoBits.filter(Boolean).length;
+  document.getElementById('jogo-cnt').textContent = t;
+  updateJogoPlacar(t);
+}
+function toggleJogoItem(i) {
+  const b = document.getElementById(`jb${i}`);
+  const a = document.getElementById(`ja${i}`);
+  const open = b.style.display==='block';
+  b.style.display = open?'none':'block';
+  a.style.transform = open?'rotate(0)':'rotate(180deg)';
+}
+function updateJogoPlacar(t) {
+  const p = document.getElementById('jogo-placar');
+  const inner = document.getElementById('jogo-placar-inner');
+  if(t===0){p.style.display='none';return;}
+  p.style.display='block';
+  const ns=[{max:2,e:'😇',tit:'Quase Santo Emocional',c:'var(--accent4)',m:'1 ou 2 deslizes numa semana? Isso se chama ser humano. Segue.'},{max:4,e:'🌤️',tit:'Praticante em Evolução',c:'var(--accent3)',m:'Você percebe. E perceber é o primeiro passo.'},{max:6,e:'☁️',tit:'Sabotador Amador',c:'var(--accent)',m:'Metade do jogo marcado. Não deixe o sabotador vencer.'},{max:8,e:'⛈️',tit:'Sabotador Experiente',c:'#f97316',m:'Você treina os padrões errados com consistência. Boa notícia: o cérebro é 3M.'},{max:10,e:'💀',tit:'Sabotador Profissional',c:'var(--accent2)',m:'Você marcou quase tudo. Coragem em admitir. Agora o oposto.'}];
+  const n = ns.find(x=>t<=x.max);
+  inner.innerHTML = `<div style="display:flex;gap:.8rem;align-items:center;margin-bottom:.8rem"><span style="font-size:2rem">${n.e}</span><div><div style="font-family:var(--fh);font-weight:800;color:${n.c}">${n.tit}</div><div style="font-size:.82rem;color:var(--muted)">${t}/10 lições desta semana</div></div></div><div style="background:rgba(255,255,255,.04);border-radius:10px;padding:.7rem 1rem;font-size:.86rem;color:var(--text);border-left:3px solid ${n.c}">${n.m}</div>`;
+}
+
+// ============================================================
+// QUIZ
+// ============================================================
+let qAtual=0, qScore=0, qAnswered={};
+function buildQuizQ(idx) {
+  document.getElementById('quiz-result').style.display='none';
+  const q = quizData[idx];
+  document.getElementById('qbar').style.width = ((idx+1)/10*100)+'%';
+  document.getElementById('quiz-area').innerHTML = `
+    <div style="font-size:.7rem;font-family:var(--fh);color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem">Pergunta ${idx+1} de 10</div>
+    <div style="font-size:.98rem;font-weight:500;line-height:1.65;margin-bottom:1.2rem">${q.p}</div>
+    ${q.opts.map((o,i)=>`<button class="quiz-opt" id="qo${i}" onclick="quizAnswer(${i})">${o}</button>`).join('')}
+    <div class="quiz-feedback" id="qfb"></div>
+    <div style="text-align:right;margin-top:1rem"><button id="qnxt" class="btn btn-primary" onclick="quizNext()" style="display:none;font-size:.82rem">${idx<9?'Próxima →':'Ver resultado →'}</button></div>`;
+}
+function quizAnswer(i) {
+  if(qAnswered[qAtual]) return;
+  qAnswered[qAtual]=true;
+  const q=quizData[qAtual];
+  document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
+  document.getElementById(`qo${i}`).classList.add(i===q.ok?'correct':'wrong');
+  if(i!==q.ok) document.getElementById(`qo${q.ok}`).classList.add('correct');
+  if(i===q.ok) qScore++;
+  const fb=document.getElementById('qfb');
+  fb.textContent=q.fb[i];
+  fb.className='quiz-feedback show '+(i===q.ok?'fb-ok':'fb-err');
+  document.getElementById('qnxt').style.display='inline-block';
+}
+function quizNext() {
+  qAtual++;
+  if(qAtual<10){buildQuizQ(qAtual);}
+  else{
+    document.getElementById('quiz-area').innerHTML='';
+    document.getElementById('qbar').style.width='100%';
+    const r=document.getElementById('quiz-result');
+    r.style.display='block';
+    document.getElementById('qr-score').textContent=qScore+'/10';
+    const msgs=['Bom começo! Este curso vai mudar isso. 🌱','Você tem base — vamos aprofundar. 🔍','Bom! Você percebe padrões importantes. 💡','Muito bem! Sensibilidade emocional afinada. 🎯','Excelente! Você já chegou com combustível. 🚀'];
+    document.getElementById('qr-msg').textContent=msgs[Math.min(Math.floor(qScore/2),4)];
+  }
+}
+function quizReset(){qAtual=0;qScore=0;qAnswered={};buildQuizQ(0);}
+
+// ============================================================
+// GERADOR DE PERFIL
+// ============================================================
+let sgAtual=0, sgResp=[];
+function sgInit(){sgAtual=0;sgResp=[];document.getElementById('sg-result').style.display='none';sgRender();}
+function sgRender(){
+  const q=sgPerguntas[sgAtual];
+  document.getElementById('sg-num').textContent=sgAtual+1;
+  document.getElementById('sg-bar').style.width=((sgAtual+1)/20*100)+'%';
+  document.getElementById('sg-area').innerHTML=`
+    <div style="font-size:.98rem;font-weight:500;line-height:1.65;margin-bottom:1.2rem;color:var(--text)">${q.sit}</div>
+    ${q.opts.map((o,i)=>`<button class="sg-opt" onclick="sgEscolher(${JSON.stringify(o.s)})">${o.t}</button>`).join('')}`;
+}
+function sgEscolher(sabs){
+  sgResp.push(...sabs);
+  sgAtual++;
+  if(sgAtual<20){sgRender();}
+  else{sgResultado();}
+}
+function sgResultado(){
+  const freq=new Array(10).fill(0);
+  sgResp.forEach(i=>{if(i>=0&&i<10)freq[i]++;});
+  const sorted=freq.map((f,i)=>({f,i})).sort((a,b)=>b.f-a.f);
+  const p1=sgPerfis[sorted[0].i];
+  const p2=sorted[1].f>0?sgPerfis[sorted[1].i]:null;
+  document.getElementById('sg-area').style.display='none';
+  const r=document.getElementById('sg-result');
+  r.style.display='block';
+  r.innerHTML=`
+    <div style="text-align:center;margin-bottom:1.5rem">
+      <div style="font-size:3.5rem;margin-bottom:.4rem">${p1.emoji}</div>
+      <div style="font-family:var(--fh);font-size:1.4rem;font-weight:800;color:${p1.cor}">${p1.nome}</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-top:.2rem">Sabotador dominante</div>
+    </div>
+    <div style="background:rgba(255,255,255,.04);border-radius:12px;padding:1rem;margin-bottom:.8rem"><div style="font-family:var(--fh);font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:${p1.cor};margin-bottom:.3rem">🏠 Habitat natural</div><p style="font-size:.86rem;color:var(--muted)">${p1.hab}</p></div>
+    <div style="background:rgba(255,255,255,.04);border-radius:12px;padding:1rem;border-left:3px solid ${p1.cor};margin-bottom:.8rem"><div style="font-family:var(--fh);font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:${p1.cor};margin-bottom:.3rem">💬 Frase característica</div><p style="font-size:.92rem;font-style:italic;color:var(--text)">${p1.frase}</p></div>
+    <div style="background:rgba(255,255,255,.04);border-radius:12px;padding:1rem;margin-bottom:.8rem"><div style="font-family:var(--fh);font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:${p1.cor};margin-bottom:.3rem">🧠 Diagnóstico</div><p style="font-size:.86rem;color:var(--text);line-height:1.7">${p1.desc}</p></div>
+    <div style="background:rgba(61,214,140,.07);border:1px solid rgba(61,214,140,.2);border-radius:12px;padding:1rem;margin-bottom:${p2?'.8rem':'1.2rem'}"><div style="font-family:var(--fh);font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:var(--accent4);margin-bottom:.3rem">✅ Seu antídoto</div><p style="font-size:.86rem;color:var(--text);line-height:1.7">${p1.antidoto}</p></div>
+    ${p2?`<div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem;margin-bottom:1.2rem;display:flex;gap:.8rem;align-items:center"><span style="font-size:1.5rem">${p2.emoji}</span><div><div style="font-size:.7rem;font-family:var(--fh);color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Sabotador secundário</div><div style="font-weight:700;color:${p2.cor};margin-top:.1rem">${p2.nome}</div><div style="font-size:.78rem;color:var(--muted);margin-top:.1rem;font-style:italic">${p2.frase}</div></div></div>`:''}
+    <button onclick="sgInit()" class="btn btn-ghost" style="width:100%;font-size:.83rem">Refazer o teste →</button>`;
+}
+
+// ============================================================
+// DILEMAS
+// ============================================================
+let dilAtual=0, dilResp=[];
+function dilInit(){
+  dilAtual=0;dilResp=[];
+  const dots=document.getElementById('dil-dots');
+  if(dots) dots.innerHTML=dilemas.map((_,i)=>`<div id="dd${i}" style="width:8px;height:8px;border-radius:50%;background:var(--border);transition:background .3s"></div>`).join('');
+  dilRender();
+}
+function dilRender(){
+  document.getElementById('dil-num').textContent=dilAtual+1;
+  document.getElementById('dil-fb').style.display='none';
+  const d=dilemas[dilAtual];
+  document.getElementById('dil-area').innerHTML=`
+    <div style="background:rgba(255,255,255,.04);border-left:3px solid var(--accent3);border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin-bottom:1.4rem;font-size:.92rem;line-height:1.7;color:var(--text)">${d.cena}</div>
+    ${d.opts.map((o,i)=>`<button class="dil-opt" id="dob${i}" onclick="dilEscolher(${i})">${o.t}</button>`).join('')}
+    <div style="font-size:.73rem;color:var(--muted);margin-top:.8rem;text-align:right;font-family:var(--fh);letter-spacing:.05em">${d.conceito}</div>`;
+  document.querySelectorAll('[id^="dd"]').forEach((el,i)=>{el.style.background=i<dilAtual?'var(--accent4)':i===dilAtual?'var(--accent3)':'var(--border)';});
+}
+function dilEscolher(i){
+  const d=dilemas[dilAtual];
+  const acertou=d.opts[i].ie;
+  dilResp.push(acertou);
+  document.querySelectorAll('.dil-opt').forEach(b=>b.disabled=true);
+  d.opts.forEach((_,j)=>{
+    const b=document.getElementById(`dob${j}`);
+    if(d.opts[j].ie){b.style.borderColor='var(--accent4)';b.style.background='rgba(61,214,140,.08)';b.style.color='var(--accent4)';}
+    else if(j===i&&!acertou){b.style.borderColor='var(--accent2)';b.style.background='rgba(224,92,58,.08)';b.style.color='var(--accent2)';}
+  });
+  const fb=document.getElementById('dil-fb');
+  fb.style.display='block';
+  fb.innerHTML=`<div style="display:flex;gap:.8rem;align-items:flex-start"><span style="font-size:1.3rem">${acertou?'✅':'💡'}</span><div><div style="font-family:var(--fh);font-size:.78rem;font-weight:700;color:${acertou?'var(--accent4)':'var(--accent)'};margin-bottom:.3rem">${acertou?'Escolha com IE!':'A IE sugeria o outro caminho'}</div><p style="font-size:.86rem;color:var(--text);line-height:1.7;margin-bottom:.8rem">${acertou?d.fb_ok:d.fb_err}</p>${dilAtual<5?`<button onclick="dilNext()" class="btn btn-primary" style="font-size:.8rem">Próximo →</button>`:`<button onclick="dilFim()" class="btn btn-primary" style="font-size:.8rem">Ver resultado →</button>`}</div></div>`;
+  document.getElementById(`dd${dilAtual}`).style.background=acertou?'var(--accent4)':'var(--accent2)';
+}
+function dilNext(){dilAtual++;dilRender();}
+function dilFim(){
+  const ac=dilResp.filter(Boolean).length;
+  document.getElementById('dil-fb').style.display='none';
+  const msgs=[{max:2,e:'🌱',t:'Você está no começo — e isso é honesto. Esses cenários voltarão na sua vida. Agora você já sabe o que a IE faria.'},{max:4,e:'⚡',t:'Bom equilíbrio! Você já pensa com IE em parte das situações.'},{max:6,e:'🎯',t:'Excelente! Intuição emocional apurada. O próximo passo é consistência.'}];
+  const m=msgs.find(x=>ac<=x.max)||msgs[2];
+  document.getElementById('dil-area').innerHTML=`<div style="text-align:center;padding:1rem 0"><div style="font-size:3rem;margin-bottom:.5rem">${m.e}</div><div style="font-family:var(--fh);font-size:2rem;font-weight:800;color:var(--accent3)">${ac}<span style="font-size:.9rem;color:var(--muted)">/6</span></div><p style="font-size:.86rem;color:var(--text);line-height:1.7;max-width:420px;margin:.7rem auto">${m.t}</p><button onclick="dilInit()" class="btn btn-ghost" style="margin-top:.8rem;font-size:.82rem">Refazer →</button></div>`;
+}
+
+// ============================================================
+// AUTODIAGNÓSTICO
+// ============================================================
+const diagVals={};
+function buildDiagScales(){
+  for(let i=1;i<=10;i++){
+    const sc=document.getElementById(`sc${i}`);
+    if(!sc)continue;
+    for(let v=1;v<=5;v++){
+      const b=document.createElement('button');
+      b.className='scale-btn';
+      b.textContent=v;
+      b.onclick=(()=>{
+        const key=`r${i}`,val=v;
+        return function(){
+          sc.querySelectorAll('.scale-btn').forEach(x=>x.classList.remove('chosen'));
+          this.classList.add('chosen');
+          diagVals[key]=val;
+        };
+      })();
+      sc.appendChild(b);
+    }
+  }
+}
+function showDiag(){
+  const vals=Array.from({length:10},(_,i)=>diagVals[`r${i+1}`]||3);
+  const total=vals.reduce((a,b)=>a+b,0);
+  const emocao=(document.getElementById('diag-txt').value||'não revelada').trim();
+  const coments=[
+    {t:'Gestão Emocional',v:vals[0],c:vals[0]<=2?'🔴 Você está no modo "tampa na panela". Funciona um tempo. Depois a panela decide por você.':vals[0]===3?'🟡 Você tenta, mas às vezes a emoção chega antes da consciência.':'🟢 Você tem um termostato interno funcionando. Isso é raro e valioso.'},
+    {t:'Consciência dos Sabotadores',v:vals[1],c:vals[1]<=2?'🔴 Seu sabotador age como hacker silencioso. Você mal sabe que está online.':vals[1]===3?'🟡 Você conhece o rosto do sabotador. Falta ser mais rápido que ele.':'🟢 Você tem antivírus emocional ativo. Detecta a ameaça antes de executar o arquivo.'},
+    {t:'Escuta Ativa',v:vals[2],c:vals[2]<=2?'🔴 Enquanto o outro fala, você já está escrevendo o roteiro da tréplica. Clássico.':vals[2]===3?'🟡 Você ouve, mas com um olho na porta de saída da conversa.':'🟢 Você é do tipo raro que faz a outra pessoa se sentir a única na sala.'},
+    {t:'Regulação no Conflito',v:vals[3],c:vals[3]<=2?'🔴 Amígdala no comando total. Você reage antes de pensar — e pensa depois, arrependido.':vals[3]===3?'🟡 Às vezes o córtex pré-frontal chega a tempo. Está ficando mais rápido.':'🟢 Você faz uma pausa antes de responder. Isso é usar o cérebro inteiro.'},
+    {t:'Comunicação Sem Provocação',v:vals[4],c:vals[4]<=2?'🔴 "Mas" é sua palavra favorita em conflito. William Ury te mandaria fazer um retiro.':vals[4]===3?'🟡 Você alterna entre o "mas" e o "sim, e" — dependendo do humor do dia.':'🟢 Você descobriu o judo verbal: a força do outro vira aliada, não obstáculo.'},
+    {t:'Mentalidade 3M',v:vals[5],c:vals[5]<=2?'🔴 Você acredita que o caracol nasceu caracol e vai morrer caracol. O modelo 3M discorda.':vals[5]===3?'🟡 Você acredita em mudança — nos outros. Em si mesmo, ainda tem dúvidas às terças.':'🟢 Você entende que o cérebro é modulado, modificado e moldado. Isso já é metade do caminho.'},
+    {t:'Segurança Psicológica',v:vals[6],c:vals[6]<=2?'🔴 Seu ambiente tem mais minas emocionais do que espaço para pensar.':vals[6]===3?'🟡 Segurança intermitente — como wi-fi em edifício antigo.':'🟢 Você trabalha num lugar onde errar é permitido e a verdade circula. Isso vale ouro.'},
+    {t:'Autocuidado',v:vals[7],c:vals[7]<=2?'🔴 Seu hipotálamo está em modo de guerra permanente. Cortisol como combustível é estratégia de curto prazo.':vals[7]===3?'🟡 Você sabe que deveria cuidar melhor de si. Sabe mesmo. Só não sabe quando.':'🟢 Você trata o corpo como infraestrutura — porque é.'},
+    {t:'Vocabulário Emocional',v:vals[8],c:vals[8]<=2?'🔴 Seu dicionário emocional tem basicamente três entradas: bem, mal e mais ou menos.':vals[8]===3?'🟡 Você sente, mas na hora de nomear a palavra certa some.':'🟢 Você tem granularidade emocional — diferencia frustração de decepção, de raiva, de tristeza.'},
+    {t:'Sentido e Propósito',v:vals[9],c:vals[9]<=2?'🔴 Trabalho é troca de horas por dinheiro. Frankl teria uma conversa longa com você.':vals[9]===3?'🟡 O propósito aparece de vez em quando — geralmente quando o salário atrasa.':'🟢 Você trabalha com sentido. Isso molda o hipotálamo melhor do que qualquer suplemento.'}
+  ];
+  const niveis=[
+    {min:10,max:18,e:'🪴',t:'Planta Ornamental Emocional',st:'Nível 0 — "Existo, logo sinto. Acho."',c:'var(--accent2)',p:'🎁 Prêmio: Uma rega diária de autoconhecimento. A planta ainda vai virar árvore.',d:'Você chegou aqui — e isso já é corajoso. Sua IE está em modo stand-by, mas o hardware é bom. O que falta é software atualizado. Você está no lugar certo.'},
+    {min:19,max:26,e:'🎒',t:'Estagiário das Emoções',st:'Nível 1 — "Sei que existe, mas não sei bem como usar."',c:'#f97316',p:'🎁 Prêmio: Um contrato de estágio com você mesmo. Remuneração: autoconhecimento crescente.',d:'Você tem consciência emocional em construção. A boa notícia: estagiários aprendem rápido quando querem.'},
+    {min:27,max:34,e:'📊',t:'Analista Júnior de Si Mesmo',st:'Nível 2 — "Tenho os dados. Processo lentamente."',c:'var(--accent)',p:'🎁 Prêmio: Uma planilha interna para rastrear seus próprios padrões. Excel do autoconhecimento.',d:'Você tem base. Reconhece padrões, percebe sabotadores. O desafio: velocidade de resposta.'},
+    {min:35,max:42,e:'🏅',t:'Gerente de Emoções',st:'Nível 3 — "Gerencio bem. Exceto às quintas-feiras."',c:'var(--accent4)',p:'🎁 Prêmio: Promoção simbólica para Gerente Sênior de Si Mesmo.',d:'Você tem maturidade emocional acima da média. Não deixa a amígdala fazer reunião sem pauta.'},
+    {min:43,max:50,e:'👑',t:'Diretor Executivo do Mundo Interior',st:'Nível 4 — "Consciência, regulação e propósito."',c:'#c084fc',p:'🎁 Prêmio: Título honorário de Arquiteto Emocional. E a responsabilidade de usar isso para o bem coletivo.',d:'Raro. Você chegou aqui com autoconhecimento, vocabulário emocional rico e propósito claro. O desafio agora é ajudar outros a chegarem até aqui.'}
+  ];
+  const nivel=niveis.find(n=>total>=n.min&&total<=n.max)||niveis[2];
+  const pct=Math.round(((total-10)/40)*100);
+  const gab=coments.map((c,i)=>`<div style="display:flex;gap:.7rem;align-items:flex-start;padding:.65rem;background:rgba(255,255,255,.03);border-radius:8px;border:1px solid var(--border);margin-bottom:.4rem"><div style="min-width:24px;font-family:var(--fh);font-size:.68rem;font-weight:800;color:var(--muted)">${String(i+1).padStart(2,'0')}</div><div><div style="font-family:var(--fh);font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:.2rem">${c.t}</div><div style="font-size:.83rem;line-height:1.6;color:var(--text)">${c.c}</div></div></div>`).join('');
+  const html=`
+    <div style="text-align:center;padding:2rem 1rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;margin-bottom:1.5rem">
+      <div style="font-size:3.5rem;margin-bottom:.4rem">${nivel.e}</div>
+      <div style="font-family:var(--fh);font-size:1.4rem;font-weight:800;color:${nivel.c};margin-bottom:.2rem">${nivel.t}</div>
+      <div style="font-size:.82rem;color:var(--muted);margin-bottom:1rem">${nivel.st}</div>
+      <div style="background:var(--bg);border-radius:99px;height:8px;max-width:380px;margin:0 auto .5rem;overflow:hidden"><div style="height:8px;border-radius:99px;background:${nivel.c};width:${pct}%"></div></div>
+      <div style="font-family:var(--fh);font-size:1.7rem;font-weight:800;color:${nivel.c}">${total}<span style="font-size:.85rem;color:var(--muted)">/50</span></div>
+      <div style="margin-top:.9rem;padding:.8rem 1.1rem;background:rgba(255,255,255,.04);border-radius:10px;font-size:.87rem;color:var(--text);line-height:1.7">${nivel.d}</div>
+      <div style="margin-top:.7rem;padding:.7rem 1.1rem;background:rgba(255,255,255,.04);border-radius:10px;font-size:.84rem;color:${nivel.c};font-style:italic">${nivel.p}</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid rgba(244,160,36,.2);border-radius:12px;padding:.9rem 1.1rem;margin-bottom:1.2rem;display:flex;gap:.7rem;align-items:center">
+      <span style="font-size:1.3rem">🎯</span>
+      <div><div style="font-size:.72rem;color:var(--accent);font-family:var(--fh);text-transform:uppercase;letter-spacing:.07em">Emoção mais difícil no trabalho</div><div style="font-weight:600;font-size:.95rem;margin-top:.15rem">"${emocao}"</div><div style="font-size:.8rem;color:var(--muted);margin-top:.15rem">Nomear já é metade da cura. A outra metade: as próximas 5 aulas.</div></div>
+    </div>
+    <div style="font-family:var(--fh);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem">📋 Gabarito comentado</div>
+    ${gab}
+    <div style="margin-top:1rem;padding:.9rem 1.1rem;background:rgba(91,141,238,.06);border:1px solid rgba(91,141,238,.15);border-radius:10px;font-size:.8rem;color:var(--muted);line-height:1.7"><strong style="color:var(--accent3)">📌</strong> Este é seu ponto de partida — não um julgamento. Ao final das 6 aulas, você vai refazer este diagnóstico. A diferença vai aparecer.</div>`;
+  document.getElementById('diag-text').innerHTML=html;
+  document.getElementById('diag-result').style.display='block';
+  setTimeout(()=>document.getElementById('diag-result').scrollIntoView({behavior:'smooth',block:'start'}),100);
+}
+
+// ============================================================
+// RODA DAS EMOÇÕES (Plutchik)
+// ============================================================
+const rodaEmocoes = [
+  {nome:'Alegria',emoji:'😄',cor:'#facc15',intensidade:['Serenidade','Alegria','Êxtase'],oposto:'Tristeza',combinacoes:[{com:'Confiança',resultado:'Amor'},{com:'Antecipação',resultado:'Otimismo'}],desc:'A alegria é o estado de satisfação ativa com a experiência presente. Na versão mais suave é serenidade — presença tranquila. Na mais intensa é êxtase — quando a razão sai de cena.'},
+  {nome:'Confiança',emoji:'🤝',cor:'#3dd68c',intensidade:['Aceitação','Confiança','Admiração'],oposto:'Nojo',combinacoes:[{com:'Alegria',resultado:'Amor'},{com:'Medo',resultado:'Submissão'}],desc:'Confiança é a disposição de se abrir para o outro ou para o processo. Sem ela, nenhum relacionamento ou negociação avança de verdade.'},
+  {nome:'Medo',emoji:'😨',cor:'#5b8dee',intensidade:['Apreensão','Medo','Terror'],oposto:'Raiva',combinacoes:[{com:'Surpresa',resultado:'Susto'},{com:'Confiança',resultado:'Submissão'}],desc:'Medo é o sinal de ameaça — real ou percebida. A amígdala não distingue um e-mail agressivo de um predador. O medo é útil em doses certas; em excesso, paralisa.'},
+  {nome:'Surpresa',emoji:'😲',cor:'#c084fc',intensidade:['Distração','Surpresa','Assombro'],oposto:'Antecipação',combinacoes:[{com:'Medo',resultado:'Susto'},{com:'Alegria',resultado:'Deleite'}],desc:'Surpresa é a resposta ao inesperado — pode virar medo ou alegria dependendo do contexto. É a emoção mais neutra de Plutchik: só ganha valor quando combinada.'},
+  {nome:'Tristeza',emoji:'😢',cor:'#7a7f9a',intensidade:['Pensatividade','Tristeza','Sofrimento'],oposto:'Alegria',combinacoes:[{com:'Surpresa',resultado:'Desapontamento'},{com:'Nojo',resultado:'Remorso'}],desc:'Tristeza é o processamento da perda. Não é fraqueza — é o mecanismo que nos permite integrar o que foi e seguir em frente. Suprimi-la tem custo alto.'},
+  {nome:'Nojo',emoji:'🤢',cor:'#84cc16',intensidade:['Tédio','Nojo','Aversão'],oposto:'Confiança',combinacoes:[{com:'Raiva',resultado:'Desprezo'},{com:'Tristeza',resultado:'Remorso'}],desc:'Nojo é a rejeição de algo percebido como prejudicial — físico ou moral. No ambiente de trabalho aparece como desprezo por ideias, pessoas ou situações que violam valores.'},
+  {nome:'Raiva',emoji:'😠',cor:'#e05c3a',intensidade:['Aborrecimento','Raiva','Fúria'],oposto:'Medo',combinacoes:[{com:'Antecipação',resultado:'Agressividade'},{com:'Nojo',resultado:'Desprezo'}],desc:'Raiva é energia mobilizadora diante de um limite violado. É a emoção mais temida no ambiente profissional — e uma das mais mal gerenciadas. Tem uma mensagem válida; o problema é o veículo.'},
+  {nome:'Antecipação',emoji:'🔮',cor:'#f97316',intensidade:['Interesse','Antecipação','Vigilância'],oposto:'Surpresa',combinacoes:[{com:'Alegria',resultado:'Otimismo'},{com:'Raiva',resultado:'Agressividade'}],desc:'Antecipação é a orientação para o futuro — pode ser curiosidade saudável ou ansiedade. O sabotador Hipervigilante vive aqui, em antecipação permanente de ameaças.'}
+];
+
+function buildRoda() {
+  const g = document.getElementById('roda-grid');
+  if(!g) return;
+  rodaEmocoes.forEach((e,i) => {
+    const d = document.createElement('div');
+    d.style.cssText = `background:${e.cor}18;border:2px solid ${e.cor}44;border-radius:12px;padding:.9rem .5rem;text-align:center;cursor:pointer;transition:all .2s`;
+    d.innerHTML = `<div style="font-size:1.8rem;margin-bottom:.3rem">${e.emoji}</div><div style="font-family:var(--fh);font-size:.78rem;font-weight:700;color:${e.cor}">${e.nome}</div>`;
+    d.onmouseenter = () => { d.style.borderColor = e.cor; d.style.background = e.cor+'28'; d.style.transform='translateY(-2px)'; };
+    d.onmouseleave = () => { d.style.borderColor = e.cor+'44'; d.style.background = e.cor+'18'; d.style.transform='none'; };
+    d.onclick = () => showRoda(i);
+    g.appendChild(d);
+  });
+}
+function showRoda(i) {
+  const e = rodaEmocoes[i];
+  document.getElementById('roda-detail').innerHTML = `
+    <div>
+      <div style="display:flex;gap:.8rem;align-items:center;margin-bottom:1rem">
+        <span style="font-size:2.5rem">${e.emoji}</span>
+        <div><div style="font-family:var(--fh);font-size:1.2rem;font-weight:800;color:${e.cor}">${e.nome}</div><div style="font-size:.75rem;color:var(--muted)">Emoção primária · Plutchik</div></div>
+      </div>
+      <p style="font-size:.85rem;color:var(--text);line-height:1.7;margin-bottom:1rem">${e.desc}</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem">
+        <div style="background:var(--bg);border-radius:10px;padding:.8rem">
+          <div style="font-family:var(--fh);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:${e.cor};margin-bottom:.4rem">📊 Intensidade</div>
+          ${e.intensidade.map((v,j)=>`<div style="font-size:.8rem;color:var(--muted);padding:.2rem 0;border-bottom:1px solid var(--border)">${['Suave','Média','Intensa'][j]} → <span style="color:var(--text)">${v}</span></div>`).join('')}
+        </div>
+        <div style="background:var(--bg);border-radius:10px;padding:.8rem">
+          <div style="font-family:var(--fh);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.4rem">↔️ Emoção oposta</div>
+          <div style="font-size:.88rem;color:var(--text);font-weight:600;margin-bottom:.6rem">${e.oposto}</div>
+          <div style="font-family:var(--fh);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.4rem">🔀 Combinações</div>
+          ${e.combinacoes.map(c=>`<div style="font-size:.78rem;color:var(--muted)">${e.nome} + ${c.com} = <strong style="color:${e.cor}">${c.resultado}</strong></div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+// ============================================================
+// GALERIA DOS AUTORES
+// ============================================================
+const autoresData = [
+  {nome:'Daniel Goleman',emoji:'🧠',area:'Inteligência Emocional',frase:'"A vantagem emocional é o que determina quem sobe quando tudo mais é igual."',obra:'Inteligência Emocional (1995)',contrib:'Popularizou o conceito de IE e demonstrou que QE supera QI como preditor de sucesso. Criou o modelo de 5 competências: autoconhecimento, autorregulação, motivação, empatia e habilidades sociais.',cor:'var(--accent3)'},
+  {nome:'William Ury',emoji:'🤝',area:'Negociação & Conflito',frase:'"Ouvir é a concessão mais barata que existe — e a mais poderosa."',obra:'Como Chegar ao Sim (1981)',contrib:'Co-criador do método Harvard de negociação. Mostrou que separar posições de interesses e passar para o lado do outro são as estratégias mais eficazes em conflito.',cor:'var(--accent)'},
+  {nome:'Viktor Frankl',emoji:'🕯️',area:'Logoterapia & Sentido',frase:'"Entre estímulo e resposta há um espaço. Nesse espaço está nossa liberdade."',obra:'Em Busca de Sentido (1946)',contrib:'Fundador da Logoterapia — a psicoterapia centrada no sentido. Sobreviveu ao Holocausto e provou que o propósito é o maior regulador do sofrimento humano.',cor:'#c084fc'},
+  {nome:'Martin Seligman',emoji:'🌱',area:'Psicologia Positiva',frase:'"A felicidade genuína vem de identificar suas virtudes mais elevadas e usá-las."',obra:'Florescer (2011)',contrib:'Pai da Psicologia Positiva. Criou o modelo PERMA (Emoções positivas, Engajamento, Relacionamentos, Significado, Realizações) como base do bem-estar.',cor:'var(--accent4)'},
+  {nome:'Shirzad Chamine',emoji:'🦹',area:'Positive Intelligence',frase:'"Seus maiores inimigos vivem dentro de sua própria cabeça."',obra:'Positive Intelligence (2012)',contrib:'Pesquisador de Stanford que mapeou os 10 Sabotadores internos e o Sábio como contraponto. Base do modelo PQ usado em liderança e coaching.',cor:'#ec4899'},
+  {nome:'Carol Dweck',emoji:'💪',area:'Mentalidade de Crescimento',frase:'"O esforço é o que transforma alguém de um ser comum num herói."',obra:'Mindset (2006)',contrib:'Pesquisadora de Stanford que distinguiu mentalidade fixa de mentalidade de crescimento. Mostrou que acreditar na capacidade de aprender ativa padrões neurais diferentes.',cor:'#f97316'},
+  {nome:'Robert Plutchik',emoji:'🎡',area:'Teoria das Emoções',frase:'"As emoções são mecanismos de sobrevivência evoluídos — não problemas a resolver."',obra:'Teoria das Emoções (1980)',contrib:'Criou a Roda das Emoções — mapa com 8 emoções primárias, suas intensidades e combinações. Ainda é a referência mais completa para vocabulário emocional.',cor:'#a78bfa'},
+  {nome:'George Vaillant',emoji:'❤️',area:'Harvard Grant Study',frase:'"A felicidade é amor. Ponto final."',obra:'Triumphs of Experience (2012)',contrib:'Diretor por décadas do maior estudo longitudinal da história (80 anos). Conclusão: a qualidade dos relacionamentos próximos é o único preditor consistente de felicidade e longevidade.',cor:'var(--accent2)'}
+];
+
+function buildAutores() {
+  const g = document.getElementById('autores-grid');
+  if(!g) return;
+  autoresData.forEach((a,i) => {
+    const d = document.createElement('div');
+    d.style.cssText = `background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.2rem;cursor:pointer;transition:all .25s;text-align:center`;
+    d.innerHTML = `<div style="font-size:2.2rem;margin-bottom:.5rem">${a.emoji}</div><div style="font-family:var(--fh);font-size:.85rem;font-weight:700;color:${a.cor};margin-bottom:.2rem">${a.nome}</div><div style="font-size:.72rem;color:var(--muted)">${a.area}</div>`;
+    d.onmouseenter = () => { d.style.borderColor = a.cor; d.style.transform = 'translateY(-2px)'; };
+    d.onmouseleave = () => { if(!d.classList.contains('aut-sel')){d.style.borderColor='var(--border)';d.style.transform='none';} };
+    d.onclick = () => showAutor(i);
+    g.appendChild(d);
+  });
+}
+function showAutor(i) {
+  document.querySelectorAll('#autores-grid>div').forEach((d,j) => {
+    d.classList.toggle('aut-sel', j===i);
+    d.style.borderColor = j===i ? autoresData[i].cor : 'var(--border)';
+    d.style.transform = j===i ? 'translateY(-2px)' : 'none';
+  });
+  const a = autoresData[i];
+  const det = document.getElementById('autor-detail');
+  det.style.display='block';
+  det.innerHTML = `<div style="background:var(--surface);border:1px solid ${a.cor}44;border-radius:16px;padding:2rem">
+    <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1.2rem">
+      <span style="font-size:2.8rem">${a.emoji}</span>
+      <div><div style="font-family:var(--fh);font-size:1.2rem;font-weight:800;color:${a.cor}">${a.nome}</div><div style="font-size:.78rem;color:var(--muted);margin-top:.1rem">${a.area} · <em>${a.obra}</em></div></div>
+    </div>
+    <div style="border-left:3px solid ${a.cor};padding:.8rem 1rem;background:${a.cor}10;border-radius:0 10px 10px 0;font-style:italic;font-size:.9rem;color:var(--text);margin-bottom:1rem">${a.frase}</div>
+    <p style="font-size:.88rem;color:var(--muted);line-height:1.75">${a.contrib}</p>
+  </div>`;
+  det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ============================================================
+// CHECK-IN EMOCIONAL (local, sem banco)
+// ============================================================
+const checkinEmocoes = [
+  {e:'😄',nome:'Animado',cor:'#facc15',msg:'Ótimo combustível para aprender. Aproveite — e mantenha esse estado enquanto dura.',dica:'Animação é alegria ativa. Registre o que trouxe você até aqui nesse estado.'},
+  {e:'😌',nome:'Tranquilo',cor:'#3dd68c',msg:'Tranquilidade é o estado ideal para aprendizagem profunda. Seu córtex pré-frontal está disponível.',dica:'Serenidade é a versão suave da alegria em Plutchik. Rara num ambiente de alta pressão — valorize.'},
+  {e:'😐',nome:'Neutro',cor:'#7a7f9a',msg:'Neutralidade é honesta. Você está aqui — e isso já conta. Deixa a aula fazer o trabalho.',dica:'O neutro não é ruim. É uma tela em branco. Algo aqui vai tocar em você — espere.'},
+  {e:'😟',nome:'Preocupado',cor:'#5b8dee',msg:'Preocupação é antecipação com viés negativo. Nomear já reduz a intensidade em 50% (Lieberman, UCLA).',dica:'Pergunte: isso é fato ou interpretação? O hipocampo está construindo uma história — revise o roteiro.'},
+  {e:'😔',nome:'Cansado',cor:'#a78bfa',msg:'Cansaço é um sinal do hipotálamo — não fraqueza de caráter. O que ele está pedindo?',dica:'Corpo cansado tem cortisol elevado. Tente 3 respirações lentas agora. Sério — 30 segundos mudam o estado.'},
+  {e:'😠',nome:'Irritado',cor:'#e05c3a',msg:'Irritação tem uma mensagem — geralmente sobre um limite que foi ultrapassado. Vale ouvir antes de agir.',dica:'Raiva é energia mobilizadora. A questão não é apagá-la — é escolher o veículo. O que ela está protegendo?'},
+  {e:'😰',nome:'Ansioso',cor:'#f97316',msg:'Ansiedade é medo do futuro — que ainda não existe. Traga atenção para o momento presente.',dica:'Sua amígdala está em alerta. 4 respirações lentas ativam o nervo vago e interrompem o ciclo. Tente agora.'},
+  {e:'🤔',nome:'Curioso',cor:'#c084fc',msg:'Curiosidade é o estado mais propício para o aprendizado. Você chegou no lugar certo, na hora certa.',dica:'Curiosidade é antecipação positiva na roda de Plutchik. O sábio interno de Chamine opera daqui.'}
+];
+
+function buildCheckin() {
+  const g = document.getElementById('checkin-grid');
+  if(!g) return;
+  checkinEmocoes.forEach((em,i) => {
+    const d = document.createElement('div');
+    d.style.cssText = `background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:1rem;text-align:center;cursor:pointer;transition:all .2s`;
+    d.innerHTML = `<div style="font-size:2rem;margin-bottom:.4rem">${em.e}</div><div style="font-family:var(--fh);font-size:.82rem;font-weight:700;color:${em.cor}">${em.nome}</div>`;
+    d.onmouseenter = () => { d.style.borderColor = em.cor; d.style.transform='translateY(-2px)'; };
+    d.onmouseleave = () => { d.style.borderColor='var(--border)';d.style.transform='none'; };
+    d.onclick = () => {
+      document.querySelectorAll('#checkin-grid>div').forEach(x=>{x.style.borderColor='var(--border)';x.style.background='var(--surface)';x.style.transform='none';});
+      d.style.borderColor=em.cor;d.style.background=em.cor+'18';
+      const r=document.getElementById('checkin-result');
+      r.style.display='block';
+      r.innerHTML=`<div style="background:var(--surface);border:1px solid ${em.cor}44;border-radius:16px;padding:2rem;animation:fadeUp .4s ease both">
+        <div style="display:flex;gap:.8rem;align-items:center;margin-bottom:1rem"><span style="font-size:2.5rem">${em.e}</span><div><div style="font-family:var(--fh);font-size:1.1rem;font-weight:800;color:${em.cor}">Você chegou: ${em.nome}</div></div></div>
+        <div style="border-left:3px solid ${em.cor};padding:.8rem 1rem;background:${em.cor}0d;border-radius:0 10px 10px 0;font-size:.9rem;color:var(--text);line-height:1.7;margin-bottom:.8rem">${em.msg}</div>
+        <div style="background:var(--bg);border-radius:10px;padding:.8rem 1rem;font-size:.83rem;color:var(--muted);line-height:1.65"><strong style="color:${em.cor}">💡 Para refletir:</strong> ${em.dica}</div>
+      </div>`;
+      r.scrollIntoView({behavior:'smooth',block:'nearest'});
+    };
+    g.appendChild(d);
+  });
+}
+
+// ============================================================
+// PLANO DE AÇÃO
+// ============================================================
+function gerarPlano(){
+  const sab=document.getElementById('pa-sab').value;
+  const patch=document.getElementById('pa-patch').value;
+  const mudar=document.getElementById('pa-mudar').value.trim();
+  const pessoa=document.getElementById('pa-pessoa').value.trim();
+  if(!sab&&!patch&&!mudar&&!pessoa){alert('Preencha pelo menos um campo para gerar seu plano.');return;}
+  const data=new Date().toLocaleDateString('pt-BR');
+  const txt=`╔══════════════════════════════════════════╗
+║   MEU PLANO DE AÇÃO · AULA 1            ║
+║   Inteligência Emocional e Autogestão   ║
+║   IBMEC-DF · Prof. Ricardo de Faria     ║
+╚══════════════════════════════════════════╝
+
+📅 Data: ${data}
+
+🦹 SABOTADOR PARA VIGIAR
+   ${sab||'(não preenchido)'}
+
+🧬 PATCH DO MODELO 3M
+   ${patch||'(não preenchido)'}
+
+🔄 COMPORTAMENTO PARA MODIFICAR
+   ${mudar||'(não preenchido)'}
+
+👂 PESSOA COM QUEM PRATICAR ESCUTA ATIVA
+   ${pessoa||'(não preenchido)'}
+
+──────────────────────────────────────────
+Na Aula 2 vou compartilhar o que aconteceu.
+"O cérebro é modulado, modificado e moldado."
+`;
+  document.getElementById('plano-texto').textContent=txt;
+  document.getElementById('plano-gerado').style.display='block';
+  document.getElementById('plano-gerado').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function copiarPlano(){
+  const txt=document.getElementById('plano-texto').textContent;
+  navigator.clipboard.writeText(txt).then(()=>{
+    const btn=document.getElementById('btn-copiar');
+    btn.textContent='✅ Copiado!';
+    btn.style.borderColor='var(--accent4)';
+    btn.style.color='var(--accent4)';
+    setTimeout(()=>{btn.textContent='📋 Copiar texto';btn.style.borderColor='var(--border)';btn.style.color='var(--text)';},2000);
+  });
+}
+
+// ============================================================
+// RESPIRAÇÃO
+// ============================================================
+let bRunning=false,bInterval=null,bCycle=0,bPhase=0,bTimer=4;
+const bFases=[{l:'Inspire',t:4,c:'inhale'},{l:'Segure',t:4,c:'hold'},{l:'Expire',t:4,c:'exhale'}];
+function startBreath(){
+  if(bRunning)return;
+  bRunning=true;bCycle=0;bPhase=0;bTimer=4;
+  document.getElementById('breath-timer').style.display='block';
+  bRun();
+}
+function bRun(){
+  if(bCycle>=3){
+    document.getElementById('breath-lbl').innerHTML='Muito bem! 🌿';
+    document.getElementById('breath-status').textContent='Completo. Você está mais presente agora.';
+    document.getElementById('breath-timer').style.display='none';
+    bRunning=false;return;
+  }
+  const f=bFases[bPhase];
+  bTimer=f.t;
+  const circle=document.getElementById('breath-circle');
+  circle.className='breath-circle '+f.c;
+  document.getElementById('breath-lbl').innerHTML=f.l;
+  document.getElementById('breath-status').textContent=`Ciclo ${bCycle+1} de 3 · ${f.l}`;
+  document.getElementById('breath-timer').textContent=bTimer;
+  clearInterval(bInterval);
+  bInterval=setInterval(()=>{
+    bTimer--;
+    document.getElementById('breath-timer').textContent=bTimer;
+    if(bTimer<=0){
+      clearInterval(bInterval);
+      bPhase++;
+      if(bPhase>=3){bPhase=0;bCycle++;}
+      setTimeout(bRun,400);
+    }
+  },1000);
+}
+
+// ============================================================
+// ACCORDION GENÉRICO
+// ============================================================
+function toggleAcc(bodyId,arrowId){
+  const b=document.getElementById(bodyId);
+  const a=document.getElementById(arrowId);
+  if(!b||!a)return;
+  const open=b.style.display==='block';
+  b.style.display=open?'none':'block';
+  a.style.transform=open?'rotate(0deg)':'rotate(180deg)';
+  if(!open){b.classList.add('fade-in');}
+}
+
+// ============================================================
+// NAV ATIVA
+// ============================================================
+window.addEventListener('scroll',()=>{
+  const secs=document.querySelectorAll('section[id],div[id]');
+  const y=window.scrollY+70;
+  secs.forEach(s=>{
+    if(y>=s.offsetTop&&y<s.offsetTop+s.offsetHeight){
+      document.querySelectorAll('nav a').forEach(a=>{
+        a.classList.toggle('active',a.getAttribute('href')==='#'+s.id);
+      });
+    }
+  });
+});
+
+// ============================================================
+// INIT
+// ============================================================
+buildRoda();
+buildAutores();
+buildCheckin();
+buildProfAcc();
+buildCerebroDicas();
+buildSabGrid();
+buildJogo();
+buildQuizQ(0);
+sgInit();
+dilInit();
+buildDiagScales();
+</script>
 </body>
 </html>
