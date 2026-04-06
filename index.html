@@ -1050,6 +1050,69 @@ function quizReset(){qAtual=0;qScore=0;qAnswered={};buildQuizQ(0);}
 // ============================================================
 // DILEMAS
 // ============================================================
+const dilemas = [
+  {
+    cena:'Você está numa negociação. O cliente fica agressivo e diz: "Vocês me enrolam faz semanas." Parte da crítica é justa.',
+    opts:[
+      {t:'🛡️ Me defendo e explico todos os motivos com dados e justificativas.',ie:false},
+      {t:'🤝 Reconheço a frustração dele primeiro, antes de qualquer explicação.',ie:true}
+    ],
+    fb_ok:'Exato. Ury chama isso de "passar para o lado do outro". Antes de qualquer explicação, o cliente precisa sentir que foi ouvido. A AT&T aprendeu isso na segunda reunião — não na primeira.',
+    fb_err:'Justificar antes de reconhecer alimenta a raiva. A amígdala do cliente está ativa. Dados não chegam a amígdalas ativadas. Primeiro o acolhimento, depois a explicação.',
+    conceito:'Escuta Ativa · William Ury'
+  },
+  {
+    cena:'Seu gestor manda um e-mail seco às 22h: "Precisamos conversar amanhã sobre o relatório." Sua amígdala acende imediatamente.',
+    opts:[
+      {t:'😰 Fico acordado imaginando o pior cenário até a reunião.',ie:false},
+      {t:'🧘 Noto a ansiedade, respiro e lembro que e-mail seco não é sentença.',ie:true}
+    ],
+    fb_ok:'Perfeito. Reavaliação cognitiva — trocar a narrativa catastrófica por uma baseada em evidências reais. A amígdala criou a história. O córtex pré-frontal a reescreveu.',
+    fb_err:'A amígdala leu um e-mail neutro e escreveu um roteiro de terror. 90 segundos de respiração teriam dissolvido o loop. E nada mudaria o e-mail — só sua noite.',
+    conceito:'Regulação Emocional · Amígdala'
+  },
+  {
+    cena:'Um colega te interrompe pela terceira vez numa reunião. Você sente raiva crescente.',
+    opts:[
+      {t:'😤 Digo na frente de todos: "Você me interrompeu de novo."',ie:false},
+      {t:'✋ Termino minha fala e depois, em privado, nomeio o padrão para ele.',ie:true}
+    ],
+    fb_ok:'Nomear em privado preserva a relação e aumenta a chance de mudança real. Em público, a crítica ativa defesa — não reflexão. Inteligência social aplicada.',
+    fb_err:'Confrontar em público pode ser satisfatório por 30 segundos. Mas ativa a amígdala do colega, gera constrangimento coletivo e raramente muda o comportamento.',
+    conceito:'Inteligência Social · Janela de Johari'
+  },
+  {
+    cena:'Você percebe que cometeu um erro numa apresentação já enviada à diretoria.',
+    opts:[
+      {t:'🙈 Fico em silêncio e torço para ninguém perceber.',ie:false},
+      {t:'📧 Mando um e-mail curto reconhecendo o erro e apresentando a correção.',ie:true}
+    ],
+    fb_ok:'Reconhecer antes que alguém aponte é IE em ação. Constrói credibilidade e elimina o sabotador Esquivo antes que ele cobre mais caro depois.',
+    fb_err:'O silêncio estratégico tem prazo de validade curto. Quando o erro aparece sem reconhecimento seu, o problema deixa de ser o erro e passa a ser a postura.',
+    conceito:'Autogestão · Sabotador Esquivo'
+  },
+  {
+    cena:'Um membro da sua equipe entrega pela segunda vez um trabalho abaixo do esperado. Você precisa dar feedback.',
+    opts:[
+      {t:'📊 Listo os problemas técnicos com objetividade, sem entrar em "emoção".',ie:false},
+      {t:'💬 Começo perguntando como ela está se sentindo com o projeto antes de apontar os problemas.',ie:true}
+    ],
+    fb_ok:'Perguntar antes de apontar cria o clima para o feedback ser recebido. Quando a pessoa se sente vista, a amígdala relaxa. Líderes com IE geram 20% mais resultado justamente por isso.',
+    fb_err:'Feedback puramente técnico sem conexão emocional é recebido como crítica, não como desenvolvimento. A pessoa ouve "você errou" e ativa defesa, não reflexão.',
+    conceito:'Feedback com IE · Liderança'
+  },
+  {
+    cena:'Você está há 3 semanas num projeto estressante. Um colega te convida para almoçar fora do escritório.',
+    opts:[
+      {t:'⌨️ Recuso — tenho muito trabalho e almoçar fora parece desperdício agora.',ie:false},
+      {t:'🌿 Aceito. 1h de desconexão real vai me devolver mais do que vai me custar.',ie:true}
+    ],
+    fb_ok:'Pausas intencionais não são luxo — são manutenção do hardware. O hipotálamo precisa de janelas de recuperação para regular cortisol. Quem nunca para paga juros que a produtividade cobra mais tarde.',
+    fb_err:'"Trabalho demais para parar" é o mantra do Hiper-realizador. O rendimento cai progressivamente com acúmulo de cortisol. O almoço custaria 1h e devolveria 3.',
+    conceito:'Autocuidado · Hipotálamo'
+  }
+];
+
 let dilAtual=0, dilResp=[];
 function dilInit(){
   dilAtual=0;dilResp=[];
