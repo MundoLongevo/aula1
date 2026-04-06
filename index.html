@@ -113,54 +113,80 @@ h2 span{color:var(--accent);}
 .case-q::before{content:'💬 Reflexão: ';font-weight:600;}
 footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--border);color:var(--muted);font-size:.82rem;}
 footer strong{color:var(--accent);}
+/* ─── TABLET ─── */
+@media(max-width:860px){
+  .card-grid{grid-template-columns:repeat(2,1fr);}
+}
+/* ─── MOBILE ─── */
 @media(max-width:640px){
-  .stats{flex-wrap:wrap;}.stat{flex-basis:50%;}
-  /* nav */
-  nav{padding:0 .8rem;gap:.2rem;height:48px;}
-  nav a{font-size:.65rem;padding:.3rem .5rem;}
-  .nav-logo{font-size:.8rem;margin-right:.4rem;}
-  /* hero */
-  .hero{padding:4rem 1.2rem 3rem;}
-  .hero h1{font-size:2rem;}
-  .hero-sub{font-size:.95rem;}
-  .hero-cta{gap:.6rem;}
-  .btn{padding:.6rem 1.2rem;font-size:.8rem;}
-  /* sections */
-  section{padding:3rem 1.2rem;}
-  h2{font-size:1.6rem;}
-  .lead{font-size:.95rem;}
-  /* card grid */
-  .card-grid{grid-template-columns:1fr;}
-  /* stats */
+  /* STATS */
+  .stats{flex-wrap:wrap;}
   .stat{flex-basis:50%;}
-  .stat-n{font-size:1.6rem;}
-  /* two-col grids → single col */
-  .mobile-stack{grid-template-columns:1fr !important;}
-  /* scale buttons */
-  .scale-btn{width:38px;height:38px;font-size:.85rem;}
-  /* breath */
-  .breath-box{padding:2rem 1rem;}
-  /* quiz */
-  #quiz-section{padding:3rem 1rem;}
-  /* sab grid */
-  #sab-grid{grid-template-columns:repeat(2,1fr)!important;}
-  /* roda grid */
-  #roda-grid{grid-template-columns:repeat(2,1fr)!important;}
-  /* autores grid */
-  #autores-grid{grid-template-columns:repeat(2,1fr)!important;}
-  /* checkin grid */
-  #checkin-grid{grid-template-columns:repeat(2,1fr)!important;}
-  /* case timeline */
-  .case-timeline{padding-left:1.2rem;}
-  /* jogo cards */
-  .jogo-card-grid{grid-template-columns:1fr;}
-  /* plano */
-  .plano-select,.mural-input{font-size:.88rem;}
-  /* footer */
-  footer{padding:2rem 1rem;font-size:.78rem;}
-  /* diag form labels */
-  .diag-q label{font-size:.88rem;}
-  .scale-labels{font-size:.65rem;}
+  .stat-n{font-size:1.5rem;}
+  /* NAV */
+  nav{padding:0 .6rem;gap:.15rem;height:46px;}
+  nav a{font-size:.62rem;padding:.28rem .45rem;letter-spacing:.02em;}
+  .nav-logo{font-size:.78rem;margin-right:.3rem;}
+  /* HERO */
+  .hero{padding:3.5rem 1rem 2.5rem;min-height:auto;}
+  .hero h1{font-size:1.8rem;line-height:1.15;}
+  .hero-sub{font-size:.88rem;margin-top:1rem;}
+  .hero-cta{gap:.5rem;margin-top:1.5rem;}
+  .btn{padding:.55rem 1rem;font-size:.78rem;}
+  /* SECTIONS */
+  section{padding:2.5rem 1rem;}
+  h2{font-size:1.45rem;line-height:1.25;}
+  .lead{font-size:.9rem;margin-bottom:1.5rem;}
+  .highlight{padding:1.2rem;}
+  /* CARDS */
+  .card-grid{grid-template-columns:1fr;}
+  .card{padding:1.25rem;}
+  /* ALL GRIDS → SINGLE COL */
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"],
+  [style*="grid-template-columns:repeat(auto-fit,minmax(2"],
+  [style*="grid-template-columns:repeat(auto-fill,minmax(2"],
+  .mobile-stack{
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  /* SABOTADORES */
+  #sab-grid{display:grid!important;grid-template-columns:repeat(2,1fr)!important;}
+  /* RODA */
+  #roda-grid{display:grid!important;grid-template-columns:repeat(2,1fr)!important;}
+  #roda-grid+div{margin-top:.8rem;}
+  /* AUTORES */
+  #autores-grid{display:grid!important;grid-template-columns:repeat(2,1fr)!important;}
+  /* CHECKIN */
+  #checkin-grid{display:grid!important;grid-template-columns:repeat(2,1fr)!important;}
+  /* CEREBRO DICAS */
+  #cerebro-dicas{display:grid!important;grid-template-columns:1fr!important;}
+  /* PROFISSIONAIS ACC */
+  #prof-acc .acc-head{flex-wrap:wrap;}
+  /* QUIZ */
+  #quiz-section{padding:2.5rem 1rem;}
+  .quiz-opt{font-size:.85rem;padding:.65rem 1rem;}
+  /* JOGO */
+  #jogo-lista > div{grid-template-columns:auto 1fr!important;gap:.6rem!important;}
+  /* DIAGNÓSTICO */
+  .scale{gap:.3rem;}
+  .scale-btn{width:36px;height:36px;font-size:.82rem;}
+  .scale-labels{font-size:.62rem;}
+  .diag-q label{font-size:.86rem;}
+  .diag-textarea{font-size:.88rem;}
+  /* CASE */
+  .case-timeline{padding-left:1rem;}
+  .case-step{padding-bottom:1.8rem;}
+  /* PLANO DE AÇÃO */
+  #plano select,#plano input{font-size:.88rem;padding:.6rem .8rem;}
+  /* BREATH */
+  .breath-box{padding:1.8rem .8rem;}
+  .breath-circle{width:120px;height:120px;}
+  /* ACCORDION */
+  .acc-head{padding:.85rem 1rem;}
+  .acc-body{padding:0 1rem 1rem;}
+  /* FOOTER */
+  footer{padding:1.5rem 1rem;font-size:.78rem;}
 }
 </style>
 </head>
@@ -179,7 +205,7 @@ footer strong{color:var(--accent);}
   <a href="#jogo">Jogo</a>
   <a href="#case">Case</a>
   <a href="#varejo">Varejo</a>
-  <a href="#gerador">Perfil</a>
+  <a href="#gerador">Teste Sabotadores</a>
   <a href="#dilemas">Dilemas</a>
   <a href="#diagnostico">Diagnóstico</a>
   <a href="#roda">Emoções</a>
@@ -440,7 +466,7 @@ footer strong{color:var(--accent);}
 
 <!-- GERADOR DE PERFIL DO SABOTADOR -->
 <section id="gerador" style="max-width:860px">
-  <p class="section-label" style="color:#c084fc">🔮 Gerador de Perfil · Chamine</p>
+  <p class="section-label" style="color:#c084fc">🔮 Teste dos Sabotadores · Chamine</p>
   <h2>Qual é o seu <span style="color:#c084fc">Sabotador</span> dominante?</h2>
   <p class="lead">20 situações do cotidiano — trabalho, família, relacionamentos, consumo, liderança e vida social. Responda com honestidade. No final: seu perfil completo com habitat, frase característica e antídoto.</p>
   <div style="background:var(--bg2);border:2px solid rgba(192,132,252,.2);border-radius:20px;overflow:hidden;margin-bottom:2rem">
@@ -501,7 +527,7 @@ footer strong{color:var(--accent);}
   <p class="section-label" style="color:#ec4899">🎡 Roda das Emoções · Plutchik</p>
   <h2>Você sabe nomear o que <span style="color:#ec4899">sente</span>?</h2>
   <p class="lead">Robert Plutchik mapeou 8 emoções primárias e suas combinações. Clique em qualquer emoção para descobrir sua intensidade, seu oposto e o que acontece quando ela se mistura com outra.</p>
-  <div class="mobile-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start">
+  <div class="mobile-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;row-gap:1.5rem">
     <div id="roda-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem"></div>
     <div id="roda-detail" style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.75rem;min-height:280px;display:flex;align-items:center;justify-content:center">
       <div style="text-align:center;color:var(--muted);font-size:.88rem">← Clique numa emoção para explorar</div>
