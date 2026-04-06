@@ -464,17 +464,17 @@ footer strong{color:var(--accent);}
 
 <hr class="hr">
 
-<!-- GERADOR DE PERFIL DO SABOTADOR -->
+<!-- TESTE DOS SABOTADORES -->
 <section id="gerador" style="max-width:860px">
   <p class="section-label" style="color:#c084fc">🔮 Teste dos Sabotadores · Chamine</p>
   <h2>Qual é o seu <span style="color:#c084fc">Sabotador</span> dominante?</h2>
-  <p class="lead">20 situações do cotidiano — trabalho, família, relacionamentos, consumo, liderança e vida social. Responda com honestidade. No final: seu perfil completo com habitat, frase característica e antídoto.</p>
+  <p class="lead">27 afirmações sobre o cotidiano — trabalho, família, relacionamentos e grupos. Para cada uma, indique o quanto ela descreve você. No final: seu perfil dos 9 sabotadores adjuntos com ranking completo.</p>
   <div style="background:var(--bg2);border:2px solid rgba(192,132,252,.2);border-radius:20px;overflow:hidden;margin-bottom:2rem">
-    <div style="padding:.7rem 2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
-      <div style="font-family:var(--fh);font-size:.75rem;color:var(--muted)">Pergunta <span id="sg-num">1</span> de 20</div>
-      <div style="background:var(--border);border-radius:99px;height:5px;width:150px;overflow:hidden"><div id="sg-bar" style="height:5px;background:#c084fc;width:8%;border-radius:99px;transition:width .5s"></div></div>
+    <div style="padding:.8rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
+      <div style="font-family:var(--fh);font-size:.75rem;color:var(--muted)">Afirmação <span id="sg-num">1</span> de 27</div>
+      <div style="background:var(--border);border-radius:99px;height:5px;width:160px;overflow:hidden"><div id="sg-bar" style="height:5px;background:#c084fc;width:4%;border-radius:99px;transition:width .4s"></div></div>
     </div>
-    <div id="sg-area" style="padding:2rem"></div>
+    <div id="sg-area" style="padding:1.5rem 2rem"></div>
     <div id="sg-result" style="display:none;padding:2rem;border-top:1px solid var(--border)" class="fade-in"></div>
   </div>
 </section>
@@ -734,57 +734,152 @@ const jogoData = [
   {titulo:'O fracasso é seu troféu',corpo:'Se você seguiu todas as lições acima, conseguiu: ignorar a neuroplasticidade, alimentar seus sabotadores, perder negócios, relacionamentos e saúde mental — e ainda achar que o problema é o mundo.',resultado:'Uma vida mais difícil, mais pesada e mais solitária. Recompensa: nenhuma. Só arrependimento.',antidoto:'Você chegou até aqui — isso já é coragem. A consciência de um padrão é sempre o primeiro passo para quebrá-lo. O oposto de cada lição deste jogo é o conteúdo desta aula.'}
 ];
 
-// --- GERADOR DE PERFIL ---
-// 8 NOVAS QUESTÕES (vida cultural, consumo, afeto, liderança, família, decisões, conversas difíceis, carro novo)
-const sgPerguntasExtra = [
-  {sit:'Você compra um carro novo e, na primeira semana, alguém risca levemente a lataria no estacionamento. Sua reação é:',opts:[{t:'Uma raiva intensa que ocupa minha cabeça por dias. Investimento jogado fora.',s:[0,4]},{t:'Fico frustrado mas logo coloco em perspectiva — é um objeto, não uma tragédia.',s:[]},{t:'Fotografo tudo, pesquiso o valor do conserto e tomo providências com calma.',s:[7,2]},{t:'Não falo nada para não criar confusão — deixo passar.',s:[3,9]},{t:'Sinto aquele peso de "sabia que ia acontecer algo assim".',s:[4,6]}]},
-  {sit:'Você está num relacionamento afetivo e seu parceiro(a) se queixa de que você não está presente emocionalmente. Você:',opts:[{t:'Acho a crítica exagerada — estou aqui, fazendo tudo que precisa ser feito.',s:[7,2]},{t:'Me defendo listando tudo que faço pelo relacionamento.',s:[0,2]},{t:'Sinto culpa imensa e concordo com tudo, mesmo sem entender bem o que mudou.',s:[3,6]},{t:'Ouço com genuína curiosidade — "me conta mais sobre o que você está sentindo".',s:[]},{t:'Fico ansioso e começo a monitorar cada reação do parceiro para evitar conflitos.',s:[4,8]}]},
-  {sit:'Você é líder de uma equipe. Um liderado comete o mesmo erro pela segunda vez. Você:',opts:[{t:'Chamo atenção na frente do grupo — serve de lição para todos.',s:[0,2]},{t:'Faço a tarefa eu mesmo — mais fácil do que explicar de novo.',s:[1,2]},{t:'Converso em privado buscando entender o que está dificultando antes de cobrar.',s:[]},{t:'Fico quieto para não criar mal-estar — espero que ele perceba sozinho.',s:[9,3]},{t:'Monitoro de perto cada passo dele daqui para frente.',s:[2,4]}]},
-  {sit:'Houve uma briga séria na família — um desentendimento que deixou o grupo tenso. Você:',opts:[{t:'Tomo partido claramente e defendo seu ponto com intensidade.',s:[0,2]},{t:'Fica quieto para não piorar — o silêncio é mais seguro.',s:[9,3]},{t:'Tenta mediar, ouvindo os dois lados com paciência antes de opinar.',s:[]},{t:'Ruminaria o episódio por semanas, repassando o que deveria ter dito.',s:[0,4]},{t:'Sente uma ansiedade que contamina outros aspectos da sua vida até o conflito se resolver.',s:[4,6]}]},
-  {sit:'Você precisa tomar uma decisão difícil e importante — de carreira, moradia ou relacionamento. Você:',opts:[{t:'Analisa todos os dados disponíveis e só decide quando tiver certeza absoluta.',s:[7,8]},{t:'Posterga a decisão o máximo possível — decidir é arriscado.',s:[9,4]},{t:'Decide rápido para tirar o peso — qualquer coisa é melhor que a incerteza.',s:[5,1]},{t:'Consulta várias pessoas mas no fundo já sabe o que quer e está buscando validação.',s:[3,6]},{t:'Pondera com calma, aceita que toda decisão tem custo e age quando se sente suficientemente preparado.',s:[]}]},
-  {sit:'Você precisa ter uma conversa difícil — dar uma notícia ruim, cobrar alguém querido ou estabelecer um limite. Você:',opts:[{t:'Planeja cada palavra antes de começar — ensaia mentalmente por dias.',s:[8,4]},{t:'Adia repetidamente: "o momento certo ainda vai aparecer".',s:[9]},{t:'Vai direto ao ponto com franqueza total, às vezes sem calibrar o impacto emocional.',s:[0,7]},{t:'Começa pela conexão — garante que a pessoa se sinta segura antes de entrar no assunto difícil.',s:[]},{t:'Inicia mas no meio da conversa recua e ameniza tudo para não magoar.',s:[3,9]}]},
-  {sit:'Você vai a uma exposição de arte, show ou evento cultural. Como é a experiência?',opts:[{t:'Fico pensando no trabalho que deixei para trás ou no que tenho para fazer depois.',s:[1,5]},{t:'Comparo tudo com referências que já conheço — raramente algo supera o que espero.',s:[0,8]},{t:'Me permito ser surpreendido — presença plena, sem julgamento antecipado.',s:[]},{t:'Me preocupo se estou "aproveitando do jeito certo" ou se vou conseguir falar sobre isso depois.',s:[8,3]},{t:'Fico inquieto se o evento for longo demais — prefiro experiências rápidas e variadas.',s:[5]}]},
-  {sit:'Você percebe que seu padrão de consumo (compras, delivery, assinaturas) está acima do que pode pagar. Você:',opts:[{t:'Sei que é um problema mas continuar comprando traz um alívio imediato que funciona.',s:[5,6]},{t:'Faço uma planilha detalhada dos gastos e corto tudo de uma vez com rigidez.',s:[8,2]},{t:'Ignoro o problema — lidar com finanças gera ansiedade demais.',s:[9,4]},{t:'Reconheço o padrão, entendo o que ele está preenchendo e faço ajustes progressivos com autocompaixão.',s:[]},{t:'Me condeno bastante — como pude deixar isso acontecer?',s:[0,6]}]}
-];
-// junta as duas arrays
-const sgPerguntas = [
-  {sit:'Seu gestor envia um e-mail seco às 22h: "Precisamos conversar amanhã sobre seu relatório." Sua reação mais honesta é:',opts:[{t:'Fico acordado imaginando os piores cenários possíveis.',s:[4,6]},{t:'Já começo a planejar como me defender antes mesmo de saber do que se trata.',s:[0,2]},{t:'Sinto ansiedade mas consigo colocar em perspectiva.',s:[]},{t:'Processo racionalmente — e-mail seco não é sentença.',s:[7]},{t:'Me preocupo com o que os colegas vão pensar se eu tiver um problema.',s:[3,8]}]},
-  {sit:'Num projeto em equipe, um colega entrega uma parte com qualidade abaixo do esperado. Você:',opts:[{t:'Aponto os problemas diretamente e com detalhes na reunião.',s:[0,2]},{t:'Faço a parte dele também para não gerar conflito.',s:[3,9]},{t:'Fico quieto mas registro internamente para usar depois se necessário.',s:[9,4]},{t:'Converso com ele em privado de forma construtiva.',s:[]},{t:'Sinto uma irritação que dificulta trabalhar junto com ele.',s:[0,8]}]},
-  {sit:'Você está num happy hour e o assunto recai sobre trabalho. Alguém pergunta como você está. Você:',opts:[{t:'Digo que está tudo ótimo — mesmo que não esteja.',s:[3,9]},{t:'Conto em detalhes tudo que está pesado e injusto.',s:[6]},{t:'Falo brevemente, direciono o assunto para os outros.',s:[3]},{t:'Analiso a pergunta e respondo com precisão sobre fatos, não sentimentos.',s:[7]},{t:'Fico atento para não dizer nada que possa ser mal interpretado.',s:[4,8]}]},
-  {sit:'Você comete um erro visível num projeto importante. Como você processa isso?',opts:[{t:'Me condeno severamente por dias. Como pude?',s:[0,8]},{t:'Identifico rapidamente fatores externos que contribuíram.',s:[6,2]},{t:'Foco na solução imediatamente — erros são dados, não identidade.',s:[]},{t:'Fico com medo do que os outros estão pensando de mim.',s:[3,4]},{t:'Passo para o próximo projeto rapidamente para não pensar nisso.',s:[1,5]}]},
-  {sit:'Você tem uma tarde livre inesperada. O que acontece naturalmente?',opts:[{t:'Logo estou pensando em como usar o tempo de forma produtiva.',s:[1,8]},{t:'Inicio várias atividades diferentes e termino o dia sem ter descansado de verdade.',s:[5]},{t:'Sinto um desconforto com o "vazio" — preciso estar fazendo algo.',s:[1,5]},{t:'Aproveito sem culpa. Descanso é parte do processo.',s:[]},{t:'Fico checando mensagens para garantir que nada urgente está acontecendo.',s:[4,2]}]},
-  {sit:'Um familiar faz uma crítica sobre sua forma de lidar com dinheiro. Você:',opts:[{t:'Reajo defensivamente — quem é ele para falar?',s:[0,2]},{t:'Concordo para não brigar, mas fico com raiva por dentro.',s:[3,9]},{t:'Ouço, avalio com calma se há algo válido na crítica.',s:[]},{t:'Fico lembrando dessa crítica por semanas.',s:[0,4]},{t:'Sinto uma vergonha grande — e se outros também pensam assim?',s:[6,8]}]},
-  {sit:'Numa negociação, a outra parte fica agressiva e levanta a voz. Você:',opts:[{t:'Elevo o tom também — não vou deixar passar.',s:[0,2]},{t:'Faço concessões para diminuir a tensão logo.',s:[3,9]},{t:'Pauso, respiro, e reconheço a frustração da outra parte antes de continuar.',s:[]},{t:'Apresento dados e fatos adicionais para mostrar que estou certo.',s:[7,2]},{t:'Sinto uma ansiedade intensa e começo a questionar minha posição.',s:[4,6]}]},
-  {sit:'No grupo de amigos, surge uma discussão sobre política ou religião. Você:',opts:[{t:'Expresso sua opinião com firmeza e dificuldade de ceder.',s:[0,2]},{t:'Evita dar sua opinião para não criar conflito no grupo.',s:[3,9]},{t:'Ouve as diferentes perspectivas com curiosidade genuína.',s:[]},{t:'Analisa os argumentos e só fala quando tem dados concretos.',s:[7]},{t:'Sente desconforto com a tensão e muda de assunto.',s:[9,5]}]},
-  {sit:'Você está sobrecarregado e um colega pede ajuda com a tarefa dele. Você:',opts:[{t:'Ajuda mesmo sem ter tempo — dizer não parece egoísmo.',s:[3]},{t:'Diz que vai ajudar mas internamente resente o pedido.',s:[3,9]},{t:'Avalia honestamente sua capacidade e diz não com gentileza se necessário.',s:[]},{t:'Faz a tarefa dele mais rápido do que ele faria — é mais eficiente.',s:[1,2]},{t:'Sente culpa por não poder ajudar mesmo sendo sobrecarregado.',s:[3,8]}]},
-  {sit:'Você recebe um grande elogio do cliente por um trabalho bem feito. Como reage internamente?',opts:[{t:'"Fui eu mesmo" — registra a conquista com satisfação.',s:[1]},{t:'Já está pensando na próxima entrega antes de terminar de ouvir o elogio.',s:[1,5]},{t:'Minimiza: "foi o time todo, eu só fiz o básico".',s:[3,6]},{t:'Sente prazer genuíno e registra o momento como energia para o próximo desafio.',s:[]},{t:'"E se eles esperarem isso sempre de mim?" Vira pressão imediata.',s:[4,8]}]},
-  {sit:'Você precisar ter uma conversa difícil com alguém próximo. Você:',opts:[{t:'Planeja tudo nos mínimos detalhes antes de começar.',s:[8,2]},{t:'Adia repetidamente — "ainda não é o momento certo".',s:[9]},{t:'Vai direto ao ponto com franqueza total, às vezes sem considerar o impacto emocional.',s:[0,7]},{t:'Começa pela conexão e pela escuta antes de colocar o problema.',s:[]},{t:'Sente uma angústia que ocupa sua cabeça por dias antes da conversa.',s:[4,8]}]},
-  {sit:'No final de uma semana pesada, como você está com relação a si mesmo?',opts:[{t:'Satisfeito apenas se tiver entregado muito e bem.',s:[1,8]},{t:'Exausto mas com medo de desacelerar — e se algo escapar?',s:[1,4]},{t:'Compassivo — reconhece o esforço sem precisar de resultado perfeito.',s:[]},{t:'Já planejando como a próxima semana vai ser diferente (mas raramente é).',s:[5,9]},{t:'Preocupado com o que podia ter ido melhor — faz uma lista dos erros.',s:[0,8]}]},
-  ...sgPerguntasExtra
+// ============================================================
+// TESTE DOS SABOTADORES — 27 afirmações (3 por sabotador)
+// 9 sabotadores adjuntos (sem O Crítico)
+// 0=Insistente 1=Prestativo 2=HiperRealizador
+// 3=Vítima 4=Hiperracional 5=Hipervigilante
+// 6=Inquieto 7=Controlador 8=Esquivo
+// Escala 1-5: 1=Não me descreve / 5=Me descreve muito
+// ============================================================
+const sgAfirmacoes = [
+  {txt:'Fico muito incomodado quando entrego um trabalho que sei que poderia estar melhor.',sab:0},
+  {txt:'Quando alguém faz algo de forma diferente da minha, sinto dificuldade em aceitar — mesmo que o resultado seja adequado.',sab:0},
+  {txt:'Com frequência, passo mais tempo do que devia revisando algo antes de liberar.',sab:0},
+  {txt:'Tenho dificuldade em dizer não para pedidos de ajuda, mesmo quando estou sobrecarregado.',sab:1},
+  {txt:'Evito expressar minhas próprias necessidades diretamente por medo de parecer egoísta.',sab:1},
+  {txt:'Fico incomodado quando as pessoas não reconhecem ou valorizam o que faço por elas.',sab:1},
+  {txt:'Meu valor como pessoa está muito ligado ao que produzo e realizo.',sab:2},
+  {txt:'Tenho dificuldade de descansar sem sentir que deveria estar sendo produtivo.',sab:2},
+  {txt:'Às vezes percebo que já estou pensando na próxima conquista antes de terminar de celebrar a atual.',sab:2},
+  {txt:'Quando as coisas dão errado, minha tendência é sentir que o destino ou as circunstâncias se voltam contra mim.',sab:3},
+  {txt:'Passo bastante tempo remoendo situações injustas ou dolorosas que vivi.',sab:3},
+  {txt:'Me sinto incompreendido com frequência — como se ninguém enxergasse o quanto as coisas são difíceis para mim.',sab:3},
+  {txt:'Tendo a confiar muito mais na análise racional do que em sentimentos para tomar decisões.',sab:4},
+  {txt:'Fico frustrado quando outras pessoas tomam decisões com base em emoções em vez de dados concretos.',sab:4},
+  {txt:'Em situações de conflito, prefiro apresentar argumentos lógicos em vez de reconhecer o lado emocional da questão.',sab:4},
+  {txt:'Mesmo quando tudo está bem, minha mente costuma buscar o que pode dar errado.',sab:5},
+  {txt:'Tenho dificuldade em confiar plenamente nas pessoas — fico atento aos sinais de que algo pode falhar.',sab:5},
+  {txt:'A possibilidade de ser surpreendido negativamente me deixa em estado de alerta quase constante.',sab:5},
+  {txt:'Tenho dificuldade em ficar focado em uma única tarefa por muito tempo — logo busco a próxima coisa.',sab:6},
+  {txt:'Situações de silêncio, tédio ou rotina me geram um desconforto real.',sab:6},
+  {txt:'Começo muitos projetos com entusiasmo mas sinto dificuldade em mantê-los até o fim.',sab:6},
+  {txt:'Sinto ansiedade quando situações importantes dependem de outras pessoas e não estão sob meu controle.',sab:7},
+  {txt:'Prefiro fazer eu mesmo a delegar — é difícil confiar que outros vão fazer do jeito certo.',sab:7},
+  {txt:'Quando um plano muda inesperadamente, minha reação inicial é de irritação ou resistência.',sab:7},
+  {txt:'Adio conversas difíceis ou situações de conflito esperando que o problema se resolva sozinho.',sab:8},
+  {txt:'Digo sim para evitar desconforto, mesmo quando quero dizer não.',sab:8},
+  {txt:'Quando sinto tensão em um relacionamento, minha tendência é me afastar ou minimizar o problema.',sab:8}
 ];
 
 const sgPerfis = [
-  {nome:'O Crítico',emoji:'⚖️',cor:'#f4a024',hab:'Reuniões de feedback, avaliações, situações com erro.',frase:'"Isso podia ter sido melhor. Sempre."',desc:'Você é exigente — com você mesmo, com os outros e com as circunstâncias. Isso tem um lado produtivo real: standards altos. Mas o custo emocional de viver num tribunal permanente é alto demais.',antidoto:'Transforme crítica em curiosidade. Em vez de "isso foi péssimo", pergunte "o que posso aprender aqui?" A mesma energia — direcionada diferente.'},
-  {nome:'O Hiper-realizador',emoji:'🏆',cor:'#f97316',hab:'Final de trimestre, avaliações, momentos de pausa.',frase:'"Descansando? Então estou perdendo."',desc:'Você confunde valor pessoal com resultados. Por fora parece sucesso. Por dentro é uma corrida sem linha de chegada. A ambição não é o problema — é o fato de que ela nunca satisfaz.',antidoto:'Pratique ser, não só fazer. 15 minutos por dia sem produzir nada. Parece impossível? Então é exatamente o que você precisa.'},
-  {nome:'O Controlador',emoji:'🕹️',cor:'#5b8dee',hab:'Trabalho em equipe, delegação, mudanças inesperadas.',frase:'"Se eu não fizer, ninguém faz direito."',desc:'Você precisa do controle para se sentir seguro. Isso cria uma ilusão de domínio que consome energia enorme — e sabota a confiança das pessoas ao redor.',antidoto:'Delegue uma tarefa real esta semana — sem checar depois. A ansiedade que sentir é exatamente o músculo que você precisa treinar.'},
-  {nome:'O Prestativo',emoji:'🥹',cor:'#ec4899',hab:'Discordâncias, pedidos difíceis, dar feedback negativo.',frase:'"Tudo bem" — mesmo quando não está nada bem.',desc:'Você diz sim quando quer dizer não. Concorda para evitar conflito. Resente em silêncio. Ao tentar agradar a todos, você vai gradualmente desaparecendo da conversa.',antidoto:'A próxima vez que quiser dizer não, diga. Com gentileza, mas diga. Fronteira não é agressividade — é honestidade com cuidado.'},
-  {nome:'O Hipervigilante',emoji:'🔮',cor:'#3dd68c',hab:'Incerteza, novidades, ambientes com risco de crítica.',frase:'"Algo vai dar errado. Só não sei o quê ainda."',desc:'Seu radar está ligado 24h. Você detecta ameaças reais antes de todo mundo — mas também inventa ameaças que não existem. O sistema de alarme que te protegeu um dia está protegendo de coisas que não precisam.',antidoto:'Antes de reagir a uma ameaça percebida: "Isso é fato ou interpretação?" A diferença muda tudo.'},
-  {nome:'O Inquieto',emoji:'🌪️',cor:'#facc15',hab:'Momentos de pausa, tarefas repetitivas, silêncio.',frase:'"Próximo! O quê mais?"',desc:'Você vive no futuro. Múltiplos projetos, dificuldade de terminar. O presente é chato demais — sempre tem algo mais interessante no horizonte.',antidoto:'Escolha uma coisa e vá fundo até o fim. Profundidade gera o que amplitude nunca consegue: satisfação real.'},
-  {nome:'A Vítima',emoji:'😔',cor:'#a78bfa',hab:'Pressão, injustiça percebida, momentos de dificuldade.',frase:'"Ninguém entende o quanto isso é difícil pra mim."',desc:'Você encontrou no sofrimento uma forma de se conectar e ser ouvido. Não é fraqueza — é estratégia aprendida. O problema: prende você num papel que limita suas escolhas.',antidoto:'Da queixa para a ação: "O que eu posso fazer?" — mesmo que pequeno. Uma ação real dissolve mais dor do que dez conversas sobre ela.'},
-  {nome:'O Hiperracional',emoji:'🧊',cor:'#06b6d4',hab:'Conversas emocionais, feedback interpessoal, vulnerabilidade.',frase:'"Dados, por favor. Sem drama."',desc:'Você processa o mundo com elegância lógica. O que parece força é também uma muralha: as emoções ficam do lado de fora. E relacionamentos precisam passar pela muralha.',antidoto:'Trate emoções como dados, não como ruído. Perguntar "o que você está sentindo?" não é fraqueza — é coletar informação que a planilha não tem.'},
-  {nome:'O Insistente',emoji:'📋',cor:'#f97316',hab:'Entregas, avaliações, qualquer resultado visto por outros.',frase:'"Não está pronto. Ainda não."',desc:'Você persegue o impecável — o que significa que frequentemente não entrega, não tenta, não começa. A paralisia disfarçada de padrão alto é silenciosa e devastadora.',antidoto:'"Feito é melhor do que perfeito" não é mediocridade. A maioria das coisas precisa de 80% de excelência — não de 100% que nunca chegam.'},
-  {nome:'O Esquivo',emoji:'🫙',cor:'#84cc16',hab:'Conversas difíceis, conflitos, decisões desconfortáveis.',frase:'"Isso a gente resolve depois." (e não resolve)',desc:'Você é mestre em adiar o desconforto necessário. O conflito evitado não desaparece — cresce. Quanto mais você foge, maior fica o monstro.',antidoto:'O conflito que você mais evita é exatamente o que mais precisa de você. Comece com a conversa mais fácil das difíceis.'}
+  {nome:'O Insistente',emoji:'📋',cor:'#f97316',hab:'Entregas, avaliações, quando o resultado será visto por outros.',frase:'"Não está pronto. Ainda não."',desc:'Você persegue o impecável — e isso frequentemente significa não entregar, não tentar, não começar. A paralisia disfarçada de padrão alto é silenciosa e devastadora. O Insistente traz rigidez onde a situação pede flexibilidade.',antidoto:'"Feito e bom" supera "perfeito e nunca entregue". A maioria das coisas precisa de 80% de excelência — não de 100% que nunca chegam. Pergunte-se: estou refinando ou evitando?'},
+  {nome:'O Prestativo',emoji:'🥹',cor:'#ec4899',hab:'Discordâncias, pedidos difíceis, situações onde precisaria dizer não.',frase:'"Tudo bem" — mesmo quando não está.',desc:'Você diz sim quando quer dizer não. Concorda para evitar conflito. Resente em silêncio. A estratégia de conquistar aceitação por meio de ajuda tem um custo: você vai gradualmente desaparecendo da própria história.',antidoto:'Fronteira não é agressividade — é honestidade com cuidado. Expressar necessidades diretamente não é egoísmo. É respeito por você e por quem está do outro lado.'},
+  {nome:'O Hiper-realizador',emoji:'🏆',cor:'#f97316',hab:'Final de trimestre, avaliações, qualquer momento de pausa ou descanso.',frase:'"Descansando? Então estou perdendo."',desc:'Você confunde valor pessoal com resultados. Por fora parece sucesso. Por dentro é uma corrida sem linha de chegada. A autoaceitação é condicionada ao próximo sucesso — e esse ciclo nunca satisfaz.',antidoto:'Pratique ser, não só fazer. 15 minutos por dia sem produzir nada. Parece impossível? Então é exatamente o que você precisa. Seu valor não é seu currículo.'},
+  {nome:'A Vítima',emoji:'😔',cor:'#a78bfa',hab:'Pressão, injustiça percebida, momentos de dificuldade.',frase:'"Ninguém entende o quanto isso é difícil pra mim."',desc:'Você encontrou no sofrimento uma forma de se conectar e ser visto. Não é fraqueza — é uma estratégia aprendida. O problema: ela prende você num papel que limita suas escolhas e afasta quem poderia ajudar.',antidoto:'Da queixa para a ação: "O que eu posso fazer?" — mesmo que pequeno. Uma ação real dissolve mais dor do que dez conversas sobre ela.'},
+  {nome:'O Hiperracional',emoji:'🧊',cor:'#06b6d4',hab:'Conversas emocionais, feedback interpessoal, situações de vulnerabilidade.',frase:'"Dados, por favor. Sem drama."',desc:'Você processa o mundo com elegância lógica. O que parece força é também uma muralha: as emoções ficam do lado de fora. E relacionamentos precisam passar pela muralha para existir de verdade.',antidoto:'Trate emoções como dados, não como ruído. Perguntar "o que você está sentindo?" não é fraqueza — é coletar informação que a planilha não tem.'},
+  {nome:'O Hipervigilante',emoji:'🔮',cor:'#3dd68c',hab:'Incerteza, novidades, ambientes com risco de crítica ou rejeição.',frase:'"Algo vai dar errado. Só não sei o quê ainda."',desc:'Seu radar está ligado 24h. Você detecta ameaças reais antes de todo mundo — mas também inventa ameaças que não existem. Esse nível de vigilância consome energia vital que poderia ser usada de forma excelente.',antidoto:'Antes de reagir a uma ameaça percebida: "Isso é fato ou interpretação?" A diferença muda tudo. Nem todo sinal é alarme.'},
+  {nome:'O Inquieto',emoji:'🌪️',cor:'#facc15',hab:'Momentos de pausa, tarefas repetitivas, silêncio, qualquer coisa sem estímulo.',frase:'"Próximo! O quê mais?"',desc:'Você vive no futuro. Múltiplos projetos, dificuldade de terminar. O presente é chato demais — sempre tem algo mais interessante no horizonte. Por baixo da animação há uma fuga da ansiedade de estar presente.',antidoto:'Escolha uma coisa e vá fundo até o fim. Profundidade gera o que amplitude nunca consegue: satisfação real.'},
+  {nome:'O Controlador',emoji:'🕹️',cor:'#5b8dee',hab:'Trabalho em equipe, delegação, situações de mudança ou incerteza.',frase:'"Se eu não fizer, ninguém faz direito."',desc:'Você precisa do controle para se sentir seguro. Isso cria uma ilusão de domínio que consome energia enorme — e sabota a confiança das pessoas ao redor e o seu próprio bem-estar.',antidoto:'Delegue uma tarefa real esta semana — sem checar depois. A ansiedade que sentir é exatamente o músculo que você precisa treinar. Controle excessivo é medo disfarçado de gestão.'},
+  {nome:'O Esquivo',emoji:'🫙',cor:'#84cc16',hab:'Conversas difíceis, conflitos, feedback negativo, decisões com consequências.',frase:'"Isso a gente resolve depois." (e não resolve)',desc:'Você é mestre em adiar o desconforto necessário. O conflito evitado não desaparece — cresce. O que é esquivado não some: infecciona. Os relacionamentos ficam mantidos num nível superficial pela fuga.',antidoto:'O conflito que você mais evita é exatamente o que mais precisa de você. Comece com a conversa mais fácil das difíceis.'}
 ];
 
-// --- DILEMAS ---
-const dilemas = [
-  {cena:'Você está numa negociação. O cliente fica agressivo e diz: "Vocês me enrolam faz semanas." Parte da crítica é justa.',opts:[{t:'🛡️ Me defendo e explico todos os motivos com dados e justificativas.',ie:false},{t:'🤝 Reconheço a frustração dele primeiro, antes de qualquer explicação.',ie:true}],fb_ok:'Exato. Ury: "passe para o lado do outro". Antes de qualquer explicação, o cliente precisa sentir que foi ouvido. A AT&T aprendeu isso na segunda reunião — não na primeira.',fb_err:'Justificar antes de reconhecer alimenta a raiva. A amígdala do cliente está ativa. Dados não chegam a amígdalas ativadas. Primeiro o acolhimento, depois a explicação.',conceito:'Escuta Ativa · Ury'},
-  {cena:'Seu gestor manda um e-mail seco às 22h: "Precisamos conversar amanhã sobre o relatório." Sua amígdala acende.',opts:[{t:'😰 Fico acordado imaginando o pior cenário até a reunião.',ie:false},{t:'🧘 Noto a ansiedade, respiro, e lembro que e-mail seco não é sentença.',ie:true}],fb_ok:'Perfeito. Reavaliação cognitiva — trocar a narrativa catastrófica por uma baseada em evidências reais. A amígdala criou a história. O córtex pré-frontal a reescreveu.',fb_err:'A amígdala leu um e-mail neutro e escreveu um roteiro de terror. 90 segundos de respiração teriam dissolvido o loop. E nada mudaria o e-mail — só sua noite.',conceito:'Regulação Emocional · Amígdala'},
-  {cena:'Um colega te interrompe pela terceira vez numa reunião. Você sente raiva crescente.',opts:[{t:'😤 Digo na frente de todos: "Você me interrompeu de novo."',ie:false},{t:'✋ Termino minha fala e depois, em privado, nomeio o padrão para ele.',ie:true}],fb_ok:'Nomear em privado preserva a relação e aumenta a chance de mudança real. Em público, a crítica ativa defesa — não reflexão. Inteligência social aplicada.',fb_err:'Confrontar em público pode ser satisfatório por 30 segundos. Mas ativa a amígdala do colega, gera constrangimento coletivo e raramente muda o comportamento.',conceito:'Inteligência Social · Janela de Johari'},
-  {cena:'Você percebe que cometeu um erro numa apresentação já enviada à diretoria.',opts:[{t:'🙈 Fico em silêncio e torço para ninguém perceber.',ie:false},{t:'📧 Mando um e-mail curto reconhecendo o erro e apresentando a correção.',ie:true}],fb_ok:'Reconhecer antes que alguém aponte é IE em ação. Constrói credibilidade e elimina o sabotador Esquivo antes que ele cobre mais caro depois.',fb_err:'O silêncio estratégico tem prazo de validade curto. Quando o erro aparece sem reconhecimento seu, o problema deixa de ser o erro e passa a ser a postura.',conceito:'Autogestão · Sabotador Esquivo'},
-  {cena:'Um membro da sua equipe entrega pela segunda vez um trabalho abaixo do esperado. Você precisa dar feedback.',opts:[{t:'📊 Listo os problemas técnicos com objetividade, sem entrar em "emoção".',ie:false},{t:'💬 Começo perguntando como ela está se sentindo com o projeto antes de apontar os problemas.',ie:true}],fb_ok:'Perguntar antes de apontar cria o clima para o feedback ser recebido. Quando a pessoa se sente vista, a amígdala relaxa. Líderes com IE geram 20% mais resultado justamente por isso.',fb_err:'Feedback puramente técnico sem conexão emocional é recebido como crítica, não como desenvolvimento. A pessoa ouve "você errou" e ativa defesa, não reflexão.',conceito:'Feedback com IE · Liderança'},
-  {cena:'Você está há 3 semanas num projeto estressante. Um colega te convida para almoçar fora do escritório.',opts:[{t:'⌨️ Recuso — tenho muito trabalho e almoçar fora parece desperdício agora.',ie:false},{t:'🌿 Aceito. 1h de desconexão real vai me devolver mais do que vai me custar.',ie:true}],fb_ok:'Pausas intencionais não são luxo — são manutenção do hardware. O hipotálamo precisa de janelas de recuperação para regular cortisol. Quem nunca para paga juros que a produtividade cobra mais tarde.',fb_err:'"Trabalho demais para parar" é o mantra do Hiper-realizador. O rendimento cai progressivamente com acúmulo de cortisol. O almoço custaria 1h e devolveria 3.',conceito:'Autocuidado · Hipotálamo'}
-];
+let sgEmbaralhado=[], sgAtual=0, sgScores=new Array(9).fill(0);
+
+function sgShuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function sgInit(){
+  sgAtual=0;sgScores=new Array(9).fill(0);
+  sgEmbaralhado=sgShuffle(sgAfirmacoes);
+  document.getElementById('sg-result').style.display='none';
+  document.getElementById('sg-area').style.display='block';
+  sgRender();
+}
+
+function sgRender(){
+  const q=sgEmbaralhado[sgAtual];
+  document.getElementById('sg-num').textContent=sgAtual+1;
+  document.getElementById('sg-bar').style.width=((sgAtual+1)/27*100)+'%';
+  const rot=['Não me descreve','Raramente','Às vezes','Com frequência','Me descreve muito'];
+  const cor=['var(--accent4)','#84cc16','var(--accent)','#f97316','var(--accent2)'];
+  document.getElementById('sg-area').innerHTML=`
+    <div style="font-size:.96rem;font-weight:500;line-height:1.7;margin-bottom:1.4rem;color:var(--text);padding:.9rem 1.1rem;background:rgba(255,255,255,.04);border-radius:12px;border-left:3px solid #c084fc">${q.txt}</div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;margin-bottom:.5rem">
+      ${[1,2,3,4,5].map(v=>`
+        <button onclick="sgEscolher(${v})" style="background:var(--surface);border:2px solid var(--border);border-radius:10px;padding:.75rem .2rem;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:.25rem"
+          onmouseover="this.style.borderColor='#c084fc';this.style.background='rgba(192,132,252,.1)'"
+          onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--surface)'">
+          <span style="font-family:var(--fh);font-size:1.2rem;font-weight:800;color:${cor[v-1]}">${v}</span>
+          <span style="font-size:.58rem;color:var(--muted);text-align:center;line-height:1.3">${rot[v-1]}</span>
+        </button>`).join('')}
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);padding:0 .1rem;margin-top:.2rem">
+      <span>← Não me descreve</span><span>Me descreve muito →</span>
+    </div>`;
+}
+
+function sgEscolher(valor){
+  sgScores[sgEmbaralhado[sgAtual].sab]+=valor;
+  sgAtual++;
+  if(sgAtual<27){sgRender();}
+  else{sgResultado();}
+}
+
+function sgResultado(){
+  document.getElementById('sg-area').style.display='none';
+  const r=document.getElementById('sg-result');
+  r.style.display='block';
+  const max=15;
+  const sorted=sgScores.map((s,i)=>({s,i})).sort((a,b)=>b.s-a.s);
+  const p1=sgPerfis[sorted[0].i];
+  const ranking=sorted.map((x,pos)=>{
+    const p=sgPerfis[x.i];
+    const pct=Math.round((x.s/max)*100);
+    return `<div style="display:flex;align-items:center;gap:.7rem;padding:.45rem 0;border-bottom:1px solid var(--border)">
+      <div style="min-width:20px;font-family:var(--fh);font-size:.7rem;font-weight:800;color:var(--muted)">${pos+1}º</div>
+      <span style="font-size:1rem">${p.emoji}</span>
+      <div style="flex:1">
+        <div style="display:flex;justify-content:space-between;margin-bottom:.2rem">
+          <span style="font-family:var(--fh);font-size:.78rem;font-weight:700;color:${pos<3?p.cor:'var(--muted)'}">${p.nome}</span>
+          <span style="font-size:.7rem;color:var(--muted)">${x.s}/${max}</span>
+        </div>
+        <div style="background:var(--bg);border-radius:99px;height:4px;overflow:hidden">
+          <div style="height:4px;border-radius:99px;background:${p.cor};width:${pct}%"></div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  r.innerHTML=`
+    <div style="text-align:center;margin-bottom:1.3rem;padding:1.4rem;background:rgba(255,255,255,.03);border-radius:14px;border:1px solid rgba(192,132,252,.2)">
+      <div style="font-size:2.8rem;margin-bottom:.3rem">${p1.emoji}</div>
+      <div style="font-family:var(--fh);font-size:1.25rem;font-weight:800;color:${p1.cor}">${p1.nome}</div>
+      <div style="font-size:.76rem;color:var(--muted);margin-top:.2rem">Seu sabotador mais presente</div>
+      <div style="margin-top:.7rem;padding:.55rem .9rem;background:${p1.cor}18;border-radius:8px;font-size:.86rem;font-style:italic;color:var(--text)">${p1.frase}</div>
+    </div>
+    <div style="background:rgba(255,255,255,.04);border-radius:12px;padding:.9rem;margin-bottom:.7rem">
+      <div style="font-family:var(--fh);font-size:.65rem;text-transform:uppercase;letter-spacing:.09em;color:${p1.cor};margin-bottom:.35rem">🏠 Habitat natural</div>
+      <p style="font-size:.84rem;color:var(--muted)">${p1.hab}</p>
+    </div>
+    <div style="background:rgba(255,255,255,.04);border-radius:12px;padding:.9rem;margin-bottom:.7rem">
+      <div style="font-family:var(--fh);font-size:.65rem;text-transform:uppercase;letter-spacing:.09em;color:${p1.cor};margin-bottom:.35rem">🧠 Diagnóstico</div>
+      <p style="font-size:.84rem;color:var(--text);line-height:1.7">${p1.desc}</p>
+    </div>
+    <div style="background:rgba(61,214,140,.07);border:1px solid rgba(61,214,140,.2);border-radius:12px;padding:.9rem;margin-bottom:1.1rem">
+      <div style="font-family:var(--fh);font-size:.65rem;text-transform:uppercase;letter-spacing:.09em;color:var(--accent4);margin-bottom:.35rem">✅ Seu antídoto</div>
+      <p style="font-size:.84rem;color:var(--text);line-height:1.7">${p1.antidoto}</p>
+    </div>
+    <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:.9rem;margin-bottom:1.1rem">
+      <div style="font-family:var(--fh);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.7rem">📊 Ranking dos seus 9 sabotadores</div>
+      ${ranking}
+      <p style="font-size:.72rem;color:var(--muted);margin-top:.7rem;font-style:italic">Máximo: 15 por sabotador (3 questões × escala 5). Quanto maior, mais ativo no seu cotidiano.</p>
+    </div>
+    <div style="background:rgba(244,160,36,.06);border:1px solid rgba(244,160,36,.18);border-radius:12px;padding:.8rem 1rem;margin-bottom:1rem;display:flex;gap:.7rem;align-items:center;flex-wrap:wrap">
+      <span style="font-size:1.2rem">🔗</span>
+      <div><div style="font-family:var(--fh);font-size:.72rem;font-weight:700;color:var(--accent);margin-bottom:.2rem">Teste Oficial · Shirzad Chamine</div>
+      <p style="font-size:.8rem;color:var(--muted)">Diagnóstico completo e validado: <a href="https://www.companhiadasletras.com.br/testeinteligenciapositiva" target="_blank" style="color:var(--accent)">companhiadasletras.com.br/testeinteligenciapositiva</a></p></div>
+    </div>
+    <button onclick="sgInit()" class="btn btn-ghost" style="width:100%;font-size:.82rem">Refazer o teste →</button>`;
+}
 
 // ============================================================
 // BUILDS
@@ -951,48 +1046,6 @@ function quizNext() {
   }
 }
 function quizReset(){qAtual=0;qScore=0;qAnswered={};buildQuizQ(0);}
-
-// ============================================================
-// GERADOR DE PERFIL
-// ============================================================
-let sgAtual=0, sgResp=[];
-function sgInit(){sgAtual=0;sgResp=[];document.getElementById('sg-result').style.display='none';sgRender();}
-function sgRender(){
-  const q=sgPerguntas[sgAtual];
-  document.getElementById('sg-num').textContent=sgAtual+1;
-  document.getElementById('sg-bar').style.width=((sgAtual+1)/20*100)+'%';
-  document.getElementById('sg-area').innerHTML=`
-    <div style="font-size:.98rem;font-weight:500;line-height:1.65;margin-bottom:1.2rem;color:var(--text)">${q.sit}</div>
-    ${q.opts.map((o,i)=>`<button class="sg-opt" onclick="sgEscolher(${JSON.stringify(o.s)})">${o.t}</button>`).join('')}`;
-}
-function sgEscolher(sabs){
-  sgResp.push(...sabs);
-  sgAtual++;
-  if(sgAtual<20){sgRender();}
-  else{sgResultado();}
-}
-function sgResultado(){
-  const freq=new Array(10).fill(0);
-  sgResp.forEach(i=>{if(i>=0&&i<10)freq[i]++;});
-  const sorted=freq.map((f,i)=>({f,i})).sort((a,b)=>b.f-a.f);
-  const p1=sgPerfis[sorted[0].i];
-  const p2=sorted[1].f>0?sgPerfis[sorted[1].i]:null;
-  document.getElementById('sg-area').style.display='none';
-  const r=document.getElementById('sg-result');
-  r.style.display='block';
-  r.innerHTML=`
-    <div style="text-align:center;margin-bottom:1.5rem">
-      <div style="font-size:3.5rem;margin-bottom:.4rem">${p1.emoji}</div>
-      <div style="font-family:var(--fh);font-size:1.4rem;font-weight:800;color:${p1.cor}">${p1.nome}</div>
-      <div style="font-size:.8rem;color:var(--muted);margin-top:.2rem">Sabotador dominante</div>
-    </div>
-    <div style="background:rgba(255,255,255,.04);border-radius:12px;padding:1rem;margin-bottom:.8rem"><div style="font-family:var(--fh);font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:${p1.cor};margin-bottom:.3rem">🏠 Habitat natural</div><p style="font-size:.86rem;color:var(--muted)">${p1.hab}</p></div>
-    <div style="background:rgba(255,255,255,.04);border-radius:12px;padding:1rem;border-left:3px solid ${p1.cor};margin-bottom:.8rem"><div style="font-family:var(--fh);font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:${p1.cor};margin-bottom:.3rem">💬 Frase característica</div><p style="font-size:.92rem;font-style:italic;color:var(--text)">${p1.frase}</p></div>
-    <div style="background:rgba(255,255,255,.04);border-radius:12px;padding:1rem;margin-bottom:.8rem"><div style="font-family:var(--fh);font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:${p1.cor};margin-bottom:.3rem">🧠 Diagnóstico</div><p style="font-size:.86rem;color:var(--text);line-height:1.7">${p1.desc}</p></div>
-    <div style="background:rgba(61,214,140,.07);border:1px solid rgba(61,214,140,.2);border-radius:12px;padding:1rem;margin-bottom:${p2?'.8rem':'1.2rem'}"><div style="font-family:var(--fh);font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:var(--accent4);margin-bottom:.3rem">✅ Seu antídoto</div><p style="font-size:.86rem;color:var(--text);line-height:1.7">${p1.antidoto}</p></div>
-    ${p2?`<div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem;margin-bottom:1.2rem;display:flex;gap:.8rem;align-items:center"><span style="font-size:1.5rem">${p2.emoji}</span><div><div style="font-size:.7rem;font-family:var(--fh);color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Sabotador secundário</div><div style="font-weight:700;color:${p2.cor};margin-top:.1rem">${p2.nome}</div><div style="font-size:.78rem;color:var(--muted);margin-top:.1rem;font-style:italic">${p2.frase}</div></div></div>`:''}
-    <button onclick="sgInit()" class="btn btn-ghost" style="width:100%;font-size:.83rem">Refazer o teste →</button>`;
-}
 
 // ============================================================
 // DILEMAS
